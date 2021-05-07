@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Emulator8086</string>
+    <array name="keywords">
+        <item>string</item>
+        <item>int</item>
+        <item>bool</item>
+        <item>struct</item>
+        <item>true</item>
+        <item>false</item>
+        <item>for</item>
+        <item>while</item>
+        <item>return</item>
+        <item>if</item>
+        <item>else</item>
+        <item>break</item>
+        <item>continue</item>
+        <item>switch</item>
+        <item>case</item>
+        <item>default</item>
+        <item>class</item>
+        <item>const</item>
+    </array>
+</resources>
