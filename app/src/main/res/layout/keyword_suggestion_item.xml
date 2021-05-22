@@ -3,11 +3,14 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp"
-    android:background="@color/monokai_gray">
+    android:padding="1dp"
+    android:background="@color/darkGray">
 
     <TextView
         android:id="@+id/tvKeyword"
-        android:layout_width="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:textSize="17sp"
+        android:fontFamily="@font/source_code_pro_regular"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 </LinearLayout>

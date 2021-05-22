@@ -8,6 +8,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="darkGray">#3D3D3D</color>
+    <color name="darkerGray">#333333</color>
+    <color name="darkestGray">#2A2A2A</color>
+    <color name="lightGray">#6E6E6E</color>
     <color name="gold">#FFD700</color>
     <color name="monokai_purple">#AE81FF</color>
     <color name="monokai_green">#A6E22E</color>

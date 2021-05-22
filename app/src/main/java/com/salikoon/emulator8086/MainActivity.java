@@ -3,7 +3,10 @@ package com.salikoon.emulator8086;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import com.amrdeveloper.codeview.CodeView;
 import com.salikoon.emulator8086.Utility.GoSyntaxManager;
@@ -11,6 +14,7 @@ import com.salikoon.emulator8086.Utility.GoSyntaxManager;
 public class MainActivity extends AppCompatActivity {
 
     private CodeView mCodeView;
+    private TextView tvLineNum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,23 +22,32 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mCodeView = findViewById(R.id.codeView);
-        GoSyntaxManager.applyMonokaiTheme(this, mCodeView);
-        configLanguageAutoComplete();
-    }
+        tvLineNum = findViewById(R.id.tvLineNum);
 
-    private void configLanguageAutoComplete() {
-        //Load current Programming Language
         final String[] languageKeywords = getResources().getStringArray(R.array.keywords);
-
-        //Custom list item xml layout
         final int layoutId = R.layout.keyword_suggestion_item;
-
-        //TextView id to put suggestion on it
         final int viewId = R.id.tvKeyword;
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, layoutId, viewId,
-                languageKeywords);
-
-        //Add Custom Adapter to the CodeView
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, layoutId, viewId, languageKeywords);
         mCodeView.setAdapter(adapter);
+
+        GoSyntaxManager.applyMonokaiTheme(this, mCodeView);
+
+        mCodeView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                int lines = mCodeView.getLineCount();
+                StringBuilder lineText = new StringBuilder();
+                for (int j=1; j<=lines; ++j)
+                    lineText.append(j).append("\n");
+                tvLineNum.setText(lineText);
+            }
+        });
     }
+
 }

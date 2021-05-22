@@ -1,20 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:fillViewport="true"
     tools:context=".MainActivity">
 
-    <com.amrdeveloper.codeview.CodeView
-        android:id="@+id/codeView"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/darkGray"
-        android:dropDownWidth="150dp"
-        android:dropDownHorizontalOffset="0dp"
-        android:dropDownSelector="@color/darkGray"
-        android:gravity="top|start" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/tvLineNum"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="@color/darkerGray"
+            android:fontFamily="@font/source_code_pro_regular"
+            android:gravity="end"
+            android:padding="6dp"
+            android:text="1"
+            android:textColor="@color/lightGray"
+            android:textSize="18sp" />
+
+        <com.amrdeveloper.codeview.CodeView
+            android:id="@+id/codeView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/darkestGray"
+            android:dropDownWidth="150dp"
+            android:dropDownHorizontalOffset="0dp"
+            android:dropDownSelector="@color/darkGray"
+            android:fontFamily="@font/source_code_pro_regular"
+            android:gravity="top|start"
+            android:padding="6dp"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+</ScrollView>

@@ -35,7 +35,7 @@ public class GoSyntaxManager {
             codeView.resetSyntaxPatternList();
             //View Background
             codeView.setBackgroundColor
-                    (codeView.getResources().getColor(R.color.darkGray));
+                    (context.getResources().getColor(R.color.darkGray));
 
             //Syntax Colors
             codeView.addSyntaxPattern
