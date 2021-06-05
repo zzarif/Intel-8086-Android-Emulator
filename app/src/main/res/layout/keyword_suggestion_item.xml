@@ -3,13 +3,13 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="1dp"
-    android:background="@color/darkGray">
+    android:background="@color/white_1">
 
     <TextView
         android:id="@+id/tvKeyword"
-        android:background="?attr/selectableItemBackground"
+        android:background="@drawable/bg_keyword_suggestion"
         android:textSize="17sp"
+        android:textColor="@color/keyword_0_extra"
         android:fontFamily="@font/source_code_pro_regular"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

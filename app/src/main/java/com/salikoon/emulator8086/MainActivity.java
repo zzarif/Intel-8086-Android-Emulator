@@ -21,8 +21,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mCodeView = findViewById(R.id.codeView);
-        tvLineNum = findViewById(R.id.tvLineNum);
+        mCodeView = findViewById(R.id.code_view);
+        tvLineNum = findViewById(R.id.tv_line_num);
 
         final String[] languageKeywords = getResources().getStringArray(R.array.keywords);
         final int layoutId = R.layout.keyword_suggestion_item;

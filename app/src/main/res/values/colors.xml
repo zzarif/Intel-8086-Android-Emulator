@@ -13,10 +13,30 @@
     <color name="lightGray">#6E6E6E</color>
     <color name="gold">#FFD700</color>
     <color name="monokai_purple">#AE81FF</color>
-    <color name="monokai_green">#A6E22E</color>
-    <color name="monokai_orange">#FD971F</color>
+    <color name="monokai_green">#58A758</color>
+    <color name="monokai_orange">#FF9000</color>
     <color name="monokai_gray">#75715E</color>
-    <color name="monokai_blue">#66D9EF</color>
+    <color name="monokai_blue">#009EB7</color>
     <color name="monokai_pink">#FF00FF</color>
 
+    <color name="white_0">#FFFFFF</color>
+    <color name="white_1">#E0E0E0</color>
+    <color name="white_2">#CCCCCC</color>
+    <color name="white_3">#858585</color>
+
+    <color name="gray_0">#2A2A2A</color>
+    <color name="gray_1">#333333</color>
+    <color name="gray_2">#3D3D3D</color>
+    <color name="gray_3">#6E6E6E</color>
+
+    <color name="keyword_0">#0000FF</color>
+    <color name="keyword_0_extra">#0000CD</color>
+    <color name="keyword_1">#EC5800</color>
+    <color name="keyword_2">#800000</color>
+
+    <color name="label_0">#9D2A00</color>
+
+    <color name="char_0">#008080</color>
+    <color name="hex_0">#006080</color>
+    <color name="bin_0">#006080</color>
 </resources>

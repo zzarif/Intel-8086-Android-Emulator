@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/gray_0"
+    android:padding="8dp"
+    android:elevation="8dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Editor"
+        android:textColor="@color/white"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/roboto_slab_regular"
+        android:textSize="20sp"/>
+
+    <ImageView
+        android:id="@+id/iv_play"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:src="@drawable/ic_play"
+        android:layout_margin="12dp"
+        android:layout_alignParentEnd="true"/>
+
+    <ImageView
+        android:id="@+id/iv_reset"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:src="@drawable/ic_reset"
+        android:layout_margin="12dp"
+        android:layout_toStartOf="@id/iv_play"/>
+
+    <ImageView
+        android:id="@+id/iv_redo"
+        android:layout_width="17dp"
+        android:layout_height="17dp"
+        android:src="@drawable/ic_redo"
+        android:layout_margin="12dp"
+        android:layout_toStartOf="@id/iv_reset"/>
+
+    <ImageView
+        android:id="@+id/iv_undo"
+        android:layout_width="17dp"
+        android:layout_height="17dp"
+        android:src="@drawable/ic_undo"
+        android:layout_margin="12dp"
+        android:layout_toStartOf="@id/iv_redo"/>
+
+</RelativeLayout>

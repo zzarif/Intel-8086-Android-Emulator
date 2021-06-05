@@ -1,23 +1,40 @@
 <resources>
     <string name="app_name">Emulator8086</string>
     <string-array name="keywords">
-        <item>string</item>
-        <item>int</item>
-        <item>bool</item>
-        <item>struct</item>
-        <item>true</item>
-        <item>false</item>
-        <item>for</item>
-        <item>while</item>
-        <item>return</item>
-        <item>if</item>
-        <item>else</item>
-        <item>break</item>
-        <item>continue</item>
-        <item>switch</item>
-        <item>case</item>
-        <item>default</item>
-        <item>class</item>
-        <item>const</item>
+        <item>MOV </item>
+        <item>ADD</item>
+        <item>SUB</item>
+        <item>MUL</item>
+        <item>DIV</item>
+        <item>INC</item>
+        <item>DEC</item>
+        <item>XOR</item>
+        <item>NOT</item>
+        <item>END</item>
+        <item>RET</item>
+        <item>MAIN</item>
+        <item>ENDP</item>
+
+        <item>ORG</item>
+        <item>.DATA</item>
+        <item>.CODE</item>
+
+        <item>SUM</item>
+        <item>DIFFERENCE</item>
+        <item>MULTIPLICATION</item>
+        <item>DIVISION</item>
+        <item>DB</item>
+        <item>DW</item>
+
+        <item>INT</item>
+        <item>CMP</item>
+        <item>JZ</item>
+        <item>JG</item>
+        <item>JL</item>
+        <item>JB</item>
+        <item>JNZ</item>
+        <item>JGE</item>
+        <item>JLE</item>
+        <item>JC</item>
     </string-array>
 </resources>
