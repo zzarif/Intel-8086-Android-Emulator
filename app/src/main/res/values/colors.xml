@@ -7,17 +7,8 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="darkGray">#3D3D3D</color>
-    <color name="darkerGray">#333333</color>
-    <color name="darkestGray">#2A2A2A</color>
-    <color name="lightGray">#6E6E6E</color>
-    <color name="gold">#FFD700</color>
-    <color name="monokai_purple">#AE81FF</color>
-    <color name="monokai_green">#58A758</color>
-    <color name="monokai_orange">#FF9000</color>
-    <color name="monokai_gray">#75715E</color>
-    <color name="monokai_blue">#009EB7</color>
-    <color name="monokai_pink">#FF00FF</color>
+
+    <color name="app_green">#08C941</color>
 
     <color name="white_0">#FFFFFF</color>
     <color name="white_1">#E0E0E0</color>
@@ -28,6 +19,7 @@
     <color name="gray_1">#333333</color>
     <color name="gray_2">#3D3D3D</color>
     <color name="gray_3">#6E6E6E</color>
+    <color name="gray_4">#8A8A8A</color>
 
     <color name="keyword_0">#0000FF</color>
     <color name="keyword_0_extra">#0000CD</color>

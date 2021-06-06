@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Emulator8086</string>
+    <string name="app_name">8086 Emulator</string>
     <string-array name="keywords">
         <item>MOV </item>
         <item>ADD</item>
@@ -37,4 +37,6 @@
         <item>JLE</item>
         <item>JC</item>
     </string-array>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>

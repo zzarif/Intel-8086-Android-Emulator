@@ -1,56 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:theme="@style/MyEmulatorTheme"
-    tools:context=".MainActivity">
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
 
-    <include layout="@layout/toolbar_editor" />
-
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
-
-        <LinearLayout
+        android:orientation="vertical">
+        <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/gray_0"
+            android:id="@+id/toolbar"
+            android:theme="@style/MyToolbarTheme"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            android:elevation="4dp"/>
+    </LinearLayout>
 
-            <TextView
-                android:id="@+id/tv_line_num"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:background="@color/white_2"
-                android:fontFamily="@font/source_code_pro_regular"
-                android:gravity="end"
-                android:padding="6dp"
-                android:text="1"
-                android:textColor="@color/gray_2"
-                android:textSize="18sp" />
-
-            <View
-                android:layout_width="0.5dp"
-                android:layout_height="match_parent"
-                android:background="@color/gray_0" />
-
-            <com.amrdeveloper.codeview.CodeView
-                android:id="@+id/code_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white_0"
-                android:dropDownWidth="150dp"
-                android:dropDownHorizontalOffset="0dp"
-                android:dropDownSelector="@color/darkGray"
-                android:fontFamily="@font/source_code_pro_regular"
-                android:gravity="top|start"
-                android:padding="6dp"
-                android:textSize="18sp" />
-
-        </LinearLayout>
-    </ScrollView>
-
-</LinearLayout>
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/white"
+        app:headerLayout="@layout/nav_header_main"
+        app:itemTextColor="@color/black"
+        app:itemIconTint="@color/black"
+        app:menu="@menu/activity_main_drawer" />
+</androidx.drawerlayout.widget.DrawerLayout>

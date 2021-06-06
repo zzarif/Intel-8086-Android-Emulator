@@ -6,7 +6,7 @@
     android:background="@color/white_1">
 
     <TextView
-        android:id="@+id/tvKeyword"
+        android:id="@+id/tv_keyword"
         android:background="@drawable/bg_keyword_suggestion"
         android:textSize="17sp"
         android:textColor="@color/keyword_0_extra"
