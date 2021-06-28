@@ -1,11 +1,14 @@
 package com.salikoon.emulator8086;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -22,45 +25,20 @@ public class EditorActivity extends AppCompatActivity {
     private TextView tvLineNum;
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_editor_options, menu);
+        return true;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editor);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         mCodeView = findViewById(R.id.code_view);
         tvLineNum = findViewById(R.id.tv_line_num);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        ((ImageView)toolbar.findViewById(R.id.iv_back)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
-        ((ImageView)toolbar.findViewById(R.id.iv_undo)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(EditorActivity.this, "Undo", Toast.LENGTH_SHORT).show();
-            }
-        });
-        ((ImageView)toolbar.findViewById(R.id.iv_redo)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(EditorActivity.this, "Redo", Toast.LENGTH_SHORT).show();
-            }
-        });
-        ((ImageView)toolbar.findViewById(R.id.iv_reset)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(EditorActivity.this, "Reset", Toast.LENGTH_SHORT).show();
-            }
-        });
-        ((ImageView)toolbar.findViewById(R.id.iv_play)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(EditorActivity.this, EmulateActivity.class);
-                startActivity(intent);
-            }
-        });
 
         final String[] languageKeywords = getResources().getStringArray(R.array.keywords);
         final int layoutId = R.layout.item_keyword_suggestion;
@@ -88,4 +66,26 @@ public class EditorActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+            case R.id.undo:
+                Toast.makeText(this, "Undo", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.redo:
+                Toast.makeText(this, "Redo", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.compile:
+                Toast.makeText(this, "Compile", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.reset:
+                Toast.makeText(this, "Reset", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }

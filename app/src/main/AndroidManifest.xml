@@ -21,12 +21,12 @@
         <activity
             android:name=".EditorActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/MyEmulatorTheme"/>
+            android:theme="@style/MyEmulatorTheme2"/>
         <activity
             android:name=".EmulateActivity"
             android:label="Status"
             android:screenOrientation="portrait"
-            android:theme="@style/MyEmulatorTheme" />
+            android:theme="@style/MyEmulatorTheme2" />
     </application>
 
 </manifest>

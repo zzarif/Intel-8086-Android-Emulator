@@ -5,7 +5,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/white_1"
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
@@ -21,7 +21,75 @@
             android:theme="@style/MyToolbarTheme"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             android:elevation="4dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Recent Activity"
+            android:textColor="@color/gray_0"
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="14dp"
+            android:layout_marginBottom="4dp"
+            android:textSize="16sp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/gray_2"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginBottom="4dp"/>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="14dp"
+            android:layout_marginBottom="4dp">
+            <TextView
+                android:id="@+id/tv_recent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="10"
+                android:maxLines="10"
+                android:padding="4dp"
+                android:textColor="@color/gray_4"
+                android:ellipsize="end"/>
+            <TextView
+                android:id="@+id/tv_nothing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/gray_4"
+                android:text="Nothing to show"
+                android:layout_gravity="center"/>
+        </FrameLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/gray_3"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginBottom="8dp"/>
+        <FrameLayout
+            android:id="@+id/fl_edit"
+            style="@style/MyFrameLayout">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_edit_1"/>
+            <TextView
+                android:text="Edit"
+                style="@style/MyTextViewStyle"/>
+        </FrameLayout>
+        <FrameLayout
+            android:id="@+id/fl_open_file"
+            style="@style/MyFrameLayout">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_file"/>
+            <TextView
+                android:text="Open File"
+                style="@style/MyTextViewStyle"/>
+        </FrameLayout>
     </LinearLayout>
+
+
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"

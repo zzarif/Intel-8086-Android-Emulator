@@ -8,9 +8,9 @@
     android:theme="@style/MyEmulatorTheme"
     tools:context=".EditorActivity">
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar_editor" />
+<!--    <include-->
+<!--        android:id="@+id/toolbar"-->
+<!--        layout="@layout/toolbar_editor" />-->
 
     <ScrollView
         android:layout_width="match_parent"
