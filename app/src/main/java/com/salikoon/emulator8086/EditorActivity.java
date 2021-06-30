@@ -79,7 +79,7 @@ public class EditorActivity extends AppCompatActivity {
                 Toast.makeText(this, "Redo", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.compile:
-                Toast.makeText(this, "Compile", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, EmulateActivity.class));
                 return true;
             case R.id.reset:
                 Toast.makeText(this, "Reset", Toast.LENGTH_SHORT).show();

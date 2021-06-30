@@ -20,6 +20,7 @@
         </activity>
         <activity
             android:name=".EditorActivity"
+            android:label="Editor"
             android:screenOrientation="portrait"
             android:theme="@style/MyEmulatorTheme2"/>
         <activity

@@ -9,6 +9,17 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="app_green">#08C941</color>
+    <color name="green">#008000</color>
+    <color name="green_0">#4CAF50</color>
+    <color name="green_1">#0BDA51</color>
+
+    <color name="yellow_0">#FFBF00</color>
+    <color name="yellow_1">#FFEA00</color>
+    <color name="yellow">#CC5500</color>
+
+    <color name="pink_0">#F88379</color>
+    <color name="pink_1">#FFB6C1</color>
+    <color name="pink">#9F2B68</color>
 
     <color name="white_0">#FFFFFF</color>
     <color name="white_1">#E0E0E0</color>
