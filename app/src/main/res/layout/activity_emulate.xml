@@ -2,169 +2,56 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white_1"
-    android:paddingTop="8dp">
+    android:background="@color/white_1">
 
-    <LinearLayout
+
+    <ScrollView
+        android:id="@+id/scroll_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:layout_above="@+id/ll_exec"
+        android:layout_alignParentTop="true"
+        android:paddingTop="16dp"
+        android:scrollbars="none">
 
-        <TextView
-            style="@style/MyEmulatorTextView"
-            android:text="General Purpose Registers" />
-
-        <GridLayout
+        <com.jmedeisis.draglinearlayout.DragLinearLayout
+            android:id="@+id/drag_linear_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:columnCount="2">
-
+            android:layout_height="wrap_content">
             <include
-                layout="@layout/item_register"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_margin="4dp" />
-
+                android:id="@+id/layout_general"
+                layout="@layout/layout_registers"/>
             <include
-                layout="@layout/item_register"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_margin="4dp" />
-
+                android:id="@+id/layout_segments"
+                layout="@layout/layout_segments"/>
             <include
-                layout="@layout/item_register"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_margin="4dp" />
-
+                android:id="@+id/layout_pointers"
+                layout="@layout/layout_pointers"/>
             <include
-                layout="@layout/item_register"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_margin="4dp" />
-
-            <include
-                layout="@layout/item_register"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_margin="4dp" />
-
-            <include
-                layout="@layout/item_register"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_margin="4dp" />
-
-            <include
-                layout="@layout/item_register"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_margin="4dp" />
-
-            <include
-                layout="@layout/item_register"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_margin="4dp" />
-        </GridLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_margin="8dp"
-            android:background="@color/gray_1" />
-
-        <TextView
-            style="@style/MyEmulatorTextView"
-            android:text="Flags" />
-
-        <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:columnCount="6">
-
-            <include
-                layout="@layout/item_flag"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_margin="4dp" />
-
-            <include
-                layout="@layout/item_flag"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_margin="4dp" />
-
-            <include
-                layout="@layout/item_flag"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_margin="4dp" />
-
-            <include
-                layout="@layout/item_flag"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_margin="4dp" />
-
-            <include
-                layout="@layout/item_flag"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_margin="4dp" />
-
-            <include
-                layout="@layout/item_flag"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_margin="4dp" />
-
-            <include
-                layout="@layout/item_flag"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_margin="4dp" />
-
-            <include
-                layout="@layout/item_flag"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_margin="4dp" />
-        </GridLayout>
-    </LinearLayout>
+                android:id="@+id/layout_flags"
+                layout="@layout/layout_flags"/>
+        </com.jmedeisis.draglinearlayout.DragLinearLayout>
+    </ScrollView>
 
     <LinearLayout
+        android:id="@+id/ll_exec"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_margin="8dp"
-        android:background="@drawable/bg_exec"
-        android:elevation="8dp"
+        android:background="@color/white_2"
         android:orientation="vertical"
-        android:paddingTop="12dp">
+        android:paddingBottom="8dp">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/gray_4"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
+            android:layout_marginHorizontal="20dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="16dp">
 
@@ -207,7 +94,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
+            android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="8dp"
             android:orientation="horizontal">
 
@@ -267,7 +154,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="12dp"
+            android:layout_marginHorizontal="24dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/bg_green"
             android:clickable="true"
