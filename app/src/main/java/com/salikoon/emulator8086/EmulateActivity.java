@@ -35,7 +35,7 @@ public class EmulateActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         scrollView = findViewById(R.id.scroll_view);
-        LinearLayout llRegisters = findViewById(R.id.layout_general);
+        LinearLayout llRegisters = findViewById(R.id.layout_registers);
         LinearLayout llSegments = findViewById(R.id.layout_segments);
         LinearLayout llPointers = findViewById(R.id.layout_pointers);
         LinearLayout llFlags = findViewById(R.id.layout_flags);

@@ -4,9 +4,6 @@
         <shape>
             <solid
                 android:color="@color/white_2" />
-            <stroke
-                android:width="0.5dp"
-                android:color="@color/gray_1"/>
             <padding
                 android:left="1dp"
                 android:right="1dp"
@@ -18,9 +15,6 @@
         <shape>
             <solid
                 android:color="@color/white_2" />
-            <stroke
-                android:width="0.5dp"
-                android:color="@color/gray_1"/>
             <padding
                 android:left="1dp"
                 android:right="1dp"
@@ -32,9 +26,6 @@
         <shape>
             <solid
                 android:color="@color/white_1" />
-            <stroke
-                android:width="0.5dp"
-                android:color="@color/gray_1"/>
             <padding
                 android:left="1dp"
                 android:right="1dp"
