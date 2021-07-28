@@ -3,9 +3,13 @@ package com.salikoon.emulator8086;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,6 +22,8 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.amrdeveloper.codeview.CodeView;
 import com.salikoon.emulator8086.Utility.GoSyntaxManager;
+
+import static android.content.ClipDescription.MIMETYPE_TEXT_PLAIN;
 
 public class EditorActivity extends AppCompatActivity {
 
@@ -72,6 +78,16 @@ public class EditorActivity extends AppCompatActivity {
             case android.R.id.home:
                 finish();
                 return true;
+            case R.id.paste:
+                String textToPaste = null;
+                ClipboardManager clipboard = (ClipboardManager)this.getSystemService(Context.CLIPBOARD_SERVICE);
+                if (clipboard.hasPrimaryClip()) {
+                    ClipData clip = clipboard.getPrimaryClip();
+                    textToPaste = clip.getItemAt(0).coerceToText(this).toString();
+                }
+                if (!TextUtils.isEmpty(textToPaste))
+                    mCodeView.setText(textToPaste);
+                return true;
             case R.id.undo:
                 Toast.makeText(this, "Undo", Toast.LENGTH_SHORT).show();
                 return true;
@@ -80,6 +96,9 @@ public class EditorActivity extends AppCompatActivity {
                 return true;
             case R.id.compile:
                 startActivity(new Intent(this, EmulateActivity.class));
+                return true;
+            case R.id.save:
+                Toast.makeText(this, "Save", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.reset:
                 Toast.makeText(this, "Reset", Toast.LENGTH_SHORT).show();

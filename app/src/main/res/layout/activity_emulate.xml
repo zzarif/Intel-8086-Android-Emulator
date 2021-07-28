@@ -70,7 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
-                android:layout_toStartOf="@+id/ib_open_editor"
+                android:layout_alignParentEnd="true"
                 android:layout_toEndOf="@+id/tv_exec_label"
                 android:background="@drawable/bg_exec_mini"
                 android:fontFamily="@font/source_code_pro_regular"
@@ -80,15 +80,6 @@
                 android:textColor="@color/gray_1"
                 android:textSize="16sp" />
 
-            <ImageButton
-                android:id="@+id/ib_open_editor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_margin="4dp"
-                android:background="@drawable/bg_exec_mini"
-                android:padding="4dp"
-                android:src="@drawable/ic_baseline_arrow_upward_24" />
         </RelativeLayout>
 
         <LinearLayout

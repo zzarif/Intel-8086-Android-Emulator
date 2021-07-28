@@ -26,7 +26,7 @@ public class GoSyntaxManager {
         private static final Pattern PATTERN_CHAR = Pattern.compile("'[a-zA-Z]'");
         private static final Pattern PATTERN_HEX = Pattern.compile("(0x[0-9a-fA-F]+|[0-9a-fA-F]+[hH])");
         private static final Pattern PATTERN_BIN = Pattern.compile("([01]+b)");
-        private static final Pattern PATTERN_COMMENT = Pattern.compile(";.+\\n");
+        private static final Pattern PATTERN_COMMENT = Pattern.compile(";.*");
 
         public static void applyMonokaiTheme(Context context, CodeView codeView) {
             codeView.resetSyntaxPatternList();
