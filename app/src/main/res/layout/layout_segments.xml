@@ -34,14 +34,12 @@
                 style="@style/MyRegisterItemKeyStyle"
                 android:text="DS"/>
             <TextView
-                style="@style/MyRegisterItemValueStyle"
-                android:text="0A"/>
+                style="@style/MyRegisterItemValueStyle"/>
             <TextView
                 style="@style/MyRegisterItemKeyStyle"
                 android:text="CS"/>
             <TextView
-                style="@style/MyRegisterItemValueStyle"
-                android:text="0A"/>
+                style="@style/MyRegisterItemValueStyle"/>
         </TableRow>
         <TableRow
             android:layout_height="1dp"
@@ -56,14 +54,12 @@
                 style="@style/MyRegisterItemKeyStyle"
                 android:text="SS"/>
             <TextView
-                style="@style/MyRegisterItemValueStyle"
-                android:text="0A"/>
+                style="@style/MyRegisterItemValueStyle"/>
             <TextView
                 style="@style/MyRegisterItemKeyStyle"
                 android:text="ES"/>
             <TextView
-                style="@style/MyRegisterItemValueStyle"
-                android:text="0A"/>
+                style="@style/MyRegisterItemValueStyle"/>
         </TableRow>
     </TableLayout>
 </LinearLayout>

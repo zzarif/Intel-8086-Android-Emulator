@@ -56,18 +56,23 @@
         <TableRow
             android:padding="4dp">
             <TextView
+                android:id="@+id/of"
                 style="@style/MyRegisterItemKeyStyle"
                 android:text="0"/>
             <TextView
+                android:id="@+id/df"
                 style="@style/MyRegisterItemKeyStyle"
                 android:text="0"/>
             <TextView
+                android:id="@+id/_if"
                 style="@style/MyRegisterItemKeyStyle"
                 android:text="0"/>
             <TextView
+                android:id="@+id/tf"
                 style="@style/MyRegisterItemKeyStyle"
                 android:text="0"/>
             <TextView
+                android:id="@+id/sf"
                 style="@style/MyRegisterItemKeyStyle"
                 android:text="0"/>
         </TableRow>
@@ -105,15 +110,19 @@
         <TableRow
             android:padding="4dp">
             <TextView
+                android:id="@+id/zf"
                 style="@style/MyRegisterItemKeyStyle"
                 android:text="0"/>
             <TextView
+                android:id="@+id/af"
                 style="@style/MyRegisterItemKeyStyle"
                 android:text="0"/>
             <TextView
+                android:id="@+id/pf"
                 style="@style/MyRegisterItemKeyStyle"
                 android:text="0"/>
             <TextView
+                android:id="@+id/cf"
                 style="@style/MyRegisterItemKeyStyle"
                 android:text="0"/>
             <TextView

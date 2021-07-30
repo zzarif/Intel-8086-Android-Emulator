@@ -11,19 +11,15 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.appcompat.widget.Toolbar;
 
 import com.amrdeveloper.codeview.CodeView;
-import com.salikoon.emulator8086.Utility.GoSyntaxManager;
-
-import static android.content.ClipDescription.MIMETYPE_TEXT_PLAIN;
+import com.salikoon.emulator8086.utility.GoSyntaxManager;
 
 public class EditorActivity extends AppCompatActivity {
 
@@ -95,7 +91,16 @@ public class EditorActivity extends AppCompatActivity {
                 Toast.makeText(this, "Redo", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.compile:
-                startActivity(new Intent(this, EmulateActivity.class));
+                String[] lines = mCodeView.getText().toString().split("\\r?\\n");
+                String[] finalLines = new String[lines.length+1];
+                finalLines[0]="";
+                for (int i=1; i<lines.length+1; ++i) {
+                    finalLines[i]=lines[i-1];
+                }
+                Intent intent = new Intent(this, EmulateActivity.class);
+                intent.putExtra("MyCode",finalLines);
+                startActivity(intent);
+
                 return true;
             case R.id.save:
                 Toast.makeText(this, "Save", Toast.LENGTH_SHORT).show();

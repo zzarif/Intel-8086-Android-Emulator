@@ -1,4 +1,4 @@
-package com.salikoon.emulator8086.Utility;
+package com.salikoon.emulator8086.utility;
 
 import android.content.Context;
 
