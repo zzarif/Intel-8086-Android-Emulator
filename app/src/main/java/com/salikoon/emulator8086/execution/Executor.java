@@ -1,22 +1,26 @@
-package com.salikoon.emulator8086.handlers;//بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ
+package com.salikoon.emulator8086.execution;//بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ
 
-import com.salikoon.emulator8086.models.Logger;
-import com.salikoon.emulator8086.models.UIPacket;
+
+import com.salikoon.emulator8086.hardware.Logger;
+import com.salikoon.emulator8086.hardware.MemoryHandler;
+import com.salikoon.emulator8086.parser.Tokeniser;
+import com.salikoon.emulator8086.ui_helper.UIPacket;
+import com.salikoon.emulator8086.user_code.CodeHandler;
 
 public class Executor
 {
     private static int currentLineUnderExecution=0;
-
+    
     public static UIPacket execute()
     {
         currentLineUnderExecution++;
-        String lineOfCode=CodeHandler.getCode(currentLineUnderExecution);
+        var lineOfCode= CodeHandler.getCode(currentLineUnderExecution);
         Logger log= executeLineAndGetLogger(lineOfCode);
         return new UIPacket(log,currentLineUnderExecution);
     }
     private static Logger executeLineAndGetLogger(String code)
     {
-        String[] tokens =Tokeniser.tokeniseCode(code);
+        String[] tokens = Tokeniser.tokeniseCode(code);
         MemoryHandler.resetLogger();
         try
         {

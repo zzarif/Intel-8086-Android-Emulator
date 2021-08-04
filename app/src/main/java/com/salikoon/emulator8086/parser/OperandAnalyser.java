@@ -1,6 +1,6 @@
-package com.salikoon.emulator8086.analyser;//بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ
+package com.salikoon.emulator8086.parser;//بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ
 
-interface OperandAnalyser extends RegisterAnalyser,ImmediateValueAnalyser, MemoryAccessAnalyser
+public interface OperandAnalyser extends RegisterAnalyser,ImmediateValueAnalyser, MemoryAccessAnalyser
  {
 		/**This class reveals operand information regarding a particular token 
 	*@author Fida

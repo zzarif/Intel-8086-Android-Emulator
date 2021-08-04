@@ -1,4 +1,4 @@
-package com.salikoon.emulator8086.analyser;//بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ
+package com.salikoon.emulator8086.parser;//بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ
 
 interface ImmediateValueAnalyser
 {
@@ -37,8 +37,8 @@ interface ImmediateValueAnalyser
     }
     public default int immediateValueToInt(String immediateValue)
     {
-        String suffixRemoved=immediateValue.replaceFirst("[HDB]?$","");
-        int radix=getRadixOfImmediateValue(immediateValue);
+        var suffixRemoved=immediateValue.replaceFirst("[HDB]?$","");
+        var radix=getRadixOfImmediateValue(immediateValue);
         return Integer.parseInt(suffixRemoved,radix);
     }   
 } //end of file

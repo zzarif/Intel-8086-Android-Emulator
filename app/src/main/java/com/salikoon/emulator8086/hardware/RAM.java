@@ -1,4 +1,4 @@
-package com.salikoon.emulator8086.models;
+package com.salikoon.emulator8086.hardware;
 
 public class RAM {
 

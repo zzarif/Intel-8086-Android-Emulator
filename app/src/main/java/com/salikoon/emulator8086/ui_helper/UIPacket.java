@@ -1,4 +1,6 @@
-package com.salikoon.emulator8086.models;//بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ
+package com.salikoon.emulator8086.ui_helper;//بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ
+
+import com.salikoon.emulator8086.hardware.Logger;
 
 public class UIPacket
 {

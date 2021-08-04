@@ -1,4 +1,4 @@
-package com.salikoon.emulator8086.handlers;
+package com.salikoon.emulator8086.parser;
 
 import java.util.StringTokenizer;
 
@@ -29,7 +29,7 @@ public class Tokeniser {
 		*@author Fida
 		*@param A String containing a line of user code
 		*@return A String array of ASL-8086 tokens
-        *@see StringTokenizer
+        *@see java.util.StringTokenizer
 		*Mechanism:
 		*The function removes ASL-8086 comments at first because otherwise they will also tokenised by the code that follows it. 
 		*Then it uses StringTokenizer class to tokenize/tokenise and then puts the tokens in a String array and then returns the array.StringTokenizer also removes all leading and trailing whitespace in sha Allah.
@@ -37,7 +37,7 @@ public class Tokeniser {
 		
 		code = removeComments(code);
 		String delimiters = " ,";
-		StringTokenizer tokenizer = new StringTokenizer(code, delimiters);
+		var tokenizer = new StringTokenizer(code, delimiters);
 		
 		
         String[] tokens=getAllTokensAsStringArray(tokenizer);
@@ -52,12 +52,12 @@ public class Tokeniser {
 		*@author Fida
 		*@param An initialised StringTokenizer object
 		*@return A String[] containing all the tokens in sha Allah
-		*@see StringTokenizer
+		*@see java.util.StringTokenizer
 		*/
 
 
         // Create a String[] with length equal to the number of tokens
-		String[] tokens = new String[tokenizer.countTokens()];
+		var tokens = new String[tokenizer.countTokens()];
 		
 
         //Fetch all tokens from inside StringTokenizer and place them in tokens array
@@ -72,13 +72,13 @@ public class Tokeniser {
 		*@author Fida
 		*@param A String containing an operand
 		*@return A String array of sub-operands
-        *@see StringTokenizer
+        *@see java.util.StringTokenizer
 		*Mechanism:
 		*Then it uses StringTokenizer class to tokenize/tokenise and then puts the tokens in a String array and then returns the array.It also removes all leading and trailing whitespace in sha Allah.
 		*/
 		
 		String delimiters = ":[+]";
-		StringTokenizer tokenizer = new StringTokenizer(operand, delimiters);
+		var tokenizer = new StringTokenizer(operand, delimiters);
 		
 		
         String[] tokens=getAllTokensAsStringArray(tokenizer);

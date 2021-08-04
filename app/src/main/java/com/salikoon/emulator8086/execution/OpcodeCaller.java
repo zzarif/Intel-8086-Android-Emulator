@@ -1,6 +1,6 @@
-package com.salikoon.emulator8086.handlers;//بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ
+package com.salikoon.emulator8086.execution;//بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ
 
-import com.salikoon.emulator8086.analyser.InstructionLibrary;
+import com.salikoon.emulator8086.instructions.InstructionLibrary;
 
 public class OpcodeCaller
 {
@@ -8,8 +8,8 @@ public class OpcodeCaller
     {
         if(tokens.length==0) throw new RuntimeException("No tokens found; So could not call instruction from library.");
         
-        int numberOfOperands=tokens.length-1; // first token is opcode
-        String opcode=tokens[0];
+        var numberOfOperands=tokens.length-1; // first token is opcode
+        var opcode=tokens[0];
         switch(numberOfOperands)
         {
             

@@ -1,4 +1,4 @@
-package com.salikoon.emulator8086.utility;// بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ
+package com.salikoon.emulator8086.user_code;// بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ
 
 public class AssemblyCode 
 {

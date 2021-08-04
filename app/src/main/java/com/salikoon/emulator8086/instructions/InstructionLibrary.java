@@ -1,8 +1,9 @@
-package com.salikoon.emulator8086.analyser;//بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ
+package com.salikoon.emulator8086.instructions;//بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ
 
-import com.salikoon.emulator8086.handlers.MemoryHandler;
-import com.salikoon.emulator8086.models.Parser;
-import com.salikoon.emulator8086.utility.StringParameter;
+import com.salikoon.emulator8086.hardware.MemoryHandler;
+import com.salikoon.emulator8086.hardware.StringParameter;
+import com.salikoon.emulator8086.parser.OperandAnalyser;
+import com.salikoon.emulator8086.parser.Parser;
 
 public class InstructionLibrary implements OperandAnalyser
 {
@@ -27,36 +28,36 @@ public class InstructionLibrary implements OperandAnalyser
         */
 
 
-        boolean isWordOperation= Parser.Analyser.is16BitOperation(destination, source);
-        int value=MemoryHandler.getValue(source, isWordOperation);
-        MemoryHandler.setValue(destination, (short) value,isWordOperation);
+        var isWordOperation= Parser.Analyser.is16BitOperation(destination, source);
+        var value= MemoryHandler.getValue(source, isWordOperation);
+        MemoryHandler.setValue(destination, value,isWordOperation);
     }
     public static void ADD(String destination, String source)
     {
-       boolean isWordOperation=Parser.Analyser.is16BitOperation(destination, source);
-       int augend=MemoryHandler.getValue(destination,isWordOperation);
-       int addend=MemoryHandler.getValue(source,isWordOperation);
-       int sum=augend+addend;
+       var isWordOperation=Parser.Analyser.is16BitOperation(destination, source);
+       var augend=MemoryHandler.getValue(destination,isWordOperation);
+       var addend=MemoryHandler.getValue(source,isWordOperation);
+       var sum=augend+addend;
        MemoryHandler.setValue(destination,(short)sum);
     }
     public static void SUB(String destination, String source)
     {
-       boolean isWordOperation=Parser.Analyser.is16BitOperation(destination, source);
-       int minuend= MemoryHandler.getValue(destination,isWordOperation);
-       int subtrahend=MemoryHandler.getValue(source,isWordOperation);
-       int difference=minuend-subtrahend;
+       var isWordOperation=Parser.Analyser.is16BitOperation(destination, source);
+       var minuend=MemoryHandler.getValue(destination,isWordOperation);
+       var subtrahend=MemoryHandler.getValue(source,isWordOperation);
+       var difference=minuend-subtrahend;
        MemoryHandler. setValue (destination,(short)difference);
     }
 
     public static void MUL(String multiplierMemoryElement)
     {
-       boolean isWordOperation=Parser.Analyser.is16BitOperation(multiplierMemoryElement);
-       int multiplier=MemoryHandler.getValue(multiplierMemoryElement,isWordOperation);
+       var isWordOperation=Parser.Analyser.is16BitOperation(multiplierMemoryElement);
+       var multiplier=MemoryHandler.getValue(multiplierMemoryElement,isWordOperation);
        short multiplicand;
          if(! isWordOperation)  
        {
          multiplicand=MemoryHandler.getValue(StringParameter.AL);
-         int product=multiplicand*multiplier;
+         var product=multiplicand*multiplier;
          MemoryHandler.setValue(StringParameter.AX,(short) product);
        }
          else
@@ -70,22 +71,22 @@ public class InstructionLibrary implements OperandAnalyser
     }
      public static void DIV(String divisorMemoryElement)
     {
-       boolean isWordOperation=Parser.Analyser.is16BitOperation(divisorMemoryElement);
-       int divisor=MemoryHandler.getValue(divisorMemoryElement,isWordOperation);
+       var isWordOperation=Parser.Analyser.is16BitOperation(divisorMemoryElement);
+       var divisor=MemoryHandler.getValue(divisorMemoryElement,isWordOperation);
        int dividend;
          if(!isWordOperation)  
        {
          dividend=MemoryHandler.getValue(StringParameter.AX);
-         int quotient=dividend/divisor;
-         int remainder=dividend%divisor;
+         var quotient=dividend/divisor;
+         var remainder=dividend%divisor;
          MemoryHandler.setValue(StringParameter.AL,(short)quotient);
          MemoryHandler.setValue(StringParameter.AH,(short)remainder);
        }
          else
       { 
          dividend=MemoryHandler.getValue(StringParameter.DX)*0xFFFF+MemoryHandler.getValue(StringParameter.AX);
-         int quotient=dividend/divisor;
-         int remainder=dividend%divisor;
+         var quotient=dividend/divisor;
+         var remainder=dividend%divisor;
          MemoryHandler.setValue(StringParameter.AX,(short)quotient);
          MemoryHandler.setValue(StringParameter.DX,(short)remainder);
         

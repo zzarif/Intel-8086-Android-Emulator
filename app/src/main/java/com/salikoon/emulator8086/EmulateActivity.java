@@ -19,9 +19,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.jmedeisis.draglinearlayout.DragLinearLayout;
-import com.salikoon.emulator8086.handlers.UIHandler;
-import com.salikoon.emulator8086.models.UIPacket;
-import com.salikoon.emulator8086.utility.StringParameter;
+import com.salikoon.emulator8086.hardware.StringParameter;
+import com.salikoon.emulator8086.ui_helper.UIHandler;
+import com.salikoon.emulator8086.ui_helper.UIPacket;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -177,8 +177,20 @@ public class EmulateActivity extends AppCompatActivity{
      */
     private void setValue(String element, Short s_value) {
         try {
-            String value = Short.toString(s_value);
+            String value = String.format("%02x",s_value);
             switch (element) {
+                case StringParameter.AX:
+                    setValue(StringParameter.AL,(short)s_value); // dropping the high byte of s_value and passing only lower byte of AX's value
+                    setValue(StringParameter.AH,(short)(s_value>>8)); // shifting the high byte into low bytes position and then passing only these 8 bits to the function
+                case StringParameter.BX:
+                    setValue(StringParameter.BL,(short)s_value);
+                    setValue(StringParameter.BH,(short)(s_value>>8) );
+                case StringParameter.CX:
+                    setValue(StringParameter.CL,(short)s_value);
+                    setValue(StringParameter.CH,(short)(s_value>>8) );
+                case StringParameter.DX:
+                    setValue(StringParameter.DL,(short)s_value);
+                    setValue(StringParameter.DH,(short)(s_value>>8));
                 case StringParameter.AH:
                     ah.setText(value);
                     focusElement(ah);
