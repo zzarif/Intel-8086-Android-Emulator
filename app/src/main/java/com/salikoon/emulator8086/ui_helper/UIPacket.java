@@ -1,4 +1,5 @@
-package com.salikoon.emulator8086.ui_helper;//بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ
+//بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ
+package com.salikoon.emulator8086.ui_helper;
 
 import com.salikoon.emulator8086.hardware.Logger;
 

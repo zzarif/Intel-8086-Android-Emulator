@@ -1,4 +1,6 @@
-package com.salikoon.emulator8086.ui_helper;//بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ
+//بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ
+
+package com.salikoon.emulator8086.ui_helper;
 
 import com.salikoon.emulator8086.execution.ExecutionHandler;
 import com.salikoon.emulator8086.user_code.CodeHandler;

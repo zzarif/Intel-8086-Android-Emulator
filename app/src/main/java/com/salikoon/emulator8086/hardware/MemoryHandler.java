@@ -1,9 +1,4 @@
-package com.salikoon.emulator8086.hardware;/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+package com.salikoon.emulator8086.hardware;
 
 import java.util.Vector;
 
@@ -378,16 +373,71 @@ public class MemoryHandler
     {
         return LoggerManager.getLog();       
     }
+    
     public static void setValue (String inp_string, short value, boolean sizeIsWord)
     {
         if(! sizeIsWord) setValue(inp_string,(short) (byte) value);
         else setValue(inp_string,(short)value);
         
-     }
-     public static short getValue (String inp_string, boolean sizeIsWord)
+    }
+    
+    public static short getValue (String inp_string, boolean sizeIsWord)
     {
          if(! sizeIsWord) return (short)(byte) getValue(inp_string);
         else return (short) getValue(inp_string);
         
-     }
+    }
+    
+    public static void resetHardware()
+    {
+        LoggerManager.resetLog();
+        Registers.reset();
+        RAM.reset();
+    }
+    
+    public static void updateFlags(int input, boolean isWord)
+    {
+        //CarryFlag
+        if(isWord)
+        {
+            if(input > 65535)MemoryHandler.setValue(StringParameter.CarryFlag, (short)1);
+            else MemoryHandler.setValue(StringParameter.CarryFlag, (short)0);
+        }
+        else
+        {
+            if(input > 255)MemoryHandler.setValue(StringParameter.CarryFlag, (short)1);
+            else MemoryHandler.setValue(StringParameter.CarryFlag, (short)0);
+        }
+        
+        //Set ParityFlag -- only checks low 8 bits even if it is a word -- according to 8086 documentation
+        if(Integer.bitCount((int)(byte)input) % 2 == 0)MemoryHandler.setValue(StringParameter.ParityFlag, (short)1);
+        else MemoryHandler.setValue(StringParameter.ParityFlag, (short)0);
+        
+        
+        
+        //ZeroFlag
+        if(input == 0)MemoryHandler.setValue(StringParameter.ZeroFlag, (short)1);
+        else MemoryHandler.setValue(StringParameter.ZeroFlag, (short)0);
+        
+        
+        
+        //Set SignFlag 
+        if(isWord)
+        {
+            if((32768 & input) == 32768)MemoryHandler.setValue(StringParameter.SignFlag, (short)1);
+            else MemoryHandler.setValue(StringParameter.SignFlag, (short)0);
+        }
+        else
+        {
+            if((128 & input) == 128)MemoryHandler.setValue(StringParameter.SignFlag, (short)1);
+            else MemoryHandler.setValue(StringParameter.SignFlag, (short)0);
+        }
+        
+        //TrapFlag        
+        //InterruptFlag
+        //DirectionFlag        
+        //AuxiliaryFlag 
+        //OverflowFlag
+    }
+     
 } //end of file

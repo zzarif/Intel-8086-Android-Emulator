@@ -1,5 +1,6 @@
-package com.salikoon.emulator8086.user_code;// بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ
+// بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ
 
+package com.salikoon.emulator8086.user_code;
 public class AssemblyCode 
 {
     private static String[] userCode;

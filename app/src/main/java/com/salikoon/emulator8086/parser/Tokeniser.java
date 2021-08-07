@@ -1,3 +1,5 @@
+//بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ
+
 package com.salikoon.emulator8086.parser;
 
 import java.util.StringTokenizer;

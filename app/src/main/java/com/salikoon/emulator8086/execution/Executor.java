@@ -1,9 +1,9 @@
-package com.salikoon.emulator8086.execution;//بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ
-
+//بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ
+package com.salikoon.emulator8086.execution;
+import static com.salikoon.emulator8086.parser.Parser.Tokeniser;
 
 import com.salikoon.emulator8086.hardware.Logger;
 import com.salikoon.emulator8086.hardware.MemoryHandler;
-import com.salikoon.emulator8086.parser.Tokeniser;
 import com.salikoon.emulator8086.ui_helper.UIPacket;
 import com.salikoon.emulator8086.user_code.CodeHandler;
 
@@ -20,7 +20,7 @@ public class Executor
     }
     private static Logger executeLineAndGetLogger(String code)
     {
-        String[] tokens = Tokeniser.tokeniseCode(code);
+        String[] tokens =Tokeniser.tokeniseCode(code);
         MemoryHandler.resetLogger();
         try
         {
@@ -34,7 +34,11 @@ public class Executor
         return MemoryHandler.getLogger();
     }
 
-
+    public static void reset()
+    {
+        currentLineUnderExecution=0;
+    }
+    
 
 
 

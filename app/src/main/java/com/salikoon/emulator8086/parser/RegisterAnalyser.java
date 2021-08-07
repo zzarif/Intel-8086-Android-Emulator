@@ -1,5 +1,5 @@
-package com.salikoon.emulator8086.parser;//بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ
-
+//بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ
+package com.salikoon.emulator8086.parser;
 interface RegisterAnalyser {
 	/**This class reveals register information regarding a particular token 
 	*@author Fida

@@ -296,8 +296,8 @@ public class EmulateActivity extends AppCompatActivity{
 
     // set 16-bit values
     private void setText_16bit(TextView high,TextView low,short value) {
-        byte lValue = (byte) (value & 0xff); // low
-        byte hValue= (byte) ((value >> 8) & 0xff); // high
+        byte lValue = (byte) value; // low
+        byte hValue= (byte) (value >> 8); // high
         setText_8bit(high,hValue);
         setText_8bit(low,lValue);
     }
