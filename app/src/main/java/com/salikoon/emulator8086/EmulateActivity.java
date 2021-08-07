@@ -108,15 +108,14 @@ public class EmulateActivity extends AppCompatActivity{
         btnExec.setOnClickListener(view -> {
             try {
                 if (currentLine<lines.length) {
-                    removeFocusFromElements();
+                    deFocusAllElements();
 
                     // get/set updated elements
                     UIPacket uiPacket = UIHandler.execute();
                     HashMap<String,Short> elements = uiPacket.updatedMemoryElements.getNewValues();
                     for (Map.Entry<String, Short> entry : elements.entrySet()) {
-                        String key = entry.getKey();
-                        Short value = entry.getValue();
-                        setValue(key,value);
+                        Log.d("Zarif_0002", "onCreate: L"+currentLine+" "+entry.getKey()+" "+entry.getValue());
+                        setValue(entry.getKey(),entry.getValue());
                     }
 
                     // set next instruction to be executed
@@ -173,91 +172,73 @@ public class EmulateActivity extends AppCompatActivity{
      * sets the updated value
      * to the corresponding register
      * @param element register to update
-     * @param s_value updated value: short type
+     * @param value updated value: short type
      */
-    private void setValue(String element, Short s_value) {
+    private void setValue(String element,short value) {
         try {
-            String value = String.format("%02x",s_value);
             switch (element) {
                 case StringParameter.AX:
-                    setValue(StringParameter.AL,(short)s_value); // dropping the high byte of s_value and passing only lower byte of AX's value
-                    setValue(StringParameter.AH,(short)(s_value>>8)); // shifting the high byte into low bytes position and then passing only these 8 bits to the function
+                    setText_16bit(ah,al,value);
+                    break;
                 case StringParameter.BX:
-                    setValue(StringParameter.BL,(short)s_value);
-                    setValue(StringParameter.BH,(short)(s_value>>8) );
+                    setText_16bit(bh,bl,value);
+                    break;
                 case StringParameter.CX:
-                    setValue(StringParameter.CL,(short)s_value);
-                    setValue(StringParameter.CH,(short)(s_value>>8) );
+                    setText_16bit(ch,cl,value);
+                    break;
                 case StringParameter.DX:
-                    setValue(StringParameter.DL,(short)s_value);
-                    setValue(StringParameter.DH,(short)(s_value>>8));
+                    setText_16bit(dh,dl,value);
+                    break;
                 case StringParameter.AH:
-                    ah.setText(value);
-                    focusElement(ah);
+                    setText_8bit(ah,value);
                     break;
                 case StringParameter.AL:
-                    al.setText(value);
-                    focusElement(al);
+                    setText_8bit(al,value);
                     break;
                 case StringParameter.BH:
-                    bh.setText(value);
-                    focusElement(bh);
+                    setText_8bit(bh,value);
                     break;
                 case StringParameter.BL:
-                    bl.setText(value);
-                    focusElement(bl);
+                    setText_8bit(bl,value);
                     break;
                 case StringParameter.CH:
-                    ch.setText(value);
-                    focusElement(ch);
+                    setText_8bit(ch,value);
                     break;
                 case StringParameter.CL:
-                    cl.setText(value);
-                    focusElement(cl);
+                    setText_8bit(cl,value);
                     break;
                 case StringParameter.DH:
-                    dh.setText(value);
-                    focusElement(dh);
+                    setText_8bit(dh,value);
                     break;
                 case StringParameter.DL:
-                    dl.setText(value);
-                    focusElement(dl);
+                    setText_8bit(dl,value);
                     break;
                 case StringParameter.OverflowFlag:
-                    of.setText(value);
-                    focusElement(of);
+                    setText_1bit(of,value);
                     break;
                 case StringParameter.DirectionFlag:
-                    df.setText(value);
-                    focusElement(df);
+                    setText_1bit(df,value);
                     break;
                 case StringParameter.InterruptFlag:
-                    _if.setText(value);
-                    focusElement(_if);
+                    setText_1bit(_if,value);
                     break;
                 case StringParameter.TrapFlag:
-                    tf.setText(value);
-                    focusElement(tf);
+                    setText_1bit(tf,value);
                     break;
                 case StringParameter.SignFlag:
-                    sf.setText(value);
-                    focusElement(sf);
+                    setText_1bit(sf,value);
                     break;
                 case StringParameter.ZeroFlag:
-                    zf.setText(value);
-                    focusElement(zf);
+                    setText_1bit(zf,value);
                     break;
                 case StringParameter.AuxiliaryFlag:
-                    af.setText(value);
-                    focusElement(af);
+                    setText_1bit(af,value);
                     break;
                 case StringParameter.ParityFlag:
-                    pf.setText(value);
-                    focusElement(pf);
+                    setText_1bit(pf,value);
                     break;
                 case StringParameter.CarryFlag:
-                    cf.setText(value);
-                    focusElement(cf);
+                    setText_1bit(cf,value);
                     break;
                 default:
                     break;
@@ -270,58 +251,54 @@ public class EmulateActivity extends AppCompatActivity{
     }
 
     // remove highlights
-    private void removeFocusFromElements() {
-        ah.setTypeface(ah.getTypeface(),Typeface.NORMAL);
-        ah.setTextColor(getResources().getColor(R.color.gray_4));
-        al.setTypeface(al.getTypeface(),Typeface.NORMAL);
-        al.setTextColor(getResources().getColor(R.color.gray_4));
-
-        bh.setTypeface(bh.getTypeface(),Typeface.NORMAL);
-        bh.setTextColor(getResources().getColor(R.color.gray_4));
-        bl.setTypeface(bl.getTypeface(),Typeface.NORMAL);
-        bl.setTextColor(getResources().getColor(R.color.gray_4));
-
-        ch.setTypeface(ch.getTypeface(),Typeface.NORMAL);
-        ch.setTextColor(getResources().getColor(R.color.gray_4));
-        cl.setTypeface(cl.getTypeface(),Typeface.NORMAL);
-        cl.setTextColor(getResources().getColor(R.color.gray_4));
-
-        dh.setTypeface(dh.getTypeface(),Typeface.NORMAL);
-        dh.setTextColor(getResources().getColor(R.color.gray_4));
-        dl.setTypeface(dl.getTypeface(),Typeface.NORMAL);
-        dl.setTextColor(getResources().getColor(R.color.gray_4));
-
-        of.setTypeface(of.getTypeface(),Typeface.NORMAL);
-        of.setTextColor(getResources().getColor(R.color.gray_4));
-
-        df.setTypeface(df.getTypeface(),Typeface.NORMAL);
-        df.setTextColor(getResources().getColor(R.color.gray_4));
-
-        _if.setTypeface(_if.getTypeface(),Typeface.NORMAL);
-        _if.setTextColor(getResources().getColor(R.color.gray_4));
-
-        tf.setTypeface(tf.getTypeface(),Typeface.NORMAL);
-        tf.setTextColor(getResources().getColor(R.color.gray_4));
-
-        sf.setTypeface(sf.getTypeface(),Typeface.NORMAL);
-        sf.setTextColor(getResources().getColor(R.color.gray_4));
-
-        zf.setTypeface(zf.getTypeface(),Typeface.NORMAL);
-        zf.setTextColor(getResources().getColor(R.color.gray_4));
-
-        af.setTypeface(af.getTypeface(),Typeface.NORMAL);
-        af.setTextColor(getResources().getColor(R.color.gray_4));
-
-        pf.setTypeface(pf.getTypeface(),Typeface.NORMAL);
-        pf.setTextColor(getResources().getColor(R.color.gray_4));
-
-        cf.setTypeface(cf.getTypeface(),Typeface.NORMAL);
-        cf.setTextColor(getResources().getColor(R.color.gray_4));
+    private void deFocusAllElements() {
+        // registers
+        deFocusElement(ah);
+        deFocusElement(al);
+        deFocusElement(bh);
+        deFocusElement(bl);
+        deFocusElement(ch);
+        deFocusElement(cl);
+        deFocusElement(dh);
+        deFocusElement(dl);
+        // flags
+        deFocusElement(of);
+        deFocusElement(df);
+        deFocusElement(_if);
+        deFocusElement(tf);
+        deFocusElement(sf);
+        deFocusElement(zf);
+        deFocusElement(af);
+        deFocusElement(pf);
+        deFocusElement(cf);
     }
 
-    // highlight an element
-    private void focusElement(TextView textView) {
+    // remove highlight
+    private void deFocusElement(TextView textView) {
+        textView.setTypeface(textView.getTypeface(),Typeface.NORMAL);
+        textView.setTextColor(getResources().getColor(R.color.gray_4));
+    }
+
+    // set 1-bit values e.g. flags
+    private void setText_1bit(TextView textView,short value) {
+        textView.setText(Short.toString(value));
         textView.setTypeface(textView.getTypeface(),Typeface.BOLD);
         textView.setTextColor(getResources().getColor(R.color.keyword_0_extra));
+    }
+
+    // set 8-bit values
+    private void setText_8bit(TextView textView,short value) {
+        String sValue = String.format("%02x",value);
+        textView.setText(sValue);
+        textView.setTypeface(textView.getTypeface(),Typeface.BOLD);
+        textView.setTextColor(getResources().getColor(R.color.keyword_0_extra));
+    }
+
+    // set 16-bit values
+    private void setText_16bit(TextView high,TextView low,short value) {
+        byte lValue = (byte) (value & 0xff); // low
+        byte hValue= (byte) ((value >> 8) & 0xff); // high
+        setText_8bit(high,hValue);
+        setText_8bit(low,lValue);
     }
 }
