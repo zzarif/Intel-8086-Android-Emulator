@@ -1,4 +1,4 @@
-package com.salikoon.emulator8086;
+package com.salikoon.emulator8086.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
@@ -19,7 +18,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amrdeveloper.codeview.CodeView;
+import com.salikoon.emulator8086.R;
 import com.salikoon.emulator8086.utility.GoSyntaxManager;
+import com.salikoon.emulator8086.utility.IntentKey;
 
 public class EditorActivity extends AppCompatActivity {
 
@@ -66,6 +67,22 @@ public class EditorActivity extends AppCompatActivity {
                 tvLineNum.setText(lineText);
             }
         });
+
+        if (getIntent().hasExtra(IntentKey.USER_CODE.getKey())) {
+            mCodeView.setText(getIntent()
+                    .getStringExtra(IntentKey.USER_CODE.getKey()));
+        }
+        if (getIntent().hasExtra(IntentKey.EDITOR_TITLE.getKey())) {
+            String receivedTitle = getIntent()
+                    .getStringExtra(IntentKey.EDITOR_TITLE.getKey());
+            if (receivedTitle.length()>10) {
+                getSupportActionBar().setTitle(receivedTitle.substring(0,8)+"...");
+            }else {
+                getSupportActionBar().setTitle(receivedTitle);
+            }
+        } else {
+            getSupportActionBar().setTitle("Untitled");
+        }
     }
 
     @Override

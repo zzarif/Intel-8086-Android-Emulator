@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.salikoon.emulator8086">
-
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher_chip"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_chip_round"
+        android:requestLegacyExternalStorage="true"
         android:supportsRtl="true">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/MyEmulatorTheme">
             <intent-filter>
@@ -19,12 +21,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".EditorActivity"
+            android:name=".ui.EditorActivity"
             android:label="Editor"
             android:screenOrientation="portrait"
             android:theme="@style/MyEmulatorTheme2"/>
         <activity
-            android:name=".EmulateActivity"
+            android:name=".ui.EmulateActivity"
             android:label="Status"
             android:screenOrientation="portrait"
             android:theme="@style/MyEmulatorTheme2" />

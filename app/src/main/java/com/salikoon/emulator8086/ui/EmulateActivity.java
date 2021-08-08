@@ -1,4 +1,4 @@
-package com.salikoon.emulator8086;
+package com.salikoon.emulator8086.ui;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -19,6 +19,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.jmedeisis.draglinearlayout.DragLinearLayout;
+import com.salikoon.emulator8086.R;
 import com.salikoon.emulator8086.hardware.StringParameter;
 import com.salikoon.emulator8086.ui_helper.UIHandler;
 import com.salikoon.emulator8086.ui_helper.UIPacket;

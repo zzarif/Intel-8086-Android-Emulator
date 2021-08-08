@@ -42,4 +42,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'com.jmedeisis:draglinearlayout:1.1.0'
     implementation 'com.github.AmrDeveloper:CodeView:1.0.0'
+    implementation 'com.github.HBiSoft:PickiT:0.1.14'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
 }

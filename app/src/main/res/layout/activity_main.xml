@@ -38,7 +38,7 @@
             android:layout_marginHorizontal="10dp"
             android:layout_marginBottom="4dp"/>
         <ListView
-            android:id="@+id/lv_recent"
+            android:id="@+id/list_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
@@ -51,6 +51,7 @@
             android:orientation="horizontal"
             android:background="@drawable/bg_gray_border"
             android:layout_marginHorizontal="12dp"
+            android:layout_marginBottom="10dp"
             android:padding="12dp"
             android:gravity="center">
             <ImageView
@@ -61,7 +62,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Create New"
-                android:textSize="16sp"
+                android:textSize="15sp"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_open_file"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/bg_gray_border"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginBottom="10dp"
+            android:padding="12dp"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_add_24"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Open File"
+                android:textSize="15sp"
                 android:textColor="@color/black"/>
         </LinearLayout>
 

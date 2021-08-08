@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:theme="@style/MyEmulatorTheme"
-    tools:context=".EditorActivity">
+    tools:context=".ui.EditorActivity">
 
 <!--    <include-->
 <!--        android:id="@+id/toolbar"-->
