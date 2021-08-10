@@ -1,6 +1,7 @@
 package com.salikoon.emulator8086.ui;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ClipData;
@@ -8,24 +9,36 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amrdeveloper.codeview.CodeView;
 import com.salikoon.emulator8086.R;
+import com.salikoon.emulator8086.utility.ErrorUtils;
+import com.salikoon.emulator8086.utility.FileManager;
 import com.salikoon.emulator8086.utility.GoSyntaxManager;
 import com.salikoon.emulator8086.utility.IntentKey;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.util.regex.Pattern;
 
 public class EditorActivity extends AppCompatActivity {
 
     private CodeView mCodeView;
     private TextView tvLineNum;
+    private String filePath=null;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -68,6 +81,9 @@ public class EditorActivity extends AppCompatActivity {
             }
         });
 
+        if (getIntent().hasExtra(IntentKey.FILE_PATH.getKey())) {
+            filePath = getIntent().getStringExtra(IntentKey.FILE_PATH.getKey());
+        }
         if (getIntent().hasExtra(IntentKey.USER_CODE.getKey())) {
             mCodeView.setText(getIntent()
                     .getStringExtra(IntentKey.USER_CODE.getKey()));
@@ -92,14 +108,7 @@ public class EditorActivity extends AppCompatActivity {
                 finish();
                 return true;
             case R.id.paste:
-                String textToPaste = null;
-                ClipboardManager clipboard = (ClipboardManager)this.getSystemService(Context.CLIPBOARD_SERVICE);
-                if (clipboard.hasPrimaryClip()) {
-                    ClipData clip = clipboard.getPrimaryClip();
-                    textToPaste = clip.getItemAt(0).coerceToText(this).toString();
-                }
-                if (!TextUtils.isEmpty(textToPaste))
-                    mCodeView.setText(textToPaste);
+                pasteFromClipboard();
                 return true;
             case R.id.undo:
                 Toast.makeText(this, "Undo", Toast.LENGTH_SHORT).show();
@@ -108,25 +117,92 @@ public class EditorActivity extends AppCompatActivity {
                 Toast.makeText(this, "Redo", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.compile:
-                String[] lines = mCodeView.getText().toString().split("\\r?\\n");
-                String[] finalLines = new String[lines.length+1];
-                finalLines[0]="";
-                for (int i=1; i<lines.length+1; ++i) {
-                    finalLines[i]=lines[i-1];
-                }
-                Intent intent = new Intent(this, EmulateActivity.class);
-                intent.putExtra("MyCode",finalLines);
-                startActivity(intent);
-
+                emulateCode();
                 return true;
             case R.id.save:
-                Toast.makeText(this, "Save", Toast.LENGTH_SHORT).show();
+                if (filePath!=null)
+                    if (FileManager.overwriteFile(filePath,
+                            mCodeView.getText().toString())) {
+                        finish();
+                    } else ErrorUtils.genericError(this);
+                else getFileNameAndSave();
                 return true;
             case R.id.reset:
-                Toast.makeText(this, "Reset", Toast.LENGTH_SHORT).show();
+                mCodeView.setText("");
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void pasteFromClipboard() {
+        String textToPaste = null;
+        ClipboardManager clipboard = (ClipboardManager)getSystemService(Context.CLIPBOARD_SERVICE);
+        if (clipboard.hasPrimaryClip()) {
+            ClipData clip = clipboard.getPrimaryClip();
+            textToPaste = clip.getItemAt(0).coerceToText(this).toString();
+        }
+        if (!TextUtils.isEmpty(textToPaste))
+            mCodeView.setText(textToPaste);
+    }
+
+    private void emulateCode() {
+        String[] lines = mCodeView.getText().toString().split("\\r?\\n");
+        String[] finalLines = new String[lines.length+1];
+        finalLines[0]="";
+        System.arraycopy(lines, 0, finalLines, 1, lines.length + 1 - 1);
+        Intent intent = new Intent(this, EmulateActivity.class);
+        intent.putExtra("MyCode",finalLines);
+        startActivity(intent);
+    }
+
+    private void getFileNameAndSave() {
+        View view = LayoutInflater.from(this).inflate(R.layout.dialog_save_file,null);
+        view.setClipToOutline(true);
+        TextView btnSave = view.findViewById(R.id.btn_save);
+        TextView btnCancel = view.findViewById(R.id.btn_cancel);
+        TextView tvFilePath = view.findViewById(R.id.tv_file_path);
+        LinearLayout llErrorMessage = view.findViewById(R.id.ll_error_message);
+        EditText etFileName = view.findViewById(R.id.et_file_name);
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setView(view)
+                .create();
+        etFileName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (!charSequence.toString().isEmpty() &&
+                        !charSequence.toString().contains("/")) {
+                    llErrorMessage.setVisibility(View.GONE);
+                    tvFilePath.setText(Environment
+                            .getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS)
+                            .toString()+File.separator+charSequence.toString()+".txt");
+                }
+                else  {
+                    llErrorMessage.setVisibility(View.VISIBLE);
+                    tvFilePath.setText("");
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {}
+        });
+        btnSave.setOnClickListener(v -> {
+            String fileName = etFileName.getText().toString();
+            String contents = mCodeView.getText().toString();
+            if (!fileName.isEmpty() && !fileName.contains("/")) {
+                llErrorMessage.setVisibility(View.GONE);
+                if (FileManager.createFile(
+                        fileName+".txt",contents)) {
+                    dialog.dismiss();
+                    finish();
+                }
+            }
+            else  llErrorMessage.setVisibility(View.VISIBLE);
+        });
+        btnCancel.setOnClickListener(v -> dialog.dismiss());
+        dialog.show();
     }
 }

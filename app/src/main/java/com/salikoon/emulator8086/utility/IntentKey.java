@@ -2,7 +2,8 @@ package com.salikoon.emulator8086.utility;
 
 public enum IntentKey {
     USER_CODE("userCode"),
-    EDITOR_TITLE("editorTitle");
+    EDITOR_TITLE("editorTitle"),
+    FILE_PATH("filePath");
 
     private String key;
     IntentKey(String key) {

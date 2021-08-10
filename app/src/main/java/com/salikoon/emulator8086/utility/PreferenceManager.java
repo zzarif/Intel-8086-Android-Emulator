@@ -3,12 +3,18 @@ package com.salikoon.emulator8086.utility;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.salikoon.emulator8086.ui.models.RecentFile;
+
+import java.util.ArrayList;
+
 public class PreferenceManager {
 
     public enum PreferenceKey {
         SETTINGS_FONT_SIZE("settingsFontSize"),
         SETTINGS_TEXT_WRAP("settingsTextWrap"),
-        RECENT_FILE_PATHS("recentFilePaths");
+        RECENT_FILES("recentFilePaths");
 
         private String key;
         PreferenceKey(String key) {
@@ -45,11 +51,37 @@ public class PreferenceManager {
         return preferences.getBoolean(PreferenceKey.SETTINGS_TEXT_WRAP.getKey(),false);
     }
 
-    public void addFileAbsolutePath(String value) {
-        preferences.edit().putString(PreferenceKey.RECENT_FILE_PATHS.getKey(),value).apply();
+    public void addRecentFile(RecentFile recentFile) {
+        try {
+            ArrayList<RecentFile> recentFiles = new ArrayList<>();
+            Gson gson = new Gson();
+            String curr_json = preferences.getString(PreferenceKey.RECENT_FILES.getKey(), "");
+            preferences.edit().remove(PreferenceKey.RECENT_FILES.getKey()).apply();
+            if (!curr_json.isEmpty())
+                recentFiles = gson.fromJson(curr_json,
+                        new TypeToken<ArrayList<RecentFile>>(){}.getType());
+            if (recentFiles.size()==5)
+                recentFiles.remove(0);
+            recentFiles.add(recentFile);
+            String new_json = gson.toJson(recentFiles);
+            preferences.edit().putString(PreferenceKey.RECENT_FILES.getKey(), new_json).apply();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public String getFileAbsolutePath() {
-        return preferences.getString(PreferenceKey.RECENT_FILE_PATHS.getKey(), "");
+    public ArrayList<RecentFile> getRecentFiles() {
+        try {
+            ArrayList<RecentFile> recentFiles = new ArrayList<>();
+            Gson gson = new Gson();
+            String curr_json = preferences.getString(PreferenceKey.RECENT_FILES.getKey(), "");
+            if (!curr_json.isEmpty())
+                recentFiles = gson.fromJson(curr_json,
+                        new TypeToken<ArrayList<RecentFile>>(){}.getType());
+            return recentFiles;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

@@ -43,4 +43,6 @@
     <color name="char_0">#008080</color>
     <color name="hex_0">#006080</color>
     <color name="bin_0">#006080</color>
+
+    <color name="error_red">#FF0000</color>
 </resources>

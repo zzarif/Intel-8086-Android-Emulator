@@ -1,8 +1,6 @@
 package com.salikoon.emulator8086.ui;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -17,22 +15,23 @@ import com.hbisoft.pickit.PickiTCallbacks;
 import com.salikoon.emulator8086.R;
 import com.salikoon.emulator8086.adapters.RecentFileAdapter;
 import com.salikoon.emulator8086.ui.models.RecentFile;
+import com.salikoon.emulator8086.utility.ErrorUtils;
+import com.salikoon.emulator8086.utility.FileManager;
 import com.salikoon.emulator8086.utility.IntentKey;
 import com.salikoon.emulator8086.utility.PreferenceManager;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 
 /**
  * Base activity
@@ -64,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements
 
         // onClick handler: check permission, pick file
         findViewById(R.id.ll_open_file).setOnClickListener(v -> {
-            if (isStoragePermissionGranted()) {
+            if (FileManager.isStoragePermissionGranted(this)) {
                 Intent chooseFile = new Intent(Intent.ACTION_GET_CONTENT);
                 chooseFile.setType("text/plain");
                 chooseFile = Intent.createChooser(
@@ -90,8 +89,20 @@ public class MainActivity extends AppCompatActivity implements
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String filePath = ((RecentFile)adapterView.getItemAtPosition(i)).getFilePath();
-                parseContent(filePath);
+                String path = ((RecentFile)adapterView.getItemAtPosition(i)).getFilePath();
+                String contents = FileManager.getText(path);
+
+                // pass code to editor
+                if (contents!=null) {
+                    Intent intent = new Intent(
+                            MainActivity.this,EditorActivity.class);
+                    intent.putExtra(IntentKey.USER_CODE.getKey(),contents);
+                    String editorTitle = path.substring(path.lastIndexOf(File.separator)+1);
+                    intent.putExtra(IntentKey.EDITOR_TITLE.getKey(),editorTitle);
+                    intent.putExtra(IntentKey.FILE_PATH.getKey(),path);
+                    startActivity(intent);
+                }
+                else ErrorUtils.genericError(MainActivity.this);
             }
         });
     }
@@ -123,77 +134,24 @@ public class MainActivity extends AppCompatActivity implements
         super.onResume();
         recentFiles.clear();
         try {
-            String filePath = preferenceManager.getFileAbsolutePath();
-            String filename=filePath.substring(filePath.lastIndexOf("/")+1);
-            recentFiles.add(new RecentFile(filename,filePath,""));
-            adapter.notifyDataSetChanged();
+            ArrayList<RecentFile> objects = preferenceManager.getRecentFiles();
+            if (objects!=null) {
+                Collections.reverse(objects);
+                recentFiles.addAll(objects);
+                adapter.notifyDataSetChanged();
+            }
+            else ErrorUtils.genericError(this);
+
         } catch (Exception e){
             e.printStackTrace();
         }
     }
-
-    /**
-     * checks permission to
-     * modify external storage
-     * @return if granted: true
-     *         else: false
-     */
-    private boolean isStoragePermissionGranted() {
-        if (Build.VERSION.SDK_INT >= 23) {
-            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    == PackageManager.PERMISSION_GRANTED) {
-                return true;
-            } else {
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-                return false;
-            }
-        }
-        else return true;
-    }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PICK_FILE_REQUEST_CODE && resultCode == RESULT_OK){
             pickiT.getPath(data.getData(),Build.VERSION.SDK_INT);
-        }
-    }
-
-    /**
-     * reads text from filepath
-     * forwards content to editor
-     * @param path: absolute file path
-     */
-    private void parseContent(String path) {
-        BufferedReader reader = null;
-        try {
-            File file = new File(path);
-            FileInputStream in = new FileInputStream(file);
-            reader = new BufferedReader(new InputStreamReader(in));
-            String line;
-            StringBuilder builder = new StringBuilder();
-            while ((line = reader.readLine()) != null)
-                builder.append(line).append("\n");
-
-            // pass code to editor
-            Intent intent = new Intent(this,EditorActivity.class);
-            intent.putExtra(IntentKey.USER_CODE.getKey(),builder.toString());
-            String editorTitle = path.substring(path.lastIndexOf("/")+1);
-            intent.putExtra(IntentKey.EDITOR_TITLE.getKey(),editorTitle);
-            startActivity(intent);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
         }
     }
 
@@ -209,7 +167,24 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void PickiTonCompleteListener(String path, boolean wasDriveFile, boolean wasUnknownProvider,
                                          boolean wasSuccessful, String Reason) {
-        preferenceManager.addFileAbsolutePath(path);
-        parseContent(path);
+        String fileName = path.substring(path.lastIndexOf(File.separator) + 1);
+        String currTime = new SimpleDateFormat(
+                "dd MMM yyyy hh:mm:ss a").format(new Date());
+        RecentFile recentFile = new RecentFile();
+        recentFile.setFileName(fileName);
+        recentFile.setFilePath(path);
+        recentFile.setTime(currTime);
+        preferenceManager.addRecentFile(recentFile);
+        String contents = FileManager.getText(path);
+
+        // pass code to editor
+        if (contents!=null) {
+            Intent intent = new Intent(this,EditorActivity.class);
+            intent.putExtra(IntentKey.USER_CODE.getKey(),contents);
+            intent.putExtra(IntentKey.EDITOR_TITLE.getKey(),fileName);
+            intent.putExtra(IntentKey.FILE_PATH.getKey(),path);
+            startActivity(intent);
+        }
+        else ErrorUtils.genericError(this);
     }
 }
