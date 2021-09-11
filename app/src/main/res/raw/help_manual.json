@@ -1,0 +1,19 @@
+{
+  "InstructionList": [
+    {
+      "Instruction": "MOV",
+      "Syntax": "MOV destination,source",
+      "Description": "Moves a byte or double-byte from the source to the destination. Source can be a register, memory or immediate value. Destination can be a register or memory. This operation does not affect flags."
+    },
+    {
+      "Instruction": "ADD",
+      "Syntax": "ADD destination,source",
+      "Description": "Equivalent to destination=source+destination. Source can be a register, memory or immediate value. Destination can be a register or memory. Carry, Overflow, Auxiliary, Parity, Zero and Sign flags are updated."
+    },
+    {
+      "Instruction": "SUB",
+      "Syntax": "SUB destination,source",
+      "Description": "Equivalent to destination=destination-source. Source can be a register, memory or immediate value. Destination can be a register or memory. Carry, Overflow, Auxiliary, Parity, Zero and Sign flags are updated."
+    }
+  ]
+}

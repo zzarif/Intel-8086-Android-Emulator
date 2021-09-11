@@ -11,6 +11,11 @@ public class Executor
 {
     private static int currentLineUnderExecution=0;
     
+    public static void setNextLineToExecute(int lineNumber)
+    {
+        currentLineUnderExecution=lineNumber-1;
+        //it is lineNumber-1 because in execute() the currentLineUnderExecution is incremented first then that new line is executed
+    }
     public static UIPacket execute()
     {
         currentLineUnderExecution++;

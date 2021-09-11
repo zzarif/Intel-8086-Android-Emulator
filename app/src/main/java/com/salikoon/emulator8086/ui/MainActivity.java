@@ -13,15 +13,17 @@ import com.google.android.material.navigation.NavigationView;
 import com.hbisoft.pickit.PickiT;
 import com.hbisoft.pickit.PickiTCallbacks;
 import com.salikoon.emulator8086.R;
-import com.salikoon.emulator8086.adapters.RecentFileAdapter;
+import com.salikoon.emulator8086.ui.adapters.RecentFileAdapter;
 import com.salikoon.emulator8086.ui.models.RecentFile;
 import com.salikoon.emulator8086.utility.ErrorUtils;
 import com.salikoon.emulator8086.utility.FileManager;
 import com.salikoon.emulator8086.utility.IntentKey;
+import com.salikoon.emulator8086.utility.MyAnimator;
 import com.salikoon.emulator8086.utility.PreferenceManager;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
@@ -54,15 +56,19 @@ public class MainActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        CardView cvCreateNew = findViewById(R.id.cv_create_new);
+        CardView cvOpenFile = findViewById(R.id.cv_open_file);
         setSupportActionBar(toolbar);
 
         // onClick handler: start editor
-        findViewById(R.id.ll_create_new).setOnClickListener(
+        MyAnimator.squeezeAnimate(this,cvCreateNew);
+        cvCreateNew.setOnClickListener(
                 v -> startActivity(new Intent(MainActivity.this, EditorActivity.class))
         );
 
         // onClick handler: check permission, pick file
-        findViewById(R.id.ll_open_file).setOnClickListener(v -> {
+        MyAnimator.squeezeAnimate(this,cvOpenFile);
+        cvOpenFile.setOnClickListener(v -> {
             if (FileManager.isStoragePermissionGranted(this)) {
                 Intent chooseFile = new Intent(Intent.ACTION_GET_CONTENT);
                 chooseFile.setType("text/plain");
@@ -119,8 +125,14 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.nav_help:
+                startActivity(new Intent(this,HelpActivity.class));
+                break;
+            case R.id.nav_template:
+                startActivity(new Intent(this,TemplateActivity.class));
+                break;
             case R.id.nav_settings:
-                Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this,SettingsActivity.class));
                 break;
             case R.id.nav_about:
                 Toast.makeText(this, "About", Toast.LENGTH_SHORT).show();

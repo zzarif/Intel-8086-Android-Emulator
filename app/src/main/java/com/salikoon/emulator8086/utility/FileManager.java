@@ -87,7 +87,7 @@ public class FileManager {
     public static boolean createFile(String fileName,String body) {
         try {
             File file = new File(Environment.getExternalStoragePublicDirectory
-                    (Environment.DIRECTORY_DOCUMENTS),fileName);
+                    (Environment.DIRECTORY_DOCUMENTS)+File.separator+fileName);
             FileWriter writer = new FileWriter(file);
             writer.append(body);
             writer.flush();

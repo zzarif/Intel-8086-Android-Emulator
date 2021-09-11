@@ -4,6 +4,14 @@
     tools:showIn="navigation_view">
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_help"
+            android:icon="@drawable/ic_baseline_help_24"
+            android:title="Help"/>
+        <item
+            android:id="@+id/nav_template"
+            android:icon="@drawable/ic_baseline_code_24"
+            android:title="Templates"/>
+        <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/ic_baseline_settings_24"
             android:title="Settings" />

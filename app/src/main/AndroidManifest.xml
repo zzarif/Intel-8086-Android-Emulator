@@ -30,6 +30,21 @@
             android:label="Status"
             android:screenOrientation="portrait"
             android:theme="@style/MyEmulatorTheme2" />
+        <activity
+            android:name=".ui.SettingsActivity"
+            android:label="Settings"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyEmulatorTheme2" />
+        <activity
+            android:name=".ui.HelpActivity"
+            android:label="Help"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyEmulatorTheme2" />
+        <activity
+            android:name=".ui.TemplateActivity"
+            android:label="Templates"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyEmulatorTheme2" />
     </application>
 
 </manifest>

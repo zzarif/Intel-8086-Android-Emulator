@@ -89,13 +89,8 @@ public class EditorActivity extends AppCompatActivity {
                     .getStringExtra(IntentKey.USER_CODE.getKey()));
         }
         if (getIntent().hasExtra(IntentKey.EDITOR_TITLE.getKey())) {
-            String receivedTitle = getIntent()
-                    .getStringExtra(IntentKey.EDITOR_TITLE.getKey());
-            if (receivedTitle.length()>10) {
-                getSupportActionBar().setTitle(receivedTitle.substring(0,8)+"...");
-            }else {
-                getSupportActionBar().setTitle(receivedTitle);
-            }
+            String receivedTitle = getIntent().getStringExtra(IntentKey.EDITOR_TITLE.getKey());
+            getSupportActionBar().setTitle(receivedTitle);
         } else {
             getSupportActionBar().setTitle("Untitled");
         }

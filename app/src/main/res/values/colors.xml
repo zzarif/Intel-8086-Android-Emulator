@@ -8,6 +8,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <color name="app_purple">#8E2DE2</color>
+    <color name="app_blue">#4A00E0</color>
+
     <color name="app_green">#08C941</color>
     <color name="green">#008000</color>
     <color name="green_0">#4CAF50</color>

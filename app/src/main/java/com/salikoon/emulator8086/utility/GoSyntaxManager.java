@@ -13,7 +13,7 @@ public class GoSyntaxManager {
         private static final Pattern PATTERN_KEYWORDS =
                 Pattern.compile("\\b(mov|MOV|add|ADD|sub|SUB|mul|MUL|div|DIV|inc|INC|" +
                         "dec|DEC|xor|XOR|not|NOT|end|END|ret|RET|main|MAIN|endp|ENDP|int|INT|cmp|CMP|" +
-                        "jz|JZ|jg|JG|jl|JL|jb|JB|jnz|JNZ|jge|JGE|jle|JLE|jc|JC)\\b");
+                        "jz|JZ|jg|JG|jl|JL|jb|JB|jnz|JNZ|jge|JGE|jle|JLE|jc|JC|NEG|neg|OR|or|AND|and)\\b");
 
         private static final Pattern PATTERN_KEYWORDS_2 =
             Pattern.compile("\\b(sum|SUM|difference|DIFFERENCE|multiplication|MULTIPLICATION|" +

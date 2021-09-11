@@ -1,4 +1,4 @@
-package com.salikoon.emulator8086.adapters;
+package com.salikoon.emulator8086.ui.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 
 import com.salikoon.emulator8086.R;
 import com.salikoon.emulator8086.ui.models.RecentFile;
+import com.salikoon.emulator8086.utility.MyAnimator;
 
 import java.util.ArrayList;
 
@@ -36,6 +37,7 @@ public class RecentFileAdapter extends ArrayAdapter {
         TextView tvFilePath = convertView.findViewById(R.id.tv_file_path);
         tvFileName.setText(recentFile.getFileName());
         tvFilePath.setText(recentFile.getFilePath());
+
         return convertView;
     }
 }

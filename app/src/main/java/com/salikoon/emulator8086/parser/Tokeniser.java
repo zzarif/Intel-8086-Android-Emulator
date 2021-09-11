@@ -31,7 +31,7 @@ public class Tokeniser {
 		*@author Fida
 		*@param A String containing a line of user code
 		*@return A String array of ASL-8086 tokens
-        *@see java.util.StringTokenizer
+        *@see StringTokenizer
 		*Mechanism:
 		*The function removes ASL-8086 comments at first because otherwise they will also tokenised by the code that follows it. 
 		*Then it uses StringTokenizer class to tokenize/tokenise and then puts the tokens in a String array and then returns the array.StringTokenizer also removes all leading and trailing whitespace in sha Allah.
@@ -54,7 +54,7 @@ public class Tokeniser {
 		*@author Fida
 		*@param An initialised StringTokenizer object
 		*@return A String[] containing all the tokens in sha Allah
-		*@see java.util.StringTokenizer
+		*@see StringTokenizer
 		*/
 
 
@@ -74,7 +74,7 @@ public class Tokeniser {
 		*@author Fida
 		*@param A String containing an operand
 		*@return A String array of sub-operands
-        *@see java.util.StringTokenizer
+        *@see StringTokenizer
 		*Mechanism:
 		*Then it uses StringTokenizer class to tokenize/tokenise and then puts the tokens in a String array and then returns the array.It also removes all leading and trailing whitespace in sha Allah.
 		*/

@@ -3,20 +3,34 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/bg_app_gradient.xml" value="0.34322916666666664" />
+        <entry key="app/src/main/res/drawable/bg_app_item.xml" value="0.34322916666666664" />
         <entry key="app/src/main/res/drawable/bg_exec_mini.xml" value="0.3365679264555669" />
+        <entry key="app/src/main/res/drawable/bg_gray_border.xml" value="0.34322916666666664" />
         <entry key="app/src/main/res/drawable/bg_gray_solid.xml" value="0.3365679264555669" />
         <entry key="app/src/main/res/drawable/bg_main_options.xml" value="0.3365679264555669" />
+        <entry key="app/src/main/res/drawable/ic_baseline_code_24.xml" value="0.34322916666666664" />
         <entry key="app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.3365679264555669" />
         <entry key="app/src/main/res/drawable/ic_baseline_error_24.xml" value="0.3365679264555669" />
+        <entry key="app/src/main/res/drawable/ic_baseline_help_24.xml" value="0.34322916666666664" />
+        <entry key="app/src/main/res/drawable/ic_baseline_play_arrow_24_white.xml" value="0.34322916666666664" />
         <entry key="app/src/main/res/drawable/ripple.xml" value="0.34322916666666664" />
         <entry key="app/src/main/res/drawable/ripple_rect.xml" value="0.34322916666666664" />
+        <entry key="app/src/main/res/drawable/squeeze_in.xml" value="0.34322916666666664" />
         <entry key="app/src/main/res/layout/activity_editor.xml" value="0.3166496424923391" />
         <entry key="app/src/main/res/layout/activity_emulate.xml" value="0.17889492753623187" />
+        <entry key="app/src/main/res/layout/activity_help.xml" value="0.3229166666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3166496424923391" />
+        <entry key="app/src/main/res/layout/activity_settings.xml" value="0.3229166666666667" />
         <entry key="app/src/main/res/layout/dialog_save_file.xml" value="0.3229166666666667" />
+        <entry key="app/src/main/res/layout/item_help.xml" value="0.3229166666666667" />
         <entry key="app/src/main/res/layout/item_recent_activity.xml" value="0.3166496424923391" />
+        <entry key="app/src/main/res/layout/item_template.xml" value="0.3229166666666667" />
         <entry key="app/src/main/res/layout/layout_flags.xml" value="0.3229166666666667" />
         <entry key="app/src/main/res/layout/nav_header_main.xml" value="0.31203703703703706" />
+        <entry key="app/src/main/res/menu/activity_editor_options.xml" value="0.3229166666666667" />
+        <entry key="app/src/main/res/menu/activity_emulator_options.xml" value="0.3229166666666667" />
+        <entry key="app/src/main/res/menu/activity_main_drawer.xml" value="0.3229166666666667" />
       </map>
     </option>
   </component>
