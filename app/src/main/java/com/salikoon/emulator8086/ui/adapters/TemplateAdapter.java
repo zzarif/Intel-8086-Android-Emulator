@@ -9,33 +9,67 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.salikoon.emulator8086.R;
 import com.salikoon.emulator8086.ui.models.HelpModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class TemplateAdapter extends ArrayAdapter {
+public class TemplateAdapter extends RecyclerView.Adapter<TemplateAdapter.ViewHolder> {
+
     private Context context;
-    private ArrayList<HelpModel> objects;
+    private List<HelpModel> objects;
+    private ItemClickListener mClickListener;
 
-    public TemplateAdapter(@NonNull Context context, @NonNull ArrayList<HelpModel> objects) {
-        super(context, 0, objects);
+    public TemplateAdapter(Context context,List<HelpModel> objects) {
         this.context = context;
         this.objects = objects;
     }
 
-    @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        if (convertView==null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.item_template, parent, false);
-        }
+    public void onBindViewHolder(ViewHolder holder, int position) {
         HelpModel object = objects.get(position);
-        TextView tvTitle = convertView.findViewById(R.id.tv_title);
-        TextView tvDescription = convertView.findViewById(R.id.tv_desc);
-        tvTitle.setText(object.getTitle());
-        tvDescription.setText(object.getDescription());
-        return convertView;
+        holder.tvTitle.setText(object.getTitle());
+        holder.tvDescription.setText(object.getDescription());
     }
+
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.item_template, parent, false);
+        return new ViewHolder(view);
+    }
+
+
+    @Override
+    public int getItemCount() {
+        return objects.size();
+    }
+
+    public void setClickListener(ItemClickListener itemClickListener) {
+        this.mClickListener = itemClickListener;
+    }
+
+    public interface ItemClickListener {
+        void onItemClick(View view, int position);
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        TextView tvTitle,tvDescription;
+
+        ViewHolder(View itemView) {
+            super(itemView);
+            tvTitle = itemView.findViewById(R.id.tv_title);
+            tvDescription = itemView.findViewById(R.id.tv_desc);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            if (mClickListener != null)
+                mClickListener.onItemClick(view,getAdapterPosition());
+        }
+    }
+
 }

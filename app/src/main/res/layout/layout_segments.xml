@@ -3,7 +3,9 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white_2">
+    android:layout_marginHorizontal="8dp"
+    android:layout_marginBottom="4dp"
+    android:background="@drawable/bg_exec_mini">
 
     <RelativeLayout
         android:layout_width="match_parent"

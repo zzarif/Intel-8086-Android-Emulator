@@ -10,6 +10,9 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.salikoon.emulator8086.R;
 import com.salikoon.emulator8086.ui.adapters.TemplateAdapter;
@@ -23,6 +26,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 public class TemplateActivity extends AppCompatActivity {
 
@@ -31,16 +35,21 @@ public class TemplateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_help);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        ListView listView = findViewById(R.id.list_view);
-        TemplateAdapter adapter = new TemplateAdapter(this,getInstructionsList());
-        listView.setAdapter(adapter);
+        List<HelpModel> templateList = getTemplateList();
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        TemplateAdapter adapter = new TemplateAdapter(this,templateList);
+        recyclerView.setAdapter(adapter);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        adapter.setClickListener(new TemplateAdapter.ItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                HelpModel helpModel = (HelpModel) adapterView.getItemAtPosition(i);
+            public void onItemClick(View view, int position) {
+                HelpModel helpModel = templateList.get(position);
                 Intent intent = new Intent(TemplateActivity.this, EditorActivity.class);
                 intent.putExtra(IntentKey.USER_CODE.getKey(),helpModel.getDescription());
                 startActivity(intent);
@@ -49,7 +58,7 @@ public class TemplateActivity extends AppCompatActivity {
 
     }
 
-    private ArrayList<HelpModel> getInstructionsList() {
+    private ArrayList<HelpModel> getTemplateList() {
         InputStream inputStream = getResources().openRawResource(R.raw.templates);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         ArrayList<HelpModel> helpModels = new ArrayList<>();

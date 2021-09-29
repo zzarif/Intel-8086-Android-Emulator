@@ -44,4 +44,8 @@ dependencies {
     implementation 'com.github.AmrDeveloper:CodeView:1.0.0'
     implementation 'com.github.HBiSoft:PickiT:0.1.14'
     implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
+
+    implementation( 'com.github.thekhaeng:pushdown-anim-click:1.1.1' ){
+        exclude group: 'com.android.support'
+    }
 }

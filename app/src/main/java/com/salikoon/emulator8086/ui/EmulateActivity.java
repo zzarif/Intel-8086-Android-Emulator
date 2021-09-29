@@ -1,5 +1,9 @@
 package com.salikoon.emulator8086.ui;
 
+import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
+import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_STATIC_DP;
+
+import android.annotation.SuppressLint;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.transition.TransitionManager;
@@ -7,22 +11,24 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.appcompat.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
 
-import com.jmedeisis.draglinearlayout.DragLinearLayout;
 import com.salikoon.emulator8086.R;
 import com.salikoon.emulator8086.hardware.StringParameter;
 import com.salikoon.emulator8086.ui_helper.UIHandler;
 import com.salikoon.emulator8086.ui_helper.UIPacket;
+import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,12 +38,12 @@ import java.util.Map;
  * @author zibranzarif
  */
 public class EmulateActivity extends AppCompatActivity{
-    ScrollView scrollView;
+    NestedScrollView scrollView;
     private String[] lines;
     TextView tvExec;
     TextView ah,al,bh,bl,ch,cl,dh,dl;
     TextView of,df, _if,tf,sf,zf,af,pf,cf;
-    LinearLayout btnExec;
+    Button btnExec;
     private int currentLine = 1;
 
     @Override
@@ -46,12 +52,15 @@ public class EmulateActivity extends AppCompatActivity{
         return true;
     }
 
+    @SuppressLint("WrongConstant")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_emulate);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // initialize parent views
@@ -91,12 +100,12 @@ public class EmulateActivity extends AppCompatActivity{
         controlColExp(llFlags);
 
         // initialize drag and drop
-        DragLinearLayout dragLinearLayout = (DragLinearLayout) findViewById(R.id.drag_linear_layout);
-        for(int i = 0; i < dragLinearLayout.getChildCount(); i++){
-            View child = dragLinearLayout.getChildAt(i);
-            dragLinearLayout.setViewDraggable(child,child);
-        }
-        dragLinearLayout.setContainerScrollView(scrollView);
+//        DragLinearLayout dragLinearLayout = (DragLinearLayout) findViewById(R.id.drag_linear_layout);
+//        for(int i = 0; i < dragLinearLayout.getChildCount(); i++){
+//            View child = dragLinearLayout.getChildAt(i);
+//            dragLinearLayout.setViewDraggable(child,child);
+//        }
+//        dragLinearLayout.setContainerScrollView(scrollView);
 
         // get code from editor
         lines = getIntent().getStringArrayExtra("MyCode");
@@ -106,31 +115,59 @@ public class EmulateActivity extends AppCompatActivity{
         UIHandler.setCode(lines);
 
         // onclick handler for execute button
-        btnExec.setOnClickListener(view -> {
-            try {
-                if (currentLine<lines.length) {
-                    deFocusAllElements();
+        PushDownAnim.setPushDownAnimTo(btnExec)
+                .setScale(MODE_STATIC_DP, 8)
+                .setOnClickListener( view -> {
+                    try {
+                        if (currentLine<lines.length) {
+                            deFocusAllElements();
 
-                    // get/set updated elements
-                    UIPacket uiPacket = UIHandler.execute();
-                    HashMap<String,Short> elements = uiPacket.updatedMemoryElements.getNewValues();
-                    for (Map.Entry<String, Short> entry : elements.entrySet()) {
-                        Log.d("Zarif_0002", "onCreate: L"+currentLine+" "+entry.getKey()+" "+entry.getValue());
-                        setValue(entry.getKey(),entry.getValue());
+                            // get/set updated elements
+                            UIPacket uiPacket = UIHandler.execute();
+                            HashMap<String,Short> elements = uiPacket.updatedMemoryElements.getNewValues();
+                            for (Map.Entry<String, Short> entry : elements.entrySet()) {
+                                Log.d("Zarif_0002", "onCreate: L"+currentLine+" "+entry.getKey()+" "+entry.getValue());
+                                setValue(entry.getKey(),entry.getValue());
+                            }
+
+                            // set next instruction to be executed
+                            if (++currentLine<lines.length)
+                                tvExec.setText(lines[currentLine]);
+                        }
+                        else {
+                            Toast.makeText(this,"Finished",Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (Exception e) {
+                        Toast.makeText(this,"Something went wrong",Toast.LENGTH_SHORT).show();
+                        e.printStackTrace();
                     }
+                });
 
-                    // set next instruction to be executed
-                    if (++currentLine<lines.length)
-                        tvExec.setText(lines[currentLine]);
-                }
-                else {
-                    Toast.makeText(this,"Finished",Toast.LENGTH_SHORT).show();
-                }
-            } catch (Exception e) {
-                Toast.makeText(this,"Something went wrong",Toast.LENGTH_SHORT).show();
-                e.printStackTrace();
-            }
-        });
+//        btnExec.setOnClickListener(view -> {
+//            try {
+//                if (currentLine<lines.length) {
+//                    deFocusAllElements();
+//
+//                    // get/set updated elements
+//                    UIPacket uiPacket = UIHandler.execute();
+//                    HashMap<String,Short> elements = uiPacket.updatedMemoryElements.getNewValues();
+//                    for (Map.Entry<String, Short> entry : elements.entrySet()) {
+//                        Log.d("Zarif_0002", "onCreate: L"+currentLine+" "+entry.getKey()+" "+entry.getValue());
+//                        setValue(entry.getKey(),entry.getValue());
+//                    }
+//
+//                    // set next instruction to be executed
+//                    if (++currentLine<lines.length)
+//                        tvExec.setText(lines[currentLine]);
+//                }
+//                else {
+//                    Toast.makeText(this,"Finished",Toast.LENGTH_SHORT).show();
+//                }
+//            } catch (Exception e) {
+//                Toast.makeText(this,"Something went wrong",Toast.LENGTH_SHORT).show();
+//                e.printStackTrace();
+//            }
+//        });
     }
 
 
@@ -156,15 +193,15 @@ public class EmulateActivity extends AppCompatActivity{
      */
     private void controlColExp(LinearLayout llContainer) {
         ImageView ivColExp = llContainer.findViewById(R.id.iv_expand);
-        ivColExp.setOnClickListener(v -> {
+        llContainer.setOnClickListener(v -> {
             TableLayout tableLayout = llContainer.findViewById(R.id.table_layout);
             TransitionManager.beginDelayedTransition(scrollView);
             if (tableLayout.getVisibility()==View.GONE) {
                 tableLayout.setVisibility(View.VISIBLE);
-                ivColExp.setImageResource(R.drawable.ic_baseline_expand_less_24);
+                ivColExp.animate().rotation(180).setDuration(400).start();
             } else {
                 tableLayout.setVisibility(View.GONE);
-                ivColExp.setImageResource(R.drawable.ic_baseline_expand_more_24);
+                ivColExp.animate().rotation(0).setDuration(400).start();
             }
         });
     }

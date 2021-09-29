@@ -12,7 +12,6 @@ import androidx.annotation.Nullable;
 
 import com.salikoon.emulator8086.R;
 import com.salikoon.emulator8086.ui.models.RecentFile;
-import com.salikoon.emulator8086.utility.MyAnimator;
 
 import java.util.ArrayList;
 

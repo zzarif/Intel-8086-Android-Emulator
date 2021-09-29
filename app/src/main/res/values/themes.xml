@@ -16,7 +16,7 @@
 
     <dimen name="item_reg_margin">6dp</dimen>
 
-    <style name="MyEmulatorTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="MyEmulatorTheme" parent="Theme.AppCompat">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="colorPrimary">@color/app_purple</item>

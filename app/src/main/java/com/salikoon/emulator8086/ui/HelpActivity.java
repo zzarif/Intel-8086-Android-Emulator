@@ -7,6 +7,9 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.salikoon.emulator8086.R;
 import com.salikoon.emulator8086.ui.adapters.HelpAdapter;
@@ -27,11 +30,15 @@ public class HelpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_help);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        ListView listView = findViewById(R.id.list_view);
-        HelpAdapter adapter = new HelpAdapter(this,getInstructionsList());
-        listView.setAdapter(adapter);
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        HelpAdapter adapter = new HelpAdapter(this, getInstructionsList());
+        recyclerView.setAdapter(adapter);
 
     }
 

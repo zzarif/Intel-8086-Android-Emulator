@@ -1,11 +1,14 @@
 package com.salikoon.emulator8086.ui;
 
+import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_STATIC_DP;
+
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -18,8 +21,8 @@ import com.salikoon.emulator8086.ui.models.RecentFile;
 import com.salikoon.emulator8086.utility.ErrorUtils;
 import com.salikoon.emulator8086.utility.FileManager;
 import com.salikoon.emulator8086.utility.IntentKey;
-import com.salikoon.emulator8086.utility.MyAnimator;
 import com.salikoon.emulator8086.utility.PreferenceManager;
+import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -56,27 +59,29 @@ public class MainActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        CardView cvCreateNew = findViewById(R.id.cv_create_new);
-        CardView cvOpenFile = findViewById(R.id.cv_open_file);
+        LinearLayout llCreateNew = findViewById(R.id.ll_create_new);
+        LinearLayout llOpenFile = findViewById(R.id.ll_open_file);
         setSupportActionBar(toolbar);
 
         // onClick handler: start editor
-        MyAnimator.squeezeAnimate(this,cvCreateNew);
-        cvCreateNew.setOnClickListener(
-                v -> startActivity(new Intent(MainActivity.this, EditorActivity.class))
-        );
+        PushDownAnim.setPushDownAnimTo(llCreateNew)
+                .setScale(MODE_STATIC_DP, 8)
+                .setOnClickListener( v ->
+                        startActivity(new Intent(MainActivity.this, EditorActivity.class))
+                );
 
         // onClick handler: check permission, pick file
-        MyAnimator.squeezeAnimate(this,cvOpenFile);
-        cvOpenFile.setOnClickListener(v -> {
-            if (FileManager.isStoragePermissionGranted(this)) {
-                Intent chooseFile = new Intent(Intent.ACTION_GET_CONTENT);
-                chooseFile.setType("text/plain");
-                chooseFile = Intent.createChooser(
-                        chooseFile, "Choose a file");
-                startActivityForResult(chooseFile, PICK_FILE_REQUEST_CODE);
-            }
-        });
+        PushDownAnim.setPushDownAnimTo(llOpenFile)
+                .setScale(MODE_STATIC_DP, 8)
+                .setOnClickListener( v ->{
+                    if (FileManager.isStoragePermissionGranted(this)) {
+                        Intent chooseFile = new Intent(Intent.ACTION_GET_CONTENT);
+                        chooseFile.setType("text/plain");
+                        chooseFile = Intent.createChooser(
+                                chooseFile, "Choose a file");
+                        startActivityForResult(chooseFile, PICK_FILE_REQUEST_CODE);
+                    }
+                });
 
         pickiT = new PickiT(this,this,this);
         preferenceManager = new PreferenceManager(this);
