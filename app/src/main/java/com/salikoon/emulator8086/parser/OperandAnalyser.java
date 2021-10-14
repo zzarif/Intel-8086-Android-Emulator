@@ -8,6 +8,10 @@ interface OperandAnalyser extends RegisterAnalyser,ImmediateValueAnalyser, Memor
 	*
 	*
 	*/
+	public default boolean isValidOperand(String operand)
+	{
+	    return isImmediateValueMode(operand) || isRegisterImmediateAddressingMode(operand) || isMemoryAccessMode(operand);
+	}
 	public default boolean isImmediateValueMode(String operand)
 	{
 		return isImmediateValue(operand);

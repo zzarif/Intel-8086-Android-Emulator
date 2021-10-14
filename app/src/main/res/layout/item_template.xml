@@ -28,6 +28,6 @@
         android:textColor="@color/gray_3"
         android:maxLines="3"
         android:ellipsize="end"
-        android:fontFamily="@font/source_code_pro_regular"
+        android:fontFamily="@font/fira_code_regular"
         tools:text="Moves  a byte or double-byte from the source to the destination. Source can be a register, memory or immediate value. Destination can be a register or memory."/>
 </LinearLayout>

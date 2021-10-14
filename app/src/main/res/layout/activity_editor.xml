@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:theme="@style/MyEmulatorTheme"
     tools:context=".ui.EditorActivity">
 
-<!--    <include-->
-<!--        android:id="@+id/toolbar"-->
-<!--        layout="@layout/toolbar_editor" />-->
 
     <ScrollView
         android:layout_width="match_parent"
@@ -27,7 +23,7 @@
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:background="@color/white_2"
-                android:fontFamily="@font/source_code_pro_regular"
+                android:fontFamily="@font/fira_code_regular"
                 android:gravity="end"
                 android:padding="6dp"
                 android:text="1"
@@ -47,7 +43,7 @@
                 android:dropDownWidth="150dp"
                 android:dropDownHorizontalOffset="0dp"
                 android:dropDownSelector="@color/gray_1"
-                android:fontFamily="@font/source_code_pro_regular"
+                android:fontFamily="@font/fira_code_regular"
                 android:gravity="top|start"
                 android:padding="6dp"
                 android:textSize="18sp"
@@ -56,5 +52,34 @@
 
         </LinearLayout>
     </ScrollView>
-
-</LinearLayout>
+    <RelativeLayout
+        android:id="@+id/rl_error_msg"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:background="@color/white_0"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"
+        android:minHeight="100dp">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/gray_4"/>
+        <TextView
+            android:id="@+id/tv_error_msg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="14dp"
+            android:textColor="@color/error_red"
+            tools:text="Error in Line 17: Invalid Syntax"
+            android:textSize="15sp"
+            android:fontFamily="@font/fira_code_regular"
+            android:layout_toStartOf="@+id/iv_error_msg"/>
+        <ImageView
+            android:id="@+id/iv_error_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="8dp"
+            android:src="@drawable/ic_baseline_cancel_presentation_24"/>
+    </RelativeLayout>
+</RelativeLayout>

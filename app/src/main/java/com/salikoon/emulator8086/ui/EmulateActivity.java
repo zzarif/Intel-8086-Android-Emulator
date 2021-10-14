@@ -46,12 +46,6 @@ public class EmulateActivity extends AppCompatActivity{
     Button btnExec;
     private int currentLine = 1;
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_emulator_options, menu);
-        return true;
-    }
-
     @SuppressLint("WrongConstant")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -111,9 +105,6 @@ public class EmulateActivity extends AppCompatActivity{
         lines = getIntent().getStringArrayExtra("MyCode");
         tvExec.setText(lines[currentLine]);
 
-        // set code via UI Handler
-        UIHandler.setCode(lines);
-
         // onclick handler for execute button
         PushDownAnim.setPushDownAnimTo(btnExec)
                 .setScale(MODE_STATIC_DP, 8)
@@ -135,6 +126,7 @@ public class EmulateActivity extends AppCompatActivity{
                                 tvExec.setText(lines[currentLine]);
                         }
                         else {
+                            tvExec.setText("None");
                             Toast.makeText(this,"Finished",Toast.LENGTH_SHORT).show();
                         }
                     } catch (Exception e) {
@@ -142,47 +134,16 @@ public class EmulateActivity extends AppCompatActivity{
                         e.printStackTrace();
                     }
                 });
-
-//        btnExec.setOnClickListener(view -> {
-//            try {
-//                if (currentLine<lines.length) {
-//                    deFocusAllElements();
-//
-//                    // get/set updated elements
-//                    UIPacket uiPacket = UIHandler.execute();
-//                    HashMap<String,Short> elements = uiPacket.updatedMemoryElements.getNewValues();
-//                    for (Map.Entry<String, Short> entry : elements.entrySet()) {
-//                        Log.d("Zarif_0002", "onCreate: L"+currentLine+" "+entry.getKey()+" "+entry.getValue());
-//                        setValue(entry.getKey(),entry.getValue());
-//                    }
-//
-//                    // set next instruction to be executed
-//                    if (++currentLine<lines.length)
-//                        tvExec.setText(lines[currentLine]);
-//                }
-//                else {
-//                    Toast.makeText(this,"Finished",Toast.LENGTH_SHORT).show();
-//                }
-//            } catch (Exception e) {
-//                Toast.makeText(this,"Something went wrong",Toast.LENGTH_SHORT).show();
-//                e.printStackTrace();
-//            }
-//        });
     }
 
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                return true;
-            case R.id.view_mode:
-                Toast.makeText(this, "Hex/Bin/Dec", Toast.LENGTH_SHORT).show();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
     /**

@@ -3,6 +3,10 @@
     {
       "Title": "Area of Rectangle",
       "Description": "mov ax,6 ; length of rectangle\nmov bx,5 ; width of rectangle\nmul bx; calculate area=ax*bx\nmov cx,6; now we will calculate the perimeter in sha Allah\nmov dx,5; \nadd dx,dx; dx=dx+dx\nadd cx,cx; cx=cx+cx\nadd cx,dx; perimeter=cx+dx\n"
+    },
+    {
+        "Title": "Average of three numbers",
+        "Description":"mov ax,3 \nmov bx,6\nmov cx,5\nadd ax,bx\nadd ax,cx\nmov dx,3\ndiv dx"
     }
   ]
 }

@@ -33,7 +33,7 @@ public class Executor
         }
         catch(Exception problem)
         {
-            System.out.println(problem);
+            throw new RuntimeException(problem);
         }
         
         return MemoryHandler.getLogger();

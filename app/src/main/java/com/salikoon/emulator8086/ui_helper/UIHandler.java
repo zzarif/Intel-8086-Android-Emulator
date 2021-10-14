@@ -4,13 +4,16 @@ package com.salikoon.emulator8086.ui_helper;
 
 import com.salikoon.emulator8086.execution.ExecutionHandler;
 import com.salikoon.emulator8086.user_code.CodeHandler;
-
+import com.salikoon.emulator8086.syntax_check.ValidationHandler;
+import java.util.List;
+import com.salikoon.emulator8086.syntax_check.SyntaxSlip;
 public interface UIHandler
 {
 
-    static void setCode(String[] code)
+    static List<SyntaxSlip> setCode(String[] code)
     {
         CodeHandler.setCode(code);
+        return ValidationHandler.checkCode();
     }
 
     static UIPacket execute()

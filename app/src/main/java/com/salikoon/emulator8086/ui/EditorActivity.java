@@ -20,12 +20,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.amrdeveloper.codeview.CodeView;
 import com.salikoon.emulator8086.R;
+import com.salikoon.emulator8086.syntax_check.SyntaxSlip;
+import com.salikoon.emulator8086.ui_helper.UIHandler;
 import com.salikoon.emulator8086.utility.ErrorUtils;
 import com.salikoon.emulator8086.utility.FileManager;
 import com.salikoon.emulator8086.utility.GoSyntaxManager;
@@ -33,8 +36,7 @@ import com.salikoon.emulator8086.utility.IntentKey;
 import com.salikoon.emulator8086.utility.UndoRedoHelper;
 
 import java.io.File;
-import java.io.FileWriter;
-import java.util.regex.Pattern;
+import java.util.List;
 
 public class EditorActivity extends AppCompatActivity {
 
@@ -42,6 +44,10 @@ public class EditorActivity extends AppCompatActivity {
     private TextView tvLineNum;
     private String filePath=null;
     private UndoRedoHelper undoRedoHelper;
+
+    private TextView tvErrorMsg;
+    private RelativeLayout rlErrorMsg;
+    private ImageView ivErrorMsg;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -58,6 +64,9 @@ public class EditorActivity extends AppCompatActivity {
 
         mCodeView = findViewById(R.id.code_view);
         tvLineNum = findViewById(R.id.tv_line_num);
+        tvErrorMsg = findViewById(R.id.tv_error_msg);
+        rlErrorMsg = findViewById(R.id.rl_error_msg);
+        ivErrorMsg = findViewById(R.id.iv_error_msg);
 
         final String[] languageKeywords = getResources().getStringArray(R.array.keywords);
         final int layoutId = R.layout.item_keyword_suggestion;
@@ -95,6 +104,8 @@ public class EditorActivity extends AppCompatActivity {
         } else {
             getSupportActionBar().setTitle("Untitled");
         }
+
+        ivErrorMsg.setOnClickListener(v-> rlErrorMsg.setVisibility(View.GONE));
     }
 
     private void setLineNumber() {
@@ -163,9 +174,22 @@ public class EditorActivity extends AppCompatActivity {
         String[] finalLines = new String[lines.length+1];
         finalLines[0]="";
         System.arraycopy(lines, 0, finalLines, 1, lines.length + 1 - 1);
-        Intent intent = new Intent(this, EmulateActivity.class);
-        intent.putExtra("MyCode",finalLines);
-        startActivity(intent);
+
+        List<SyntaxSlip> syntaxSlips = UIHandler.setCode(finalLines);
+
+        if (syntaxSlips.isEmpty()) {
+            tvErrorMsg.setText("");
+            rlErrorMsg.setVisibility(View.GONE);
+            Intent intent = new Intent(this, EmulateActivity.class);
+            intent.putExtra("MyCode",finalLines);
+            startActivity(intent);
+        } else {
+            tvErrorMsg.setText("");
+            rlErrorMsg.setVisibility(View.VISIBLE);
+            for (SyntaxSlip syntaxSlip: syntaxSlips) {
+                tvErrorMsg.append("Line "+syntaxSlip.lineNumber()+": "+syntaxSlip.mistake()+"\n\n");
+            }
+        }
     }
 
     private void getFileNameAndSave() {

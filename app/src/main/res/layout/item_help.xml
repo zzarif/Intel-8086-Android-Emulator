@@ -27,7 +27,7 @@
         tools:text="MOV destination,source"
         android:textColor="@color/gray_1"
         android:layout_marginTop="3dp"
-        android:fontFamily="@font/source_code_pro_regular"/>
+        android:fontFamily="@font/fira_code_regular"/>
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"

@@ -3,17 +3,68 @@
     {
       "Instruction": "MOV",
       "Syntax": "MOV destination,source",
-      "Description": "Moves a byte or double-byte from the source to the destination. Source can be a register, memory or immediate value. Destination can be a register or memory. This operation does not affect flags."
+      "Description": "Moves a byte or double-byte from the source to the destination",
+      "Source": ["Register","Memory","Immediate value"],
+      "Destination": ["Register","Memory"],
+      "FlagsChanged": null,
+      "Examples": [
+      {"Type":"Register-Register","Specimen":"MOV AX,CX"},
+      {"Type":"Register-Memory","Specimen":"MOV [0034H],DX"},
+      {"Type":"Register-Immediate Value","Specimen":"MOV AX,33"},
+      {"Type":"Memory-Immediate Value","Specimen":"MOV [BX],10010B"}
+      ]
     },
     {
       "Instruction": "ADD",
       "Syntax": "ADD destination,source",
-      "Description": "Equivalent to destination=source+destination. Source can be a register, memory or immediate value. Destination can be a register or memory. Carry, Overflow, Auxiliary, Parity, Zero and Sign flags are updated."
+      "Description": "Equivalent to destination=source+destination",
+      "Source": ["Register","Memory","Immediate value"],
+      "Destination": ["Register","Memory"],
+      "FlagsChanged": ["Carry", "Overflow", "Auxiliary","Parity","Zero","Sign"],
+      "Examples": [
+      {"Type":"Register-Register","Specimen":"ADD AX,CX"},
+      {"Type":"Register-Memory","Specimen":"ADD [0034H],DX"},
+      {"Type":"Register-Immediate Value","Specimen":"ADD AX,33"},
+      {"Type":"Memory-Immediate Value","Specimen":"ADD [BX],10010B"}
+      ]
     },
     {
       "Instruction": "SUB",
       "Syntax": "SUB destination,source",
-      "Description": "Equivalent to destination=destination-source. Source can be a register, memory or immediate value. Destination can be a register or memory. Carry, Overflow, Auxiliary, Parity, Zero and Sign flags are updated."
+      "Description": "Equivalent to destination=destination-source",
+      "Source": ["Register","Memory","Immediate value"],
+      "Destination": ["Register","Memory"],
+      "FlagsChanged": ["Carry", "Overflow", "Auxiliary", "Parity", "Zero","Sign"],
+      "Examples": [
+      {"Type":"Register-Register","Specimen":"SUB AX,CX"},
+      {"Type":"Register-Memory","Specimen":"SUB [0034H],DX"},
+      {"Type":"Register-Immediate Value","Specimen":"SUB AX,33"},
+      {"Type":"Memory-Immediate Value","Specimen":"SUB [BX],10010B"}
+      ]
+    },
+    {
+      "Instruction": "MUL",
+      "Syntax": "MUL multiplier",
+      "Description": "This is unsigned multiplication if multiplier is a byte then AX=AL x multiplier but if multiplier is a double-byte then  product=AX x multiplier where AX=lower part of product DX=higher part of product",
+      "Source": ["Register","Memory"],
+      "Destination": ["AX","DX"],
+      "FlagsChanged": ["Carry", "Overflow"],
+      "Examples": [
+      {"Type":"Register","Specimen":"MUL BX"},
+      {"Type":"Memory","Specimen":"MUL [0807H]"}
+      ]
+    },
+    {
+      "Instruction": "DIV",
+      "Syntax": "DIV divider",
+      "Description": "if divisor is a byte then AL=floor(AX/divisor) AH=remainder but if divisor is a double-byte then  AX=floor( ( DX*255 + AX)/divisor ) DX=remainder",
+      "Source": ["Register","Memory"],
+      "Destination": ["AX","DX"],
+      "FlagsChanged": ["All flags are undefined"],
+      "Examples": [
+       {"Type":"Register","Specimen":"DIV BX"},
+       {"Type":"Memory","Specimen":"DIV [0807H]"}
+      ]
     }
   ]
 }

@@ -1,33 +1,32 @@
 // بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ
 
 package com.salikoon.emulator8086.user_code;
+import java.util.ArrayList;
+
 public class AssemblyCode 
 {
-    private static String[] userCode;
-    
+    private static ArrayList<String> userCode;
+
     public static void setCode(String[] input)
     {
-          userCode=input;
-          trimAllLinesOfUserCode();
-         convertToUpperCaseAllLinesOfUserCode();
-       
+
+        userCode=new ArrayList<String>(java.util.Arrays.asList(input));
+        for(int index=1;index<userCode.size();index++)
+        {
+            userCode.set(index,userCode.get(index).trim().toUpperCase());
+        }
     }
+
     public static String getCode(int lineNumber)
     {
-        return userCode[lineNumber];
+        if(lineNumber==0) throw new IndexOutOfBoundsException("0 is not a valid index");
+        return userCode.get(lineNumber);
     }
-    private static void trimAllLinesOfUserCode()
+    
+    public static int getCodeLength()
     {
-    	for(int index=0; index<userCode.length; index++)
-    	userCode[index]=userCode[index].trim();
-    	
+        return userCode.size();
     }
-    private static void convertToUpperCaseAllLinesOfUserCode()
-    {
-    		for(int index=0; index<userCode.length; index++)
-    	userCode[index]=userCode[index].toUpperCase();
- 
-    	
-    }
- } //end of class
+    
+} //end of class
 

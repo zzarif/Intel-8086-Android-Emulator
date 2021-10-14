@@ -15,8 +15,8 @@ interface ImmediateValueAnalyser
 		*Input: Hexa, Binary, Decimal
 		*Sample Inputs: 23, FFH, 10040, 0101010B
 		*/
-		if( operand.matches("^[AH|BH|CH|DH]$") ) // These are registers
-		return false;
+		if( operand.matches("^(AH|BH|CH|DH)$") ) // These are registers
+		return false; 
 		else
 		return operand.matches("^[0-9A-F]+[BDH]?$");
 		
