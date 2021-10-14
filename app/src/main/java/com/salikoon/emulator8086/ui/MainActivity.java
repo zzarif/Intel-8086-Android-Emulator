@@ -61,6 +61,9 @@ public class MainActivity extends AppCompatActivity implements
         Toolbar toolbar = findViewById(R.id.toolbar);
         LinearLayout llCreateNew = findViewById(R.id.ll_create_new);
         LinearLayout llOpenFile = findViewById(R.id.ll_open_file);
+        LinearLayout llTutorial = findViewById(R.id.ll_tutorial);
+        LinearLayout llTemplates = findViewById(R.id.ll_templates);
+
         setSupportActionBar(toolbar);
 
         // onClick handler: start editor
@@ -82,6 +85,20 @@ public class MainActivity extends AppCompatActivity implements
                         startActivityForResult(chooseFile, PICK_FILE_REQUEST_CODE);
                     }
                 });
+
+        // onClick handler: open tutorial
+        PushDownAnim.setPushDownAnimTo(llTutorial)
+                .setScale(MODE_STATIC_DP, 8)
+                .setOnClickListener( v ->
+                        startActivity(new Intent(MainActivity.this, TemplateActivity.class))
+                );
+
+        // onClick handler: open templates
+        PushDownAnim.setPushDownAnimTo(llTemplates)
+                .setScale(MODE_STATIC_DP, 8)
+                .setOnClickListener( v ->
+                        startActivity(new Intent(MainActivity.this, TemplateActivity.class))
+                );
 
         pickiT = new PickiT(this,this,this);
         preferenceManager = new PreferenceManager(this);
@@ -153,9 +170,12 @@ public class MainActivity extends AppCompatActivity implements
         try {
             ArrayList<RecentFile> objects = preferenceManager.getRecentFiles();
             if (objects!=null) {
-                Collections.reverse(objects);
-                recentFiles.addAll(objects);
-                adapter.notifyDataSetChanged();
+                if (!objects.isEmpty()){
+                    Collections.reverse(objects);
+                    recentFiles.addAll(objects);
+                    adapter.notifyDataSetChanged();
+                }
+                else findViewById(R.id.ll_recent_files).setVisibility(View.GONE);
             }
             else ErrorUtils.genericError(this);
 

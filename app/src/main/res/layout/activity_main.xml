@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_app_gradient"
-    android:theme="@style/MyEmulatorTheme"
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
@@ -24,40 +23,45 @@
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             android:elevation="0dp"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Recent Files"
-            android:textColor="@color/white_0"
-            android:layout_marginTop="16dp"
-            android:layout_marginHorizontal="14dp"
-            android:layout_marginBottom="8dp"
-            android:textSize="16sp"/>
-        <ListView
-            android:id="@+id/list_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginBottom="20dp"
-            android:divider="#00000000"
-            android:dividerHeight="3dp"
-            android:scrollbars="none"
-            android:clickable="true"
-            android:focusable="true"
-            tools:listitem="@layout/item_recent_activity"
-            />
         <LinearLayout
+            android:id="@+id/ll_recent_files"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Recent Files"
+                android:textColor="@color/white_0"
+                android:layout_marginHorizontal="14dp"
+                android:layout_marginBottom="8dp"
+                android:textSize="16sp"/>
+            <ListView
+                android:id="@+id/list_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:divider="#00000000"
+                android:dividerHeight="3dp"
+                android:scrollbars="none"
+                android:clickable="true"
+                android:focusable="true"/>
+        </LinearLayout>
+        <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:orientation="horizontal">
+            android:columnCount="2">
             <LinearLayout
                 android:id="@+id/ll_create_new"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_columnWeight="1"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="4dp"
+                android:layout_marginBottom="8dp"
                 android:orientation="vertical"
                 android:paddingVertical="20dp"
                 android:gravity="center"
@@ -79,9 +83,10 @@
                 android:id="@+id/ll_open_file"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_columnWeight="1"
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="10dp"
+                android:layout_marginBottom="8dp"
                 android:orientation="vertical"
                 android:paddingVertical="20dp"
                 android:gravity="center"
@@ -99,7 +104,59 @@
                     android:textSize="15sp"
                     android:textColor="@color/black"/>
             </LinearLayout>
-        </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_tutorial"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="vertical"
+                android:paddingVertical="20dp"
+                android:gravity="center"
+                android:paddingHorizontal="8dp"
+                android:background="@drawable/bg_white_cornered_clickable">
+
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/tutorial"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tutorial"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_templates"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="vertical"
+                android:paddingVertical="20dp"
+                android:gravity="center"
+                android:paddingHorizontal="8dp"
+                android:background="@drawable/bg_white_cornered_clickable">
+
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/manual"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Templates"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+        </GridLayout>
 
     </LinearLayout>
 

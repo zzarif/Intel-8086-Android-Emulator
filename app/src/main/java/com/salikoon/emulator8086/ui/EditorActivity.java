@@ -13,6 +13,7 @@ import android.os.Environment;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,6 +30,7 @@ import com.salikoon.emulator8086.utility.ErrorUtils;
 import com.salikoon.emulator8086.utility.FileManager;
 import com.salikoon.emulator8086.utility.GoSyntaxManager;
 import com.salikoon.emulator8086.utility.IntentKey;
+import com.salikoon.emulator8086.utility.UndoRedoHelper;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -39,6 +41,7 @@ public class EditorActivity extends AppCompatActivity {
     private CodeView mCodeView;
     private TextView tvLineNum;
     private String filePath=null;
+    private UndoRedoHelper undoRedoHelper;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -63,6 +66,7 @@ public class EditorActivity extends AppCompatActivity {
         mCodeView.setAdapter(adapter);
 
         GoSyntaxManager.applyMonokaiTheme(this, mCodeView);
+        undoRedoHelper = new UndoRedoHelper(mCodeView);
 
         mCodeView.addTextChangedListener(new TextWatcher() {
             @Override
@@ -73,11 +77,7 @@ public class EditorActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                int lines = mCodeView.getLineCount();
-                StringBuilder lineText = new StringBuilder();
-                for (int j=1; j<=lines; ++j)
-                    lineText.append(j).append("\n");
-                tvLineNum.setText(lineText);
+                setLineNumber();
             }
         });
 
@@ -87,6 +87,7 @@ public class EditorActivity extends AppCompatActivity {
         if (getIntent().hasExtra(IntentKey.USER_CODE.getKey())) {
             mCodeView.setText(getIntent()
                     .getStringExtra(IntentKey.USER_CODE.getKey()));
+            setLineNumber();
         }
         if (getIntent().hasExtra(IntentKey.EDITOR_TITLE.getKey())) {
             String receivedTitle = getIntent().getStringExtra(IntentKey.EDITOR_TITLE.getKey());
@@ -94,6 +95,20 @@ public class EditorActivity extends AppCompatActivity {
         } else {
             getSupportActionBar().setTitle("Untitled");
         }
+    }
+
+    private void setLineNumber() {
+        mCodeView.post(new Runnable() {
+            @Override
+            public void run() {
+                int lines = mCodeView.getLineCount();
+                Log.d("ASDSFSDDFG", "setLineNumber: "+mCodeView.getLineCount());
+                StringBuilder lineText = new StringBuilder();
+                for (int j=1; j<=lines; ++j)
+                    lineText.append(j).append("\n");
+                tvLineNum.setText(lineText);
+            }
+        });
     }
 
     @Override
@@ -106,10 +121,12 @@ public class EditorActivity extends AppCompatActivity {
                 pasteFromClipboard();
                 return true;
             case R.id.undo:
-                Toast.makeText(this, "Undo", Toast.LENGTH_SHORT).show();
+                if (undoRedoHelper.getCanUndo())
+                    undoRedoHelper.undo();
                 return true;
             case R.id.redo:
-                Toast.makeText(this, "Redo", Toast.LENGTH_SHORT).show();
+                if (undoRedoHelper.getCanRedo())
+                    undoRedoHelper.redo();
                 return true;
             case R.id.compile:
                 emulateCode();

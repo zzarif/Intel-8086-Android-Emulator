@@ -50,7 +50,9 @@
                 android:fontFamily="@font/source_code_pro_regular"
                 android:gravity="top|start"
                 android:padding="6dp"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:scrollHorizontally="false"
+                android:ellipsize="none"/>
 
         </LinearLayout>
     </ScrollView>
