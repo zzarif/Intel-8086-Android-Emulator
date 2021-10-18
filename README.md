@@ -9,7 +9,7 @@ Provide required permissions and proceed to install the APK file.
 #### Method 2: Run From Android Studio
 Clone GitHub Repo
 ```bash
-$: git clone https://github.com/zzarif/8086-Emulator
+$ git clone https://github.com/zzarif/8086-Emulator
 ```
 Open the project in Android Studio. Then, run on Virtual Emulators or on Real Device via USB Debugging.
 ## Follow the Tutorial
