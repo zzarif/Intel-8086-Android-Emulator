@@ -14,7 +14,7 @@ public class PreferenceManager {
     public enum PreferenceKey {
         SETTINGS_FONT_SIZE("settingsFontSize"),
         SETTINGS_TEXT_WRAP("settingsTextWrap"),
-        RECENT_FILES("recentFilePaths");
+        RECENT_FILES("recentFilePaths"),;
 
         private String key;
         PreferenceKey(String key) {
@@ -35,12 +35,12 @@ public class PreferenceManager {
                 Context.MODE_PRIVATE);
     }
 
-    public void setUserFontSize(String value) {
+    public void setEditorFontSize(String value) {
         preferences.edit().putString(PreferenceKey.SETTINGS_FONT_SIZE.getKey(),value).apply();
     }
 
-    public String getUserFontSize() {
-        return preferences.getString(PreferenceKey.SETTINGS_FONT_SIZE.getKey(),"5");
+    public String getEditorFontSize() {
+        return preferences.getString(PreferenceKey.SETTINGS_FONT_SIZE.getKey(),"18");
     }
 
     public void setUserTextWrapOn(boolean value) {

@@ -25,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.amrdeveloper.codeview.CodeView;
 import com.salikoon.emulator8086.R;
@@ -34,6 +35,7 @@ import com.salikoon.emulator8086.utility.ErrorUtils;
 import com.salikoon.emulator8086.utility.FileManager;
 import com.salikoon.emulator8086.utility.GoSyntaxManager;
 import com.salikoon.emulator8086.utility.IntentKey;
+import com.salikoon.emulator8086.utility.PreferenceManager;
 import com.salikoon.emulator8086.utility.UndoRedoHelper;
 
 import java.io.File;
@@ -50,6 +52,8 @@ public class EditorActivity extends AppCompatActivity {
     private RelativeLayout rlErrorMsg;
     private ImageView ivErrorMsg;
 
+    PreferenceManager preferenceManager;
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_editor_options, menu);
@@ -64,6 +68,7 @@ public class EditorActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        preferenceManager = new PreferenceManager(this);
 
         mCodeView = findViewById(R.id.code_view);
         tvLineNum = findViewById(R.id.tv_line_num);
@@ -117,6 +122,10 @@ public class EditorActivity extends AppCompatActivity {
         findViewById(R.id.rl_redo).setOnClickListener(view -> {
             if (undoRedoHelper.getCanRedo()) undoRedoHelper.redo();
         });
+
+        String fontSize = preferenceManager.getEditorFontSize();
+        mCodeView.setTextSize(Float.parseFloat(fontSize));
+        tvLineNum.setTextSize(Float.parseFloat(fontSize));
     }
 
     private void setLineNumber() {
@@ -140,7 +149,9 @@ public class EditorActivity extends AppCompatActivity {
                 finish();
                 return true;
             case R.id.compile:
-                emulateCode();
+                if (mCodeView.getText().toString().trim().isEmpty())
+                    Toast.makeText(this,"Write some code please",Toast.LENGTH_SHORT).show();
+                else emulateCode();
                 return true;
             case R.id.save:
                 if (filePath!=null)

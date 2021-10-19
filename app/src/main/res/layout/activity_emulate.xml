@@ -61,14 +61,14 @@
                 android:id="@+id/layout_registers"
                 layout="@layout/layout_registers"/>
             <include
+                android:id="@+id/layout_flags"
+                layout="@layout/layout_flags"/>
+            <include
                 android:id="@+id/layout_segments"
                 layout="@layout/layout_segments"/>
             <include
                 android:id="@+id/layout_pointers"
                 layout="@layout/layout_pointers"/>
-            <include
-                android:id="@+id/layout_flags"
-                layout="@layout/layout_flags"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

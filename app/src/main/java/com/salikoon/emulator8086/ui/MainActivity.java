@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements
                         startActivity(new Intent(MainActivity.this, EditorActivity.class))
                 )
                 .setOnLongClickListener(view -> {
-                    ShowCaseHelper.show(this, llCreateNew,"Create a fresh file and start editing");
+                    ShowCaseHelper.show(this, llCreateNew,"Create a new file and start editing");
                     return true;
                 });
 
@@ -99,11 +99,11 @@ public class MainActivity extends AppCompatActivity implements
         PushDownAnim.setPushDownAnimTo(llTutorial)
                 .setScale(MODE_STATIC_DP, 8)
                 .setOnClickListener( v ->
-                        startActivity(new Intent(MainActivity.this, TemplateActivity.class))
+                        startActivity(new Intent(MainActivity.this, HelpActivity.class))
                 )
                 .setOnLongClickListener(view -> {
-                    ShowCaseHelper.show(this, llTutorial,"Tutrials");
-                    return false;
+                    ShowCaseHelper.show(this, llTutorial,"Refer to help if you're stuck at any point");
+                    return true;
                 });
 
         // onClick handler: open templates
@@ -113,8 +113,8 @@ public class MainActivity extends AppCompatActivity implements
                         startActivity(new Intent(MainActivity.this, TemplateActivity.class))
                 )
                 .setOnLongClickListener(view -> {
-                    ShowCaseHelper.show(this, llTemplates,"Emulate pre coded samples");
-                    return false;
+                    ShowCaseHelper.show(this, llTemplates,"Start editing with sample codes");
+                    return true;
                 });
 
         pickiT = new PickiT(this,this,this);
@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements
                 startActivity(new Intent(this,SettingsActivity.class));
                 break;
             case R.id.nav_about:
-                Toast.makeText(this, "About", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this,AboutActivity.class));
                 break;
         }
         return true;
