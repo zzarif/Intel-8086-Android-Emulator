@@ -3,6 +3,7 @@ package com.salikoon.emulator8086.ui;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -60,6 +61,8 @@ public class EditorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editor);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mCodeView = findViewById(R.id.code_view);
@@ -106,6 +109,14 @@ public class EditorActivity extends AppCompatActivity {
         }
 
         ivErrorMsg.setOnClickListener(v-> rlErrorMsg.setVisibility(View.GONE));
+
+        findViewById(R.id.rl_paste).setOnClickListener(view -> pasteFromClipboard());
+        findViewById(R.id.rl_undo).setOnClickListener(view -> {
+            if (undoRedoHelper.getCanUndo()) undoRedoHelper.undo();
+        });
+        findViewById(R.id.rl_redo).setOnClickListener(view -> {
+            if (undoRedoHelper.getCanRedo()) undoRedoHelper.redo();
+        });
     }
 
     private void setLineNumber() {
@@ -128,17 +139,6 @@ public class EditorActivity extends AppCompatActivity {
             case android.R.id.home:
                 finish();
                 return true;
-            case R.id.paste:
-                pasteFromClipboard();
-                return true;
-            case R.id.undo:
-                if (undoRedoHelper.getCanUndo())
-                    undoRedoHelper.undo();
-                return true;
-            case R.id.redo:
-                if (undoRedoHelper.getCanRedo())
-                    undoRedoHelper.redo();
-                return true;
             case R.id.compile:
                 emulateCode();
                 return true;
@@ -150,8 +150,8 @@ public class EditorActivity extends AppCompatActivity {
                     } else ErrorUtils.genericError(this);
                 else getFileNameAndSave();
                 return true;
-            case R.id.reset:
-                mCodeView.setText("");
+            case R.id.help:
+                startActivity(new Intent(this,HelpActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

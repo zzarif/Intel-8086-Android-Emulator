@@ -22,6 +22,7 @@ import com.salikoon.emulator8086.utility.ErrorUtils;
 import com.salikoon.emulator8086.utility.FileManager;
 import com.salikoon.emulator8086.utility.IntentKey;
 import com.salikoon.emulator8086.utility.PreferenceManager;
+import com.salikoon.emulator8086.utility.ShowCaseHelper;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import androidx.annotation.NonNull;
@@ -71,7 +72,11 @@ public class MainActivity extends AppCompatActivity implements
                 .setScale(MODE_STATIC_DP, 8)
                 .setOnClickListener( v ->
                         startActivity(new Intent(MainActivity.this, EditorActivity.class))
-                );
+                )
+                .setOnLongClickListener(view -> {
+                    ShowCaseHelper.show(this, llCreateNew,"Create a fresh file and start editing");
+                    return true;
+                });
 
         // onClick handler: check permission, pick file
         PushDownAnim.setPushDownAnimTo(llOpenFile)
@@ -84,6 +89,10 @@ public class MainActivity extends AppCompatActivity implements
                                 chooseFile, "Choose a file");
                         startActivityForResult(chooseFile, PICK_FILE_REQUEST_CODE);
                     }
+                })
+                .setOnLongClickListener(view -> {
+                    ShowCaseHelper.show(this, llOpenFile,"Pick a file from internal storage");
+                    return true;
                 });
 
         // onClick handler: open tutorial
@@ -91,14 +100,22 @@ public class MainActivity extends AppCompatActivity implements
                 .setScale(MODE_STATIC_DP, 8)
                 .setOnClickListener( v ->
                         startActivity(new Intent(MainActivity.this, TemplateActivity.class))
-                );
+                )
+                .setOnLongClickListener(view -> {
+                    ShowCaseHelper.show(this, llTutorial,"Tutrials");
+                    return false;
+                });
 
         // onClick handler: open templates
         PushDownAnim.setPushDownAnimTo(llTemplates)
                 .setScale(MODE_STATIC_DP, 8)
                 .setOnClickListener( v ->
                         startActivity(new Intent(MainActivity.this, TemplateActivity.class))
-                );
+                )
+                .setOnLongClickListener(view -> {
+                    ShowCaseHelper.show(this, llTemplates,"Emulate pre coded samples");
+                    return false;
+                });
 
         pickiT = new PickiT(this,this,this);
         preferenceManager = new PreferenceManager(this);

@@ -2,29 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/paste"
-        android:icon="@drawable/ic_baseline_content_paste_24"
-        app:showAsAction="always"
-        android:title="Paste"/>
-    <item
-        android:id="@+id/undo"
-        android:icon="@drawable/ic_undo"
-        app:showAsAction="always"
-        android:title="Undo"/>
-    <item
-        android:id="@+id/redo"
-        android:icon="@drawable/ic_redo"
-        app:showAsAction="always"
-        android:title="Redo"/>
-    <item
         android:id="@+id/compile"
         android:icon="@drawable/ic_baseline_play_arrow_24_white"
         app:showAsAction="always"
-        android:title="Compile"/>
+        android:title="Emulate"/>
     <item
         android:id="@+id/save"
+        android:icon="@drawable/ic_baseline_save_24"
+        app:showAsAction="always"
         android:title="Save"/>
     <item
-        android:id="@+id/reset"
-        android:title="Reset"/>
+        android:id="@+id/help"
+        android:icon="@drawable/ic_baseline_help_outline_24"
+        app:showAsAction="always"
+        android:title="Help"/>
 </menu>

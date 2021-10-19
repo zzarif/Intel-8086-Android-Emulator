@@ -24,7 +24,7 @@
             android:name=".ui.EditorActivity"
             android:label="Editor"
             android:screenOrientation="portrait"
-            android:theme="@style/MyEmulatorTheme2"/>
+            android:theme="@style/MyEmulatorTheme"/>
         <activity
             android:name=".ui.EmulateActivity"
             android:label="Status"

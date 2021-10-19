@@ -4,6 +4,7 @@ import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
 import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_STATIC_DP;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.transition.TransitionManager;
@@ -24,10 +25,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
 
+import com.elconfidencial.bubbleshowcase.BubbleShowCaseBuilder;
 import com.salikoon.emulator8086.R;
 import com.salikoon.emulator8086.hardware.StringParameter;
 import com.salikoon.emulator8086.ui_helper.UIHandler;
 import com.salikoon.emulator8086.ui_helper.UIPacket;
+import com.salikoon.emulator8086.utility.ShowCaseHelper;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.util.HashMap;
@@ -133,6 +136,10 @@ public class EmulateActivity extends AppCompatActivity{
                         Toast.makeText(this,"Something went wrong",Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
                     }
+                })
+                .setOnLongClickListener(view -> {
+                    ShowCaseHelper.show(this,btnExec,"Execute the line shown at the very top");
+                    return true;
                 });
     }
 

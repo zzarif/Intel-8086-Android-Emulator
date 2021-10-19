@@ -5,6 +5,7 @@
       <map>
         <entry key="app/src/main/res/drawable/bg_app_gradient.xml" value="0.34322916666666664" />
         <entry key="app/src/main/res/drawable/bg_app_item.xml" value="0.34322916666666664" />
+        <entry key="app/src/main/res/drawable/bg_black_filled.xml" value="0.34322916666666664" />
         <entry key="app/src/main/res/drawable/bg_corner_bottom_black_filled.xml" value="0.34322916666666664" />
         <entry key="app/src/main/res/drawable/bg_exec_button.xml" value="0.34322916666666664" />
         <entry key="app/src/main/res/drawable/bg_exec_mini.xml" value="0.3365679264555669" />
@@ -16,12 +17,15 @@
         <entry key="app/src/main/res/drawable/bg_white_cornered_clickable.xml" value="0.34322916666666664" />
         <entry key="app/src/main/res/drawable/ic_baseline_cancel_presentation_24.xml" value="0.34322916666666664" />
         <entry key="app/src/main/res/drawable/ic_baseline_code_24.xml" value="0.34322916666666664" />
+        <entry key="app/src/main/res/drawable/ic_baseline_content_paste_24.xml" value="0.34322916666666664" />
         <entry key="app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.3365679264555669" />
         <entry key="app/src/main/res/drawable/ic_baseline_error_24.xml" value="0.3365679264555669" />
         <entry key="app/src/main/res/drawable/ic_baseline_expand_more_24.xml" value="0.34322916666666664" />
         <entry key="app/src/main/res/drawable/ic_baseline_help_24.xml" value="0.34322916666666664" />
         <entry key="app/src/main/res/drawable/ic_baseline_play_arrow_24.xml" value="0.34322916666666664" />
         <entry key="app/src/main/res/drawable/ic_baseline_play_arrow_24_white.xml" value="0.34322916666666664" />
+        <entry key="app/src/main/res/drawable/ic_redo.xml" value="0.34322916666666664" />
+        <entry key="app/src/main/res/drawable/ic_undo.xml" value="0.34322916666666664" />
         <entry key="app/src/main/res/drawable/ripple.xml" value="0.34322916666666664" />
         <entry key="app/src/main/res/drawable/ripple_rect.xml" value="0.34322916666666664" />
         <entry key="app/src/main/res/drawable/squeeze_in.xml" value="0.34322916666666664" />
@@ -30,6 +34,7 @@
         <entry key="app/src/main/res/layout/activity_help.xml" value="0.3229166666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3166496424923391" />
         <entry key="app/src/main/res/layout/activity_settings.xml" value="0.3229166666666667" />
+        <entry key="app/src/main/res/layout/activity_template.xml" value="0.3229166666666667" />
         <entry key="app/src/main/res/layout/dialog_save_file.xml" value="0.3229166666666667" />
         <entry key="app/src/main/res/layout/item_help.xml" value="0.3229166666666667" />
         <entry key="app/src/main/res/layout/item_recent_activity.xml" value="0.3166496424923391" />

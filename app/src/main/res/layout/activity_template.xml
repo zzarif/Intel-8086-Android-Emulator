@@ -17,7 +17,7 @@
             android:fitsSystemWindows="true"
             app:contentScrim="@color/gray_1"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:title="Help">
+            app:title="Template">
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
