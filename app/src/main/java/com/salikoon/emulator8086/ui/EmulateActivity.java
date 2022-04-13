@@ -294,7 +294,7 @@ public class EmulateActivity extends AppCompatActivity{
 
     // set 8-bit values
     private void setText_8bit(TextView textView,short value) {
-        String sValue = String.format("%02x",value);
+        String sValue = String.format("%02x",(byte)value);
         textView.setText(sValue);
         textView.setTypeface(textView.getTypeface(),Typeface.BOLD);
         textView.setTextColor(getResources().getColor(R.color.keyword_0_extra));
