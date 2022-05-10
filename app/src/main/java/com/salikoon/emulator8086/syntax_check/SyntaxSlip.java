@@ -13,7 +13,7 @@ public class SyntaxSlip{
     public SyntaxSlip(int lineNumber, String mistake)
     {
     if(lineNumber<=0) throw new IllegalArgumentException("lineNumber has a value="+lineNumber+"which is not accepted as line number has to be a non-zero positive number");
-//    if(mistake.isBlank()) throw new IllegalArgumentException("A blank String is not accepted, please write something to identify the mistake");
+    if(mistake.isEmpty()) throw new IllegalArgumentException("A blank String is not accepted, please write something to identify the mistake");
     this.lineNumber=lineNumber;
     this.mistake=mistake;
     
@@ -26,7 +26,7 @@ public class SyntaxSlip{
     {
         return mistake;
     }
-    @Override
+    @Override 
     public String toString()
     {
         return java.text.MessageFormat.format("line-number: {0} mistake: {1}",lineNumber,mistake);

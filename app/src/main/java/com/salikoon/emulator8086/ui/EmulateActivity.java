@@ -106,29 +106,27 @@ public class EmulateActivity extends AppCompatActivity{
 
         // get code from editor
         lines = getIntent().getStringArrayExtra("MyCode");
-        tvExec.setText(lines[currentLine]);
+//        tvExec.setText(lines[currentLine]);
 
         // onclick handler for execute button
         PushDownAnim.setPushDownAnimTo(btnExec)
                 .setScale(MODE_STATIC_DP, 8)
                 .setOnClickListener( view -> {
                     try {
-                        if (currentLine<lines.length) {
-                            deFocusAllElements();
 
-                            // get/set updated elements
+                        deFocusAllElements();
+
+                        // get/set updated elements
+
+                        if (UIHandler.executionIncomplete()) {
                             UIPacket uiPacket = UIHandler.execute();
                             HashMap<String,Short> elements = uiPacket.updatedMemoryElements.getNewValues();
                             for (Map.Entry<String, Short> entry : elements.entrySet()) {
                                 Log.d("Zarif_0002", "onCreate: L"+currentLine+" "+entry.getKey()+" "+entry.getValue());
                                 setValue(entry.getKey(),entry.getValue());
                             }
-
-                            // set next instruction to be executed
-                            if (++currentLine<lines.length)
-                                tvExec.setText(lines[currentLine]);
-                        }
-                        else {
+                            tvExec.setText(lines[uiPacket.lineJustExecuted]);
+                        } else {
                             tvExec.setText("None");
                             Toast.makeText(this,"Finished",Toast.LENGTH_SHORT).show();
                         }

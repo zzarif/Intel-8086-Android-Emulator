@@ -5,8 +5,28 @@
       "Description": "mov ax,6 ; length of rectangle\nmov bx,5 ; width of rectangle\nmul bx; calculate area=ax*bx\nmov cx,6; now we will calculate the perimeter in sha Allah\nmov dx,5; \nadd dx,dx; dx=dx+dx\nadd cx,cx; cx=cx+cx\nadd cx,dx; perimeter=cx+dx\n"
     },
     {
-        "Title": "Average of three numbers",
-        "Description":"mov ax,3 \nmov bx,6\nmov cx,5\nadd ax,bx\nadd ax,cx\nmov dx,3\ndiv dx"
+      "Title": "Average of three numbers",
+      "Description":"mov ax,3 \nmov bx,6\nmov cx,5\nadd ax,bx\nadd ax,cx\nmov dx,3\ndiv dx"
+    },
+    {
+      "Title": "Bitwise Instructions Demo",
+      "Description":"MOV AX,6\nMOV BX,4\nAND AX,BX\nXOR AX,BX\nTEST AX,BX\nOR AX,BX\nNOT BX\nNOP"
+    },
+    {
+      "Title":"Jumps",
+      "Description": "MOV AX,4\nCMP AX,1\nJE ONE\nCMP AX,2\nJE TWO\nCMP AX,3\nJE THREE\nCMP AX,4\nJE FOUR\nONE: MOV DX,1\nJMP END\nTWO: MOV DX,2\nJMP END\nTHREE: MOV DX,3\nJMP END\nFOUR: MOV DX,4\nEND: NOP"
+    },
+    {
+      "Title": "Factorial Calculation",
+      "Description":"NOP; TASK: calculate 4!=24 in AX\nMOV CX,4\nMOV AX,1\nMULTIPLY:MUL CL\nLOOP MULTIPLY"
+    },
+    {
+      "Title": "I/O Demo",
+      "Description": "MOV AH,1\nINT 21H\nMOV AH,2\nMOV DL,35H\nINT 21H\nNOP"
+    },
+    {
+      "Title": "Flag Instructions Demo",
+      "Description":"STC\nCLC\nCMC\nCLI\nSTD\nCLD\nHLT"
     }
   ]
 }

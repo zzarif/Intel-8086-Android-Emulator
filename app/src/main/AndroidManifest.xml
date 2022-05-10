@@ -9,7 +9,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_chip_round"
         android:requestLegacyExternalStorage="true"
-        android:supportsRtl="true">
+        android:supportsRtl="false">
         <activity
             android:name=".ui.SplashActivity"
             android:theme="@style/MyEmulatorTheme">
@@ -51,6 +51,10 @@
             android:theme="@style/MyEmulatorTheme" />
         <activity
             android:name=".ui.AboutActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyEmulatorTheme" />
+        <activity
+            android:name=".ui.HelpDetailsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/MyEmulatorTheme" />
     </application>

@@ -12,7 +12,7 @@ public interface CodeHandler // intra-module facade for Code sub-module
     {
         MemoryHandler.resetHardware();
         Executor.reset();
-        AssemblyCode.setCode(userCode);    
+        storeCode(userCode);
     }
     static String getCode(int lineNumber)
     {
@@ -25,6 +25,30 @@ public interface CodeHandler // intra-module facade for Code sub-module
     static int getLastLineNumberOfCode()
     {
         return getCodeLength()-1;
+    }
+    static int resolveLabelToLineNumber(String label)
+    {
+        return SymbolCharts.getLineNumberOfLabel(label);
+    }
+    static boolean labelExists(String label)
+    {
+        return SymbolCharts.isValidLabel(label);
+    }
+    
+    
+    
+    private static void storeCode(String[] rawCode)
+    {
+           var cleanedCode=CodeCleaner.clean(rawCode);
+           var pureCode=separateLabels(cleanedCode);      
+           AssemblyCode.setCode(pureCode);    
+    }
+    private static String[] separateLabels(String[] input)
+    {
+        SymbolCharts.labelChart=SymbolExtractor.prepareLabelChart(input);
+        return java.util.stream.Stream.of(input)
+        .map(CodeCleaner:: removeLabels)
+        .toArray(String[]::new);
     }
 }    
     

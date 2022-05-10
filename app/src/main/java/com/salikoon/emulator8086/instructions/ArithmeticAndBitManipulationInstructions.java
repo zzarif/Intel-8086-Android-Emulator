@@ -138,6 +138,65 @@ public interface ArithmeticAndBitManipulationInstructions
         MemoryHandler.setValue(StringParameter.AuxiliaryFlag, (short) temp);
     }
 
+   public default void CMP(String destination, String source)
+    {
+        var isWordOperation = Parser.Analyser.is16BitOperation(destination, source);
+        var minuend = MemoryHandler.getValue(destination, isWordOperation);
+        var subtrahend = MemoryHandler.getValue(source, isWordOperation);
+        var difference = minuend - subtrahend;
+        
+
+        //updates Parity, Zero and Sign flags
+        updatePZSFlags(difference, isWordOperation);
+
+        //CarryFlag
+        if (subtrahend > minuend)
+        {
+            MemoryHandler.setValue(StringParameter.CarryFlag, (short) 1);
+        }
+        else
+        {
+            MemoryHandler.setValue(StringParameter.CarryFlag, (short) 0);
+        }
+
+        //Overflow flag
+        if (isWordOperation)
+        {
+            if (difference > 32767 || difference < -32767)
+            {
+                MemoryHandler.setValue(StringParameter.OverflowFlag, (short) 1);
+            }
+            else
+            {
+                MemoryHandler.setValue(StringParameter.OverflowFlag, (short) 0);
+            }
+        }
+        else
+        {
+            if (difference > 127 || difference < -127)
+            {
+                MemoryHandler.setValue(StringParameter.OverflowFlag, (short) 1);
+            }
+            else
+            {
+                MemoryHandler.setValue(StringParameter.OverflowFlag, (short) 0);
+            }
+        }
+
+        //Auxiliary Flag
+        int temp;
+        if ((minuend & 0xf) < (subtrahend & 0xf))
+        {
+            temp = 1;
+        }
+        else
+        {
+            temp = 0;
+        }
+        MemoryHandler.setValue(StringParameter.AuxiliaryFlag, (short) temp);
+    }
+
+
     public default void MUL(String multiplierMemoryElement)
     {
         var isWordOperation = Parser.Analyser.is16BitOperation(multiplierMemoryElement);

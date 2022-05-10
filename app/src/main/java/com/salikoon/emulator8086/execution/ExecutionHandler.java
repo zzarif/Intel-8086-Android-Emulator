@@ -11,4 +11,8 @@ public class ExecutionHandler
         return Executor.execute();
     }
     
+    public static void jumpExecutorToLineNumber(int newLineNumber)
+    {
+        Executor.setNextLineToExecute(newLineNumber);
+    }
 }//end of file

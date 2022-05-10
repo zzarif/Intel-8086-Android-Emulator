@@ -3,6 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/IUT-CSE/SEM6/MAD_Lab/Project/8086-Emulator/app/src/main/res/layout/activity_editor.xml" value="0.1796875" />
+        <entry key="..\:/IUT-CSE/SEM6/MAD_Lab/Project/8086-Emulator/app/src/main/res/layout/activity_emulate.xml" value="0.3333333333333333" />
+        <entry key="..\:/IUT-CSE/SEM6/MAD_Lab/Project/8086-Emulator/app/src/main/res/layout/activity_help.xml" value="0.4466666666666667" />
+        <entry key="..\:/IUT-CSE/SEM6/MAD_Lab/Project/8086-Emulator/app/src/main/res/layout/activity_help_details.xml" value="0.22" />
+        <entry key="..\:/IUT-CSE/SEM6/MAD_Lab/Project/8086-Emulator/app/src/main/res/layout/activity_template.xml" value="0.1796875" />
+        <entry key="..\:/IUT-CSE/SEM6/MAD_Lab/Project/8086-Emulator/app/src/main/res/layout/item_template.xml" value="0.1796875" />
+        <entry key="..\:/IUT-CSE/SEM6/MAD_Lab/Project/8086-Emulator/app/src/main/res/layout/layout_registers.xml" value="0.4466666666666667" />
         <entry key="app/src/main/res/drawable/bg_app_dark_gradient.xml" value="0.34322916666666664" />
         <entry key="app/src/main/res/drawable/bg_app_gradient.xml" value="0.34322916666666664" />
         <entry key="app/src/main/res/drawable/bg_app_item.xml" value="0.34322916666666664" />
@@ -53,10 +60,17 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.3333333333333333" />
+      </ProjectState>
+    </option>
   </component>
 </project>

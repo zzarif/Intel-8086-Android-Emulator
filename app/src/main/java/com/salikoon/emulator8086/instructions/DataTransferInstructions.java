@@ -31,6 +31,13 @@ public interface DataTransferInstructions
         MemoryHandler.setValue(destination, value,isWordOperation);
     }
 
-
+    public default void XCHG(String destination, String source)
+    {
+        var isWordOperation= Parser.Analyser.is16BitOperation(destination, source);
+        var sourceValue= MemoryHandler.getValue(source, isWordOperation);
+        var destinationValue=MemoryHandler.getValue(destination, isWordOperation);
+        MemoryHandler.setValue(destination, sourceValue,isWordOperation);
+        MemoryHandler.setValue(source, destinationValue,isWordOperation);
+    }
 
 }//end of file
