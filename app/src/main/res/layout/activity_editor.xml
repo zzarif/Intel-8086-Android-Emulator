@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/MyEmulatorTheme"
-    tools:context=".ui.EditorActivity">
+    tools:context=".ui.EditorActivity"
+    tools:viewBindingIgnore="true">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"

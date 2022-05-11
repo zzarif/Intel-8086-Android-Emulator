@@ -50,7 +50,7 @@
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/gray_1</item>
         <item name="android:fontFamily">@font/source_code_pro_regular</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">18sp</item>
     </style>
     <style name="MyRegisterItemValueStyle">
         <item name="android:layout_width">wrap_content</item>
@@ -61,7 +61,7 @@
         <item name="android:layout_weight">2</item>
         <item name="android:textColor">@color/gray_4</item>
         <item name="android:fontFamily">@font/source_code_pro_regular</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:text">00</item>
     </style>
     <style name="MySettingsTextView">

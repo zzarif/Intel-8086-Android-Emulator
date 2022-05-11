@@ -126,51 +126,51 @@
       "Instruction": "CLC",
       "Syntax": "CLC ; no operands",
       "Description": "Clears the Carry flag to 0 (false)",
-      "Source": null,
-      "Destination": null,
+      "Source": [],
+      "Destination": [],
       "FlagsChanged": ["Carry"],
       "Examples": [
-        {"Type":null,"Specimen":"CLC ; clears carry flag to false"}
+        {"Type": "None","Specimen":"CLC ; clears carry flag to false"}
       ]
     },
     {
       "Instruction": "CLD",
       "Syntax": "CLD ; no operands",
       "Description": "Clears the Direction flag to 0 (false)",
-      "Source": null,
-      "Destination": null,
+      "Source": [],
+      "Destination": [],
       "FlagsChanged": ["Direction"],
       "Examples": [
-        {"Type":null,"Specimen":"CLD ; clears direction flag to false"}
+        {"Type": "None","Specimen":"CLD ; clears direction flag to false"}
       ]
     },
     {
       "Instruction": "CLI",
       "Syntax": "CLI ; no operands",
       "Description": "Clears the Interrupt flag to 0 (false)",
-      "Source": null,
-      "Destination": null,
+      "Source": [],
+      "Destination": [],
       "FlagsChanged": ["Interrupt"],
       "Examples": [
-        {"Type":null,"Specimen":"CLI ; clears interrupt flag to false"}
+        {"Type": "None","Specimen":"CLI ; clears interrupt flag to false"}
       ]
     },
     {
       "Instruction": "CMC",
       "Syntax": "CMC ; no operands",
       "Description": "CompleMents the Carry flag Equivalent to carry flag = ~carry flag (where ~ is bit inversion operator)",
-      "Source": null,
-      "Destination": null,
+      "Source": [],
+      "Destination": [],
       "FlagsChanged": ["Carry"],
       "Examples": [
-        {"Type":null,"Specimen":"CMC ; inverts the carry flag"}
+        {"Type": "None","Specimen":"CMC ; inverts the carry flag"}
       ]
     },
     {
       "Instruction": "DEC",
       "Syntax": "DEC destination",
       "Description": "destination = destination - 1 (substracts one from destination)",
-      "Source": null,
+      "Source": [],
       "Destination": ["Register","Memory"],
       "FlagsChanged": ["Carry (undefined)", "Overflow", "Auxiliary","Parity","Zero","Sign"],
       "Examples": [
@@ -182,7 +182,7 @@
       "Instruction": "INC",
       "Syntax": "INC destination",
       "Description": "destination = destination + 1 (adds one to destination)",
-      "Source": null,
+      "Source": [],
       "Destination": ["Register","Memory"],
       "FlagsChanged": ["Carry (undefined)", "Overflow", "Auxiliary","Parity","Zero","Sign"],
       "Examples": [
@@ -194,33 +194,33 @@
       "Instruction": "HLT",
       "Syntax": "HLT ; no operands",
       "Description": "Halts the execution and no further instructions are execution",
-      "Source": null,
-      "Destination": null,
-      "FlagsChanged": null,
+      "Source": [],
+      "Destination": [],
+      "FlagsChanged": [],
       "Examples": [
-        {"Type":null,"Specimen":"HLT ; stops execution by the permission of Allah"}
+        {"Type": "None","Specimen":"HLT ; stops execution by the permission of Allah"}
       ]
     },
     {
       "Instruction": "INT",
       "Syntax": "INT interrupt-number",
       "Description": "Used to invoke interrupt handler identified by interrupt-number",
-      "Source": null,
-      "Destination": null,
+      "Source": [],
+      "Destination": [],
       "FlagsChanged": ["Interrupt","Trap"],
       "Examples": [
-        {"Type":null,"Specimen":"INT 21H"}
+        {"Type": "None","Specimen":"INT 21H"}
       ]
     },
     {
       "Instruction": "JA or JNBE",
       "Syntax": "JA label or JNBE label",
       "Description": "(Unsigned comparison) Jump if Above or Jump if not below nor equal",
-      "Source": null,
-      "Destination": null,
-      "FlagsChanged": null,
+      "Source": [],
+      "Destination": [],
+      "FlagsChanged": [],
       "Examples": [
-        {"Type":null,"Specimen":"CMP AX,BX \n JA label2"}
+        {"Type":"None","Specimen":"CMP AX,BX \n JA label2"}
       ]
     },
     {
@@ -229,7 +229,7 @@
       "Description": "Moves a byte or double-byte from the source to the destination",
       "Source": ["Register","Memory","Immediate value"],
       "Destination": ["Register","Memory"],
-      "FlagsChanged": null,
+      "FlagsChanged": [],
       "Examples": [
         {"Type":"Register-Register","Specimen":"MOV AX,CX"},
         {"Type":"Register-Memory","Specimen":"MOV [F034H],DX"},
@@ -241,7 +241,7 @@
       "Instruction": "NEG",
       "Syntax": "NEG destination",
       "Description": "Equivalent to destination = - destination (negative value of destination) i.e. it is equivalent to doing a bitwise NOT operation, then adding one - finding the 2’s complement of the destination",
-      "Source": null,
+      "Source": [],
       "Destination": ["Register","Memory"],
       "FlagsChanged": ["Carry", "Overflow", "Auxiliary","Parity","Zero","Sign"],
       "Examples": [
@@ -253,9 +253,9 @@
       "Instruction": "NOT",
       "Syntax": "NOT destination",
       "Description": "Equivalent to destination = ~destination (‘~’ indicates bitwise NOT operation)",
-      "Source": null,
+      "Source": [],
       "Destination": ["Register","Memory"],
-      "FlagsChanged": null,
+      "FlagsChanged": [],
       "Examples": [
         {"Type":"Register","Specimen":"NOT BX"},
         {"Type":"Memory","Specimen":"NOT [F807H]"}
@@ -265,22 +265,22 @@
       "Instruction": "STC",
       "Syntax": "STC ; no operands",
       "Description": "Sets the Carry flag to 1 (true)",
-      "Source": null,
-      "Destination": null,
+      "Source": [],
+      "Destination": [],
       "FlagsChanged": ["Carry"],
       "Examples": [
-        {"Type":null,"Specimen":"STC ; sets the carry flag to true"}
+        {"Type": "None","Specimen":"STC ; sets the carry flag to true"}
       ]
     },
     {
       "Instruction": "STD",
       "Syntax": "STD ; no operands",
       "Description": "Sets the Direction flag to 1 (true)",
-      "Source": null,
-      "Destination": null,
+      "Source": [],
+      "Destination": [],
       "FlagsChanged": ["Direction"],
       "Examples": [
-        {"Type":null,"Specimen":"STD ; sets the direction flag to true"}
+        {"Type": "None","Specimen":"STD ; sets the direction flag to true"}
       ]
     },
     {
@@ -289,7 +289,7 @@
       "Description": "Exchanges the contents of firstOperand with that of the secondOperand (swapping)",
       "Source": ["Register","Memory"],
       "Destination": ["Register","Memory"],
-      "FlagsChanged": null,
+      "FlagsChanged": [],
       "Examples": [
         {"Type":"Register-Register","Specimen":"XCHG BX,DX"},
         {"Type":"Memory-Register","Specimen":"XCHG [F807H],AX"}

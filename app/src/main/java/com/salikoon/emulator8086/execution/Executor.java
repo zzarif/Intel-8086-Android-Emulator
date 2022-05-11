@@ -46,6 +46,7 @@ public class Executor
     public static void reset()
     {
         currentLineUnderExecution=1;
+        UIHandler.finishedExecution=false;
     }
     
     private static void updateCurrentLineUnderExecution()

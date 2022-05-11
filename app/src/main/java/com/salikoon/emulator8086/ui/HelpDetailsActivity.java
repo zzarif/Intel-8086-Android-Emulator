@@ -2,6 +2,7 @@ package com.salikoon.emulator8086.ui;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -48,11 +49,15 @@ public class HelpDetailsActivity extends AppCompatActivity {
 
         ((TextView) source.findViewById(R.id.tv_title)).setText("Source");
         TextView tvSource = source.findViewById(R.id.tv_desc);
-        for (String s: helpModel.getSource()) tvSource.append(s+"\n");
+        if (helpModel.getSource().isEmpty())
+            source.setVisibility(View.GONE);
+        else for (String s: helpModel.getSource()) tvSource.append(s+"\n");
 
         ((TextView) destination.findViewById(R.id.tv_title)).setText("Destination");
         TextView tvDest = destination.findViewById(R.id.tv_desc);
-        for (String s: helpModel.getDestination()) tvDest.append(s+"\n");
+        if (helpModel.getDestination().isEmpty())
+            destination.setVisibility(View.GONE);
+        else for (String s: helpModel.getDestination()) tvDest.append(s+"\n");
 
         ((TextView) flags_changed.findViewById(R.id.tv_title)).setText("Flags Changed");
         TextView tvFlags = flags_changed.findViewById(R.id.tv_desc);

@@ -2,11 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="8dp"
     android:layout_marginBottom="4dp"
     android:background="@drawable/bg_exec_mini">
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,16 +18,16 @@
         <TextView
             style="@style/MyEmulatorTextView"
             android:text="Flags" />
-        <ImageView
-            android:id="@+id/iv_expand"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_expand_more_24"
-            android:layout_alignParentEnd="true"/>
+        <!--        <ImageView-->
+        <!--            android:id="@+id/iv_expand"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:src="@drawable/ic_baseline_expand_more_24"-->
+        <!--            android:layout_alignParentEnd="true"/>-->
     </RelativeLayout>
     <TableLayout
         android:id="@+id/table_layout"
-        android:visibility="gone"
+        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -66,7 +69,7 @@
                 style="@style/MyRegisterItemKeyStyle"
                 android:text="0"/>
             <TextView
-                android:id="@+id/_if"
+                android:id="@+id/eyef"
                 style="@style/MyRegisterItemKeyStyle"
                 android:text="0"/>
             <TextView
@@ -131,4 +134,5 @@
                 style="@style/MyRegisterItemKeyStyle"/>
         </TableRow>
     </TableLayout>
+</LinearLayout>
 </LinearLayout>

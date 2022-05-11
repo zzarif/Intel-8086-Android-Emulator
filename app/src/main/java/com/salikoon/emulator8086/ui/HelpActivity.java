@@ -80,6 +80,7 @@ public class HelpActivity extends AppCompatActivity {
             for (int i=0; i<jsonArray.length(); ++i) {
                 JSONObject singleInstruction = jsonArray.getJSONObject(i);
                 HelpModel helpModel = new HelpModel();
+
                 helpModel.setTitle(singleInstruction.getString("Instruction"));
                 helpModel.setSyntax(singleInstruction.getString("Syntax"));
                 helpModel.setDescription(singleInstruction.getString("Description"));

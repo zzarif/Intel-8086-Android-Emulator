@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/bg_app_gradient"
     android:theme="@style/MyEmulatorTheme">
     <com.google.android.material.appbar.AppBarLayout
@@ -17,21 +17,25 @@
             android:layout_height="?attr/actionBarSize"
             app:layout_scrollFlags="scroll|enterAlways"/>
         <RelativeLayout
+            android:id="@+id/rl_exec"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_exec_mini_extra_corner"
-            android:layout_margin="10dp">
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="10dp"
+            android:gravity="center">
             <TextView
-                android:id="@+id/tv_next"
+                android:id="@+id/tv_executed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Executed:"
                 android:layout_marginVertical="10dp"
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/fira_code_regular"
-                android:textColor="@color/gray_2"/>
+                android:textColor="@color/gray_2"
+                android:layout_alignBaseline="@id/tv_exec"/>
             <TextView
-                android:layout_toEndOf="@id/tv_next"
+                android:layout_toEndOf="@id/tv_executed"
                 android:id="@+id/tv_exec"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -40,8 +44,36 @@
                 android:fontFamily="@font/fira_code_regular"
                 android:textColor="@color/gray_2"
                 android:textStyle="bold"
-                android:textSize="14sp"/>
+                android:textSize="16sp"/>
         </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/tv_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Next:"
+                android:layout_marginVertical="10dp"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/fira_code_regular"
+                android:textColor="@color/white_2"
+                android:layout_alignBaseline="@id/tv_exec_next"
+                android:textSize="12sp"/>
+            <TextView
+                android:layout_toEndOf="@id/tv_next"
+                android:id="@+id/tv_exec_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="MOV AL,BL"
+                android:layout_margin="10dp"
+                android:fontFamily="@font/fira_code_regular"
+                android:textColor="@color/white_2"
+                android:textStyle="bold"
+                android:textSize="12sp"/>
+        </RelativeLayout>
+
     </com.google.android.material.appbar.AppBarLayout>
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scroll_view"
@@ -55,21 +87,33 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+            tools:context=".fragments.FragmentViewPagerActivity">
             <View
                 android:layout_width="match_parent"
                 android:layout_height="8dp"/>
-            <include
-                android:id="@+id/layout_registers"
-                layout="@layout/layout_registers"/>
-            <include
-                android:id="@+id/layout_flags"
-                layout="@layout/layout_flags"/>
-            <include
-                android:id="@+id/layout_segments"
-                layout="@layout/layout_segments"/>
-            <include
-                android:id="@+id/layout_pointers"
-                layout="@layout/layout_pointers"/>
+<!--            <include-->
+<!--                android:id="@+id/layout_registers"-->
+<!--                layout="@layout/layout_registers"/>-->
+<!--            <include-->
+<!--                android:id="@+id/layout_flags"-->
+<!--                layout="@layout/layout_flags"/>-->
+<!--            <include-->
+<!--                android:id="@+id/layout_segments"-->
+<!--                layout="@layout/layout_segments"/>-->
+<!--            <include-->
+<!--                android:id="@+id/layout_pointers"-->
+<!--                layout="@layout/layout_pointers"/>-->
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabMode="scrollable" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
