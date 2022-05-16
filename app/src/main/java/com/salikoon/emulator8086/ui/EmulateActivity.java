@@ -1,21 +1,20 @@
 package com.salikoon.emulator8086.ui;
 
-import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
 import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_STATIC_DP;
 
 import android.annotation.SuppressLint;
-import android.graphics.Color;
-import android.graphics.Typeface;
+import android.content.Context;
 import android.os.Bundle;
-import android.transition.TransitionManager;
 import android.util.Log;
-import android.view.Menu;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.TableLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
@@ -25,18 +24,18 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
 
-import com.elconfidencial.bubbleshowcase.BubbleShowCaseBuilder;
 import com.salikoon.emulator8086.R;
-import com.salikoon.emulator8086.hardware.StringParameter;
 import com.salikoon.emulator8086.ui_helper.UIHandler;
 import com.salikoon.emulator8086.ui_helper.UIPacket;
+import com.salikoon.emulator8086.utility.ExecutionDirector;
 import com.salikoon.emulator8086.utility.ShowCaseHelper;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
@@ -54,19 +53,26 @@ import com.salikoon.emulator8086.ui.fragments.*;
 public class EmulateActivity extends AppCompatActivity{
     NestedScrollView scrollView;
     private String[] lines;
-    TextView tvExec,tvExecNext;
+    ListView listView;
 //    TextView ah,al,bh,bl,ch,cl,dh,dl;
 //    TextView of,df, _if,tf,sf,zf,af,pf,cf;
-    Button btnExec;
-    private int currentLine = 1;
+    Button btnExec,btnStepBack;
+
+    ListAdapter listAdapter;
+    LinearLayout llLineSelect;
+    FrameLayout.LayoutParams mParams;
+    private int lineSelectBaseMargin;
+
+    ExecutionDirector executionDirector;
 
     ViewPager2 viewPager2;
     private int currtab = 0;
     public static HashMap<String,Short> elements = new HashMap<>();
 
-    ActivityEmulateBinding binding;
+    public static ActivityEmulateBinding motherOFAllBinding;
+    public static String myOutputChar = "0";
     // tab titles
-    private final String[] titles = new String[]{"Registers", "Flags", "Segments", "Pointers"};
+    private final String[] titles = new String[]{"Registers", "Flags", "I/O"};
 
 
     @SuppressLint("WrongConstant")
@@ -75,8 +81,8 @@ public class EmulateActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
 
 //        setContentView(R.layout.activity_emulate);
-        binding = ActivityEmulateBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        motherOFAllBinding = ActivityEmulateBinding.inflate(getLayoutInflater());
+        setContentView(motherOFAllBinding.getRoot());
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -86,13 +92,21 @@ public class EmulateActivity extends AppCompatActivity{
 
         // initialize parent views
         scrollView = findViewById(R.id.scroll_view);
-        tvExec = findViewById(R.id.tv_exec);
-        tvExecNext = findViewById(R.id.tv_exec_next);
+        listView = findViewById(R.id.list_view);
         btnExec = findViewById(R.id.btn_exec);
+//        btnStepBack = findViewById(R.id.btn_back);
+        llLineSelect = findViewById(R.id.line_select);
+        mParams = (FrameLayout.LayoutParams) llLineSelect.getLayoutParams();
+        lineSelectBaseMargin = mParams.topMargin;
 
         // get code from editor
         lines = getIntent().getStringArrayExtra("MyCode");
-        tvExecNext.setText(lines[1]);
+
+        listAdapter = new ListAdapter(this, Arrays.asList(lines));
+        Log.d("WHAATTTT", "onCreate: "+Arrays.asList(lines));
+        listView.setAdapter(listAdapter);
+
+        executionDirector = new ExecutionDirector();
 
         // onclick handler for execute button
         PushDownAnim.setPushDownAnimTo(btnExec)
@@ -106,28 +120,41 @@ public class EmulateActivity extends AppCompatActivity{
 
                         if (UIHandler.executionIncomplete()) {
                             UIPacket uiPacket = UIHandler.execute();
+
+                            HashMap<String,Short> newElements = uiPacket.updatedMemoryElements.getNewValues();
+                            selectLine(uiPacket.lineJustExecuted);
+
+                            for (Map.Entry<String, Short> entry : newElements.entrySet()) {
+                                elements.put(entry.getKey(), entry.getValue());
+                            }
 //                            HashMap<String,Short> elements = uiPacket.updatedMemoryElements.getNewValues();
 //                            for (Map.Entry<String, Short> entry : elements.entrySet()) {
 //                                Log.d("Zarif_0002", "onCreate: L"+currentLine+" "+entry.getKey()+" "+entry.getValue());
 //                                setValue(entry.getKey(),entry.getValue());
 //                            }
-                            elements = uiPacket.updatedMemoryElements.getNewValues();
-                            Log.d("Zarif_0002", elements.toString());
-                            currtab = binding.tabLayout.getSelectedTabPosition();
+                            currtab = motherOFAllBinding.tabLayout.getSelectedTabPosition();
                             init();
-                            binding.tabLayout.getTabAt(currtab).select();
-
-                            tvExec.setText(lines[uiPacket.lineJustExecuted]);
-                            if (uiPacket.lineJustExecuted+1<lines.length)
-                                tvExecNext.setText(lines[uiPacket.lineJustExecuted+1]);
-                            else tvExecNext.setText("None");
+                            Log.d("Zarif_0002", elements.toString());
+                            if (uiPacket.lineJustExecuted+1<lines.length) {
+                                if (elements.get("AH")==1 && lines[uiPacket.lineJustExecuted+1].contains("INT")) {
+                                    EmulateActivity.motherOFAllBinding.tabLayout.getTabAt(2).select();
+                                }
+                                else if (elements.get("AH")==2 && lines[uiPacket.lineJustExecuted].contains("INT")) {
+                                    EmulateActivity.motherOFAllBinding.tabLayout.getTabAt(2).select();
+                                    Log.d("WHHYYYYYYY", "btnExec: "+myOutputChar );
+                                    IOFragment.ioBinding.outputChar.setText(myOutputChar);
+                                }
+                                else {
+                                    motherOFAllBinding.tabLayout.getTabAt(currtab).select();
+                                }
+                            }
 
                         } else {
-                            tvExec.setText("None");
+                            elements.clear();
                             Toast.makeText(this,"Finished",Toast.LENGTH_SHORT).show();
                         }
                     } catch (Exception e) {
-                        Toast.makeText(this,"Something went wrong",Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(this,"Something went wrong",Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
                     }
                 })
@@ -135,16 +162,30 @@ public class EmulateActivity extends AppCompatActivity{
                     ShowCaseHelper.show(this,btnExec,"Execute the line shown at the very top");
                     return true;
                 });
+
+//        PushDownAnim.setPushDownAnimTo(btnStepBack)
+//                .setScale(MODE_STATIC_DP, 8)
+//                .setOnClickListener( view -> {
+//                    try {
+//                    } catch (Exception e) {
+//                        Toast.makeText(this,"Something went wrong",Toast.LENGTH_SHORT).show();
+//                        e.printStackTrace();
+//                    }
+//                })
+//                .setOnLongClickListener(view -> {
+//                    ShowCaseHelper.show(this,btnExec,"Step back to the previous line");
+//                    return true;
+//                });
     }
 
     private void init() {
         // removing toolbar elevation
         // getSupportActionBar().setElevation(0);
 
-        binding.viewPager.setAdapter(new EmulateActivity.ViewPagerFragmentAdapter(this));
+        motherOFAllBinding.viewPager.setAdapter(new EmulateActivity.ViewPagerFragmentAdapter(this));
 
         // attaching tab mediator
-        new TabLayoutMediator(binding.tabLayout, binding.viewPager,
+        new TabLayoutMediator(motherOFAllBinding.tabLayout, motherOFAllBinding.viewPager,
                 (tab, position) -> {
                     tab.setText(titles[position]);
                 }).attach();
@@ -165,9 +206,9 @@ public class EmulateActivity extends AppCompatActivity{
                 case 1:
                     return new FlagsFragment();
                 case 2:
-                    return new SegmentsFragment();
-                case 3:
-                    return new PointersFragments();
+                    return new IOFragment();
+//                case 3:
+//                    return new PointersFragments();
             }
             return new RegistersFragment();
         }
@@ -190,6 +231,43 @@ public class EmulateActivity extends AppCompatActivity{
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+
+    }
+
+    public class ListAdapter extends ArrayAdapter<String> {
+
+        private int resourceLayout;
+        private Context mContext;
+
+        public ListAdapter(Context context, List<String> items) {
+            super(context, 0, items);
+            this.mContext = context;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            if (convertView == null) {
+                convertView = LayoutInflater.from(mContext).inflate(R.layout.item_line_list,null);
+            }
+            ((TextView) convertView.findViewById(R.id.tv_line))
+                    .setText((String) getItem(position));
+            return convertView;
+        }
+
+    }
+
+    private void selectLine(int lineNo) {
+        mParams.topMargin = lineSelectBaseMargin + lineNo*getListViewItemHeight();
+    }
+
+    private int getListViewItemHeight() {
+        View childView = listAdapter.getView(0, null, listView);
+        childView.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+        return childView.getMeasuredHeight();
+    }
+
+    private static void getUserInput() {
 
     }
 }

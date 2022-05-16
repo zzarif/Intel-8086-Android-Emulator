@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/bg_exec_mini"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Input character"
+            android:textColor="@color/gray_2"
+            android:layout_marginHorizontal="18dp"
+            android:layout_marginTop="10dp"/>
+        <EditText
+            android:id="@+id/input_char"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/bg_main_options"
+            android:lines="1"
+            android:maxLength="1"
+            android:padding="8dp"
+            android:textColor="@color/black"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="* Default input value is 0 (0x30)"
+            android:textSize="12sp"
+            android:textStyle="italic"
+            android:textColor="@color/gray_2"
+            android:layout_marginHorizontal="18dp"
+            android:layout_marginBottom="18dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Output character"
+            android:textColor="@color/gray_2"
+            android:layout_marginHorizontal="18dp"/>
+        <EditText
+            android:id="@+id/output_char"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_main_options"
+            android:padding="8dp"
+            android:textColor="@color/black"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="12dp"
+            android:lines="1"
+            android:enabled="false"/>
+    </LinearLayout>
+</LinearLayout>

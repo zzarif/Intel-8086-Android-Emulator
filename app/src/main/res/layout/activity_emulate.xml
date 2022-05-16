@@ -16,63 +16,6 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:layout_scrollFlags="scroll|enterAlways"/>
-        <RelativeLayout
-            android:id="@+id/rl_exec"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_exec_mini_extra_corner"
-            android:layout_marginTop="10dp"
-            android:layout_marginHorizontal="10dp"
-            android:gravity="center">
-            <TextView
-                android:id="@+id/tv_executed"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Executed:"
-                android:layout_marginVertical="10dp"
-                android:layout_marginStart="10dp"
-                android:fontFamily="@font/fira_code_regular"
-                android:textColor="@color/gray_2"
-                android:layout_alignBaseline="@id/tv_exec"/>
-            <TextView
-                android:layout_toEndOf="@id/tv_executed"
-                android:id="@+id/tv_exec"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="MOV AL,BL"
-                android:layout_margin="10dp"
-                android:fontFamily="@font/fira_code_regular"
-                android:textColor="@color/gray_2"
-                android:textStyle="bold"
-                android:textSize="16sp"/>
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center">
-            <TextView
-                android:id="@+id/tv_next"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Next:"
-                android:layout_marginVertical="10dp"
-                android:layout_marginStart="10dp"
-                android:fontFamily="@font/fira_code_regular"
-                android:textColor="@color/white_2"
-                android:layout_alignBaseline="@id/tv_exec_next"
-                android:textSize="12sp"/>
-            <TextView
-                android:layout_toEndOf="@id/tv_next"
-                android:id="@+id/tv_exec_next"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="MOV AL,BL"
-                android:layout_margin="10dp"
-                android:fontFamily="@font/fira_code_regular"
-                android:textColor="@color/white_2"
-                android:textStyle="bold"
-                android:textSize="12sp"/>
-        </RelativeLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
     <androidx.core.widget.NestedScrollView
@@ -82,6 +25,7 @@
         android:layout_above="@+id/ll_exec"
         android:layout_alignParentTop="true"
         android:scrollbars="none"
+        android:fillViewport="true"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
         <LinearLayout
             android:layout_width="match_parent"
@@ -103,20 +47,46 @@
 <!--            <include-->
 <!--                android:id="@+id/layout_pointers"-->
 <!--                layout="@layout/layout_pointers"/>-->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ListView
+                    android:id="@+id/list_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white_2"
+                    android:layout_marginVertical="10dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:padding="4dp"
+                    android:gravity="center"
+                    tools:listitem="@layout/item_line_list"
+                    android:divider="@null">
+                </ListView>
+                <include
+                    android:id="@+id/line_select"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    layout="@layout/item_line_list_selected"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginHorizontal="14dp"/>
+            </FrameLayout>
+
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tab_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:tabMode="scrollable" />
+                app:tabMode="auto" />
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/view_pager"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="10dp"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="100dp"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-
     <Button
         android:id="@+id/btn_exec"
         android:layout_width="wrap_content"
@@ -128,6 +98,43 @@
         android:paddingVertical="8dp"
         android:paddingHorizontal="18dp"
         android:layout_marginBottom="20dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginStart="4dp"
         android:text="Execute Next"/>
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="bottom"-->
+<!--        android:orientation="horizontal">-->
+<!--        <Button-->
+<!--            android:visibility="visible"-->
+<!--            android:id="@+id/btn_back"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:background="@drawable/bg_exec_button2"-->
+<!--            android:drawableStart="@drawable/ic_baseline_play_arrow_24"-->
+<!--            android:textColor="@color/gray_1"-->
+<!--            android:paddingVertical="8dp"-->
+<!--            android:paddingHorizontal="18dp"-->
+<!--            android:layout_marginBottom="20dp"-->
+<!--            android:layout_marginStart="10dp"-->
+<!--            android:layout_marginEnd="4dp"-->
+<!--            android:text="Step Back"/>-->
+<!--        <Button-->
+<!--            android:id="@+id/btn_exec"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:background="@drawable/bg_exec_button"-->
+<!--            android:drawableStart="@drawable/ic_baseline_play_arrow_24"-->
+<!--            android:textColor="@color/gray_1"-->
+<!--            android:paddingVertical="8dp"-->
+<!--            android:paddingHorizontal="18dp"-->
+<!--            android:layout_marginBottom="20dp"-->
+<!--            android:layout_marginEnd="10dp"-->
+<!--            android:layout_marginStart="4dp"-->
+<!--            android:text="Execute Next"/>-->
+<!--    </LinearLayout>-->
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

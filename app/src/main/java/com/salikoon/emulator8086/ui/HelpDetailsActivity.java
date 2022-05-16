@@ -61,7 +61,9 @@ public class HelpDetailsActivity extends AppCompatActivity {
 
         ((TextView) flags_changed.findViewById(R.id.tv_title)).setText("Flags Changed");
         TextView tvFlags = flags_changed.findViewById(R.id.tv_desc);
-        for (String s: helpModel.getFlagsChanged()) tvFlags.append(s+"\n");
+        if (helpModel.getFlagsChanged().isEmpty())
+            flags_changed.setVisibility(View.GONE);
+        else for (String s: helpModel.getFlagsChanged()) tvFlags.append(s+"\n");
 
         ((TextView) examples.findViewById(R.id.tv_title)).setText("Examples");
         TextView tvExamples = examples.findViewById(R.id.tv_desc);

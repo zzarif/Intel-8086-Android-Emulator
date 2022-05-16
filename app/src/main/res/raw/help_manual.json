@@ -213,17 +213,6 @@
       ]
     },
     {
-      "Instruction": "JA or JNBE",
-      "Syntax": "JA label or JNBE label",
-      "Description": "(Unsigned comparison) Jump if Above or Jump if not below nor equal",
-      "Source": [],
-      "Destination": [],
-      "FlagsChanged": [],
-      "Examples": [
-        {"Type":"None","Specimen":"CMP AX,BX \n JA label2"}
-      ]
-    },
-    {
       "Instruction": "MOV",
       "Syntax": "MOV destination,source",
       "Description": "Moves a byte or double-byte from the source to the destination",
@@ -293,6 +282,253 @@
       "Examples": [
         {"Type":"Register-Register","Specimen":"XCHG BX,DX"},
         {"Type":"Memory-Register","Specimen":"XCHG [F807H],AX"}
+      ]
+    },
+    {
+      "Instruction": "JA / JNBE",
+      "Syntax": "JA label / JNBE label",
+      "Description": "(Unsigned comparison) Jump if Above / Jump if Not Below nor Equal",
+      "Source": [],
+      "Destination": [],
+      "FlagsChanged": [],
+      "Examples": [
+        {"Type":"JA","Specimen":"CMP AX,BX \n JA END"},
+        {"Type":"JNBE","Specimen":"CMP AX,BX \n JNBE END"}
+      ]
+    },
+    {
+      "Instruction": "JAE / JNB / JNC",
+      "Syntax": "JAE label/ JNB label/ JNC label",
+      "Description": "(Unsigned comparison) Jump if Above or Equal / Jump if Not Below / Jump if Not Carry",
+      "Source": [],
+      "Destination": [],
+      "FlagsChanged": [],
+      "Examples": [
+        {"Type":"JAE","Specimen":"CMP AX,BX \n JAE END"},
+        {"Type":"JNB","Specimen":"CMP AX,BX \n JNB END"},
+        {"Type":"JNC","Specimen":"CMP AX,BX \n JNC END"}
+      ]
+    },
+    {
+      "Instruction": "JB / JC / JNAE",
+      "Syntax": "JB label/ JC label/ JNAE label",
+      "Description": "(Unsigned comparison) Jump if Below / Jump if Carry / Jump if Not Above or Equal",
+      "Source": [],
+      "Destination": [],
+      "FlagsChanged": [],
+      "Examples": [
+        {"Type":"JB","Specimen":"CMP AX,BX \n JB END"},
+        {"Type":"JC","Specimen":"CMP AX,BX \n JC END"},
+        {"Type":"JNAE","Specimen":"CMP AX,BX \n JNAE END"}
+      ]
+    },
+    {
+      "Instruction": "JBE / JNA",
+      "Syntax": "JBE label/ JNA label",
+      "Description": "(Unsigned comparison) Jump if Below or Equal / Jump if Not Above",
+      "Source": [],
+      "Destination": [],
+      "FlagsChanged": [],
+      "Examples": [
+        {"Type":"JBE","Specimen":"CMP AX,BX \n JBE END"},
+        {"Type":"JNA","Specimen":"CMP AX,BX \n JNA END"}
+      ]
+    },
+    {
+      "Instruction": "JCXZ",
+      "Syntax": "JCXZ label",
+      "Description": "(Unsigned comparison) Jump if the CX Register is Zero ",
+      "Source": [],
+      "Destination": [],
+      "FlagsChanged": [],
+      "Examples": [
+        {"Type":"JCXZ","Specimen":"CMP AX,BX \n JCXZ END"}
+      ]
+    },
+    {
+      "Instruction": "JE / JZ",
+      "Syntax": "JE label/ JZ label",
+      "Description": "(Un/signed comparison) Jump if Equal / Jump if Zero",
+      "Source": [],
+      "Destination": [],
+      "FlagsChanged": [],
+      "Examples": [
+        {"Type":"JE","Specimen":"CMP AX,BX \n JE END"},
+        {"Type":"JZ","Specimen":"CMP AX,BX \n JZ END"}
+      ]
+    },
+    {
+      "Instruction": "JG / JNLE",
+      "Syntax": "JG label/ JNLE label",
+      "Description": "(Signed comparison) Jump if Greater / Jump if Not Less Than or Equal",
+      "Source": [],
+      "Destination": [],
+      "FlagsChanged": [],
+      "Examples": [
+        {"Type":"JG","Specimen":"CMP AX,BX \n JG END"},
+        {"Type":"JNLE","Specimen":"CMP AX,BX \n JNLE END"}
+      ]
+    },
+    {
+      "Instruction": "JGE / JNL",
+      "Syntax": "JGE label/ JNL label",
+      "Description": "Jump if Greater Than or Equal / Jump if Not Less Than",
+      "Source": [],
+      "Destination": [],
+      "FlagsChanged": [],
+      "Examples": [
+        {"Type":"JGE","Specimen":"CMP AX,BX \n JGE END"},
+        {"Type":"JNL","Specimen":"CMP AX,BX \n JNL END"}
+      ]
+    },
+    {
+      "Instruction": "JL / JNGE",
+      "Syntax": "JL label/ JNGE label",
+      "Description": "(Signed comparison) Jump if Less Than / Jump if Not Greater Than or Equal",
+      "Source": [],
+      "Destination": [],
+      "FlagsChanged": [],
+      "Examples": [
+        {"Type":"JL","Specimen":"CMP AX,BX \n JL END"},
+        {"Type":"JNGE","Specimen":"CMP AX,BX \n JNGE END"}
+      ]
+    },
+    {
+      "Instruction": "JLE / JNG",
+      "Syntax": "JLE label/ JNG label",
+      "Description": "(Signed comparison) Jump if Less Than or Equal / Jump if Not Greater",
+      "Source": [],
+      "Destination": [],
+      "FlagsChanged": [],
+      "Examples": [
+        {"Type":"JLE","Specimen":"CMP AX,BX \n JLE END"},
+        {"Type":"JNG","Specimen":"CMP AX,BX \n JNG END"}
+      ]
+    },
+    {
+      "Instruction": "JMP",
+      "Syntax": "JMP label",
+      "Description": "Unconditional Jump to Specified Destination",
+      "Source": [],
+      "Destination": [],
+      "FlagsChanged": [],
+      "Examples": [
+        {"Type":"JMP","Specimen":"CMP AX,BX \n JMP END"}
+      ]
+    },
+    {
+      "Instruction": "JNE / JNZ",
+      "Syntax": "JNE label/ JNZ label",
+      "Description": "Jump if Not Equal / Jump if Not Zero",
+      "Source": [],
+      "Destination": [],
+      "FlagsChanged": [],
+      "Examples": [
+        {"Type":"JNE","Specimen":"CMP AX,BX \n JNE END"},
+        {"Type":"JNZ","Specimen":"CMP AX,BX \n JNZ END"}
+      ]
+    },
+    {
+      "Instruction": "JNO",
+      "Syntax": "JNO",
+      "Description": "(Signed comparison) Jump if No Overflow",
+      "Source": [],
+      "Destination": [],
+      "FlagsChanged": [],
+      "Examples": [
+        {"Type":"JNO","Specimen":"CMP AX,BX \n JNO END"}
+      ]
+    },
+    {
+      "Instruction": "JNP / JPO",
+      "Syntax": "JNP label/ JPO label",
+      "Description": "Jump if No Parity / Jump if Parity Odd",
+      "Source": [],
+      "Destination": [],
+      "FlagsChanged": [],
+      "Examples": [
+        {"Type":"JNP","Specimen":"CMP AX,BX \n JNP END"},
+        {"Type":"JPO","Specimen":"CMP AX,BX \n JPO END"}
+      ]
+    },
+    {
+      "Instruction": "JNS",
+      "Syntax": "JNS label",
+      "Description": "Jump if Not Signed",
+      "Source": [],
+      "Destination": [],
+      "FlagsChanged": [],
+      "Examples": [
+        {"Type":"JNS","Specimen":"CMP AX,BX \n JNS END"}
+      ]
+    },
+    {
+      "Instruction": "JO",
+      "Syntax": "JO label",
+      "Description": "Jump if Overflow",
+      "Source": [],
+      "Destination": [],
+      "FlagsChanged": [],
+      "Examples": [
+        {"Type":"JO","Specimen":"CMP AX,BX \n JO END"}
+      ]
+    },
+    {
+      "Instruction": "JP / JPE",
+      "Syntax": "JP label/ JPE label",
+      "Description": "Jump if Parity / Jump if Parity Even",
+      "Source": [],
+      "Destination": [],
+      "FlagsChanged": [],
+      "Examples": [
+        {"Type":"JP","Specimen":"CMP AX,BX \n JP END"},
+        {"Type":"JPE","Specimen":"CMP AX,BX \n JPE END"}
+      ]
+    },
+    {
+      "Instruction": "JS",
+      "Syntax": "JS label",
+      "Description": "Jump on Signed",
+      "Source": [],
+      "Destination": [],
+      "FlagsChanged": [],
+      "Examples": [
+        {"Type":"JS","Specimen":"CMP AX,BX \n JS END"}
+      ]
+    },
+    {
+      "Instruction": "LOOP",
+      "Syntax": "LOOP label",
+      "Description": "First decrement CX then if CX is not equal to zero then jump to label",
+      "Source": [],
+      "Destination": [],
+      "FlagsChanged": [],
+      "Examples": [
+        {"Type":"LOOP","Specimen":"MOV CX,5 \n SUB CX,AX \nLOOP CX"}
+      ]
+    },
+    {
+      "Instruction": "LOOPE/LOOPZ",
+      "Syntax": "LOOPE label / LOOPZ label",
+      "Description": "First decrement CX then if CX is not equal to zero and zero flag is true then jump to label",
+      "Source": [],
+      "Destination": [],
+      "FlagsChanged": [],
+      "Examples": [
+        {"Type":"LOOPE","Specimen":"MOV CX,5 \n SUB BX,AX \nLOOPE CX"},
+        {"Type":"LOOPZ","Specimen":"MOV CX,5 \n SUB BX,AX \nLOOPZ CX"}
+      ]
+    },
+    {
+      "Instruction": "LOOPNE/LOOPNZ",
+      "Syntax": "LOOPNE label / LOOPNZ label",
+      "Description": "First decrement CX then if CX is not equal to zero and zero flag is false then jump to label",
+      "Source": [],
+      "Destination": [],
+      "FlagsChanged": [],
+      "Examples": [
+        {"Type":"LOOPNE","Specimen":"MOV CX,5 \n SUB BX,AX \nLOOPNE CX"},
+        {"Type":"LOOPNZ","Specimen":"MOV CX,5 \n SUB BX,AX \nLOOPNZ CX"}
       ]
     }
   ]

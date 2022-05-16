@@ -2,16 +2,23 @@
 
 package com.salikoon.emulator8086.ui_helper;
 
+import android.view.View;
+
 import com.salikoon.emulator8086.execution.ExecutionHandler;
+import com.salikoon.emulator8086.ui.EmulateActivity;
+import com.salikoon.emulator8086.ui.fragments.IOFragment;
 import com.salikoon.emulator8086.user_code.CodeHandler;
 import com.salikoon.emulator8086.syntax_check.ValidationHandler;
 import java.util.List;
 import com.salikoon.emulator8086.syntax_check.SyntaxSlip;
+import com.salikoon.emulator8086.utility.IOManager;
+
 import java.lang.annotation.*;
 
 
 public class UIHandler
 {
+    public static short val=0;
     public static boolean finishedExecution=false;
     
     public static List<SyntaxSlip> setCode(String[] code)
@@ -45,8 +52,8 @@ public class UIHandler
         @author Zarif
         @return the ascii value of the character, if the user presses a non-character then zero is returned
         */
-                
-        return 0x30;
+        return IOFragment.getUserInput();
+//        return 0x30;
     }
     
     @IncompleteWork(assignedTo="Zarif",
@@ -58,7 +65,8 @@ public class UIHandler
         @author Zarif
         @param asciiValue The ASCII value of the character to be displayed, the character can be alphanumeric or new line or carriage return etc
         */
-          System.out.println((char) asciiValue);
+//          System.out.println((char) asciiValue);
+        IOFragment.putUserOutput(asciiValue);
     }
 }//end of class
 
