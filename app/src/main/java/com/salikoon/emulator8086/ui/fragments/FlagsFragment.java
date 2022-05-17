@@ -17,7 +17,7 @@ import com.salikoon.emulator8086.ui.EmulateActivity;
 import java.util.Map;
 
 public class FlagsFragment extends Fragment{
-    private LayoutFlagsBinding binding;
+    public static LayoutFlagsBinding flagbinding;
 
     @Override
     public View onCreateView(
@@ -26,8 +26,8 @@ public class FlagsFragment extends Fragment{
     ) {
 
         // Inflate the layout for this fragment
-        binding = LayoutFlagsBinding.inflate(inflater, container, false);
-        View view = binding.getRoot();
+        flagbinding = LayoutFlagsBinding.inflate(inflater, container, false);
+        View view = flagbinding.getRoot();
         for (Map.Entry<String, Short> entry : EmulateActivity.elements.entrySet()) {
             // Log.d("Zarif_0002", "onCreate: L"+currentLine+" "+entry.getKey()+" "+entry.getValue());
             setValue(entry.getKey(),entry.getValue());
@@ -46,31 +46,31 @@ public class FlagsFragment extends Fragment{
         try {
             switch (element) {
                 case StringParameter.OverflowFlag:
-                    setText_1bit(binding.of,value);
+                    setText_1bit(flagbinding.of,value);
                     break;
                 case StringParameter.DirectionFlag:
-                    setText_1bit(binding.df,value);
+                    setText_1bit(flagbinding.df,value);
                     break;
                 case StringParameter.InterruptFlag:
-                    setText_1bit(binding.eyef,value);
+                    setText_1bit(flagbinding.eyef,value);
                     break;
                 case StringParameter.TrapFlag:
-                    setText_1bit(binding.tf,value);
+                    setText_1bit(flagbinding.tf,value);
                     break;
                 case StringParameter.SignFlag:
-                    setText_1bit(binding.sf,value);
+                    setText_1bit(flagbinding.sf,value);
                     break;
                 case StringParameter.ZeroFlag:
-                    setText_1bit(binding.zf,value);
+                    setText_1bit(flagbinding.zf,value);
                     break;
                 case StringParameter.AuxiliaryFlag:
-                    setText_1bit(binding.af,value);
+                    setText_1bit(flagbinding.af,value);
                     break;
                 case StringParameter.ParityFlag:
-                    setText_1bit(binding.pf,value);
+                    setText_1bit(flagbinding.pf,value);
                     break;
                 case StringParameter.CarryFlag:
-                    setText_1bit(binding.cf,value);
+                    setText_1bit(flagbinding.cf,value);
                     break;
                 default:
                     break;

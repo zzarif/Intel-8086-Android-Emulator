@@ -18,7 +18,7 @@ import com.salikoon.emulator8086.ui.EmulateActivity;
 import java.util.Map;
 
 public class RegistersFragment extends Fragment{
-    private LayoutRegistersBinding binding;
+    public static LayoutRegistersBinding regbinding;
 
 
     @Override
@@ -29,8 +29,8 @@ public class RegistersFragment extends Fragment{
 
 
         // Inflate the layout for this fragment
-        binding = LayoutRegistersBinding.inflate(inflater, container, false);
-        View view = binding.getRoot();
+        regbinding = LayoutRegistersBinding.inflate(inflater, container, false);
+        View view = regbinding.getRoot();
         for (Map.Entry<String, Short> entry : EmulateActivity.elements.entrySet()) {
             // Log.d("Zarif_0002", "onCreate: L"+currentLine+" "+entry.getKey()+" "+entry.getValue());
             setValue(entry.getKey(),entry.getValue());
@@ -59,40 +59,40 @@ public class RegistersFragment extends Fragment{
         try {
             switch (element) {
                 case StringParameter.AX:
-                    setText_16bit(binding.ah,binding.al,value);
+                    setText_16bit(regbinding.ah, regbinding.al,value);
                     break;
                 case StringParameter.BX:
-                    setText_16bit(binding.bh,binding.bl,value);
+                    setText_16bit(regbinding.bh, regbinding.bl,value);
                     break;
                 case StringParameter.CX:
-                    setText_16bit(binding.ch,binding.cl,value);
+                    setText_16bit(regbinding.ch, regbinding.cl,value);
                     break;
                 case StringParameter.DX:
-                    setText_16bit(binding.dh,binding.dl,value);
+                    setText_16bit(regbinding.dh, regbinding.dl,value);
                     break;
                 case StringParameter.AH:
-                    setText_8bit(binding.ah,value);
+                    setText_8bit(regbinding.ah,value);
                     break;
                 case StringParameter.AL:
-                    setText_8bit(binding.al,value);
+                    setText_8bit(regbinding.al,value);
                     break;
                 case StringParameter.BH:
-                    setText_8bit(binding.bh,value);
+                    setText_8bit(regbinding.bh,value);
                     break;
                 case StringParameter.BL:
-                    setText_8bit(binding.bl,value);
+                    setText_8bit(regbinding.bl,value);
                     break;
                 case StringParameter.CH:
-                    setText_8bit(binding.ch,value);
+                    setText_8bit(regbinding.ch,value);
                     break;
                 case StringParameter.CL:
-                    setText_8bit(binding.cl,value);
+                    setText_8bit(regbinding.cl,value);
                     break;
                 case StringParameter.DH:
-                    setText_8bit(binding.dh,value);
+                    setText_8bit(regbinding.dh,value);
                     break;
                 case StringParameter.DL:
-                    setText_8bit(binding.dl,value);
+                    setText_8bit(regbinding.dl,value);
                     break;
                 default:
                     break;

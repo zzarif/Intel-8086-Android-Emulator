@@ -4,6 +4,7 @@ import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_STATIC_DP;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,6 +26,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
 
 import com.salikoon.emulator8086.R;
+import com.salikoon.emulator8086.hardware.StringParameter;
 import com.salikoon.emulator8086.ui_helper.UIHandler;
 import com.salikoon.emulator8086.ui_helper.UIPacket;
 import com.salikoon.emulator8086.utility.ExecutionDirector;
@@ -67,7 +69,7 @@ public class EmulateActivity extends AppCompatActivity{
 
     ViewPager2 viewPager2;
     private int currtab = 0;
-    public static HashMap<String,Short> elements = new HashMap<>();
+    public static HashMap<String,Short> elements;
 
     public static ActivityEmulateBinding motherOFAllBinding;
     public static String myOutputChar = "";
@@ -88,6 +90,8 @@ public class EmulateActivity extends AppCompatActivity{
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(v -> onBackPressed());
+        elements = new HashMap<>();
+        Log.d("ddr-newElem",String.valueOf(elements));
 
         init();
 
@@ -228,9 +232,84 @@ public class EmulateActivity extends AppCompatActivity{
         return super.onOptionsItemSelected(item);
     }
 
+    private void resetText(TextView rview) {
+        rview.setTypeface(null, Typeface.NORMAL);
+        rview.setTextColor(getResources().getColor(R.color.gray_4));
+    }
+
     private void reset() {
         for (Map.Entry<String, Short> entry : elements.entrySet()) {
-            entry.setValue((short) 0);
+            switch (entry.getKey()) {
+                case StringParameter.AX:
+                    resetText(RegistersFragment.regbinding.ah);
+                    resetText(RegistersFragment.regbinding.al);
+                    break;
+                case StringParameter.BX:
+                    resetText(RegistersFragment.regbinding.bh);
+                    resetText(RegistersFragment.regbinding.bl);
+                    break;
+                case StringParameter.CX:
+                    resetText(RegistersFragment.regbinding.ch);
+                    resetText(RegistersFragment.regbinding.cl);
+                    break;
+                case StringParameter.DX:
+                    resetText(RegistersFragment.regbinding.dh);
+                    resetText(RegistersFragment.regbinding.dl);
+                    break;
+                case StringParameter.AH:
+                    resetText(RegistersFragment.regbinding.ah);
+                    break;
+                case StringParameter.AL:
+                    resetText(RegistersFragment.regbinding.al);
+                    break;
+                case StringParameter.BH:
+                    resetText(RegistersFragment.regbinding.bh);
+                    break;
+                case StringParameter.BL:
+                    resetText(RegistersFragment.regbinding.bl);
+                    break;
+                case StringParameter.CH:
+                    resetText(RegistersFragment.regbinding.ch);
+                    break;
+                case StringParameter.CL:
+                    resetText(RegistersFragment.regbinding.cl);
+                    break;
+                case StringParameter.DH:
+                    resetText(RegistersFragment.regbinding.dh);
+                    break;
+                case StringParameter.DL:
+                    resetText(RegistersFragment.regbinding.dl);
+                    break;
+                case StringParameter.CarryFlag:
+                    resetText(FlagsFragment.flagbinding.cf);
+                    break;
+                case StringParameter.AuxiliaryFlag:
+                    resetText(FlagsFragment.flagbinding.af);
+                    break;
+                case StringParameter.DirectionFlag:
+                    resetText(FlagsFragment.flagbinding.df);
+                    break;
+                case StringParameter.InterruptFlag:
+                    resetText(FlagsFragment.flagbinding.eyef);
+                    break;
+                case StringParameter.OverflowFlag:
+                    resetText(FlagsFragment.flagbinding.of);
+                    break;
+                case StringParameter.ParityFlag:
+                    resetText(FlagsFragment.flagbinding.pf);
+                    break;
+                case StringParameter.SignFlag:
+                    resetText(FlagsFragment.flagbinding.sf);
+                    break;
+                case StringParameter.TrapFlag:
+                    resetText(FlagsFragment.flagbinding.tf);
+                    break;
+                case StringParameter.ZeroFlag:
+                    resetText(FlagsFragment.flagbinding.zf);
+                    break;
+                default:
+                    break;
+            }
         }
         myOutputChar="";
     }
