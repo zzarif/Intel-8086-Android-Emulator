@@ -70,7 +70,7 @@ public class EmulateActivity extends AppCompatActivity{
     public static HashMap<String,Short> elements = new HashMap<>();
 
     public static ActivityEmulateBinding motherOFAllBinding;
-    public static String myOutputChar = "0";
+    public static String myOutputChar = "";
     // tab titles
     private final String[] titles = new String[]{"Registers", "Flags", "I/O"};
 
@@ -87,6 +87,7 @@ public class EmulateActivity extends AppCompatActivity{
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(v -> onBackPressed());
 
         init();
 
@@ -117,6 +118,7 @@ public class EmulateActivity extends AppCompatActivity{
 //                        deFocusAllElements();
 
                         // get/set updated elements
+                        myOutputChar="";
 
                         if (UIHandler.executionIncomplete()) {
                             UIPacket uiPacket = UIHandler.execute();
@@ -133,6 +135,7 @@ public class EmulateActivity extends AppCompatActivity{
 //                                setValue(entry.getKey(),entry.getValue());
 //                            }
                             currtab = motherOFAllBinding.tabLayout.getSelectedTabPosition();
+                            Log.d("ddr:Inside btnExec",String.valueOf(currtab));
                             init();
                             Log.d("Zarif_0002", elements.toString());
                             if (uiPacket.lineJustExecuted+1<lines.length) {
@@ -141,11 +144,7 @@ public class EmulateActivity extends AppCompatActivity{
                                 }
                                 else if (elements.get("AH")==2 && lines[uiPacket.lineJustExecuted].contains("INT")) {
                                     EmulateActivity.motherOFAllBinding.tabLayout.getTabAt(2).select();
-                                    Log.d("WHHYYYYYYY", "btnExec: "+myOutputChar );
-                                    IOFragment.ioBinding.outputChar.setText(myOutputChar);
-                                }
-                                else {
-                                    motherOFAllBinding.tabLayout.getTabAt(currtab).select();
+                                    Log.d("Fixed!", "btnExec: "+myOutputChar );
                                 }
                             }
 
@@ -189,6 +188,7 @@ public class EmulateActivity extends AppCompatActivity{
                 (tab, position) -> {
                     tab.setText(titles[position]);
                 }).attach();
+        motherOFAllBinding.tabLayout.getTabAt(currtab).select();
     }
 
     private class ViewPagerFragmentAdapter extends FragmentStateAdapter {
@@ -228,11 +228,19 @@ public class EmulateActivity extends AppCompatActivity{
         return super.onOptionsItemSelected(item);
     }
 
+    private void reset() {
+        for (Map.Entry<String, Short> entry : elements.entrySet()) {
+            entry.setValue((short) 0);
+        }
+        myOutputChar="";
+    }
+
     @Override
     public void onBackPressed() {
+        reset();
         super.onBackPressed();
-
     }
+
 
     public class ListAdapter extends ArrayAdapter<String> {
 

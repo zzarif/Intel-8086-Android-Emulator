@@ -66,7 +66,7 @@ public class UIHandler
         @param asciiValue The ASCII value of the character to be displayed, the character can be alphanumeric or new line or carriage return etc
         */
 //          System.out.println((char) asciiValue);
-        IOFragment.putUserOutput(asciiValue);
+        EmulateActivity.myOutputChar = String.valueOf((char)asciiValue);
     }
 }//end of class
 

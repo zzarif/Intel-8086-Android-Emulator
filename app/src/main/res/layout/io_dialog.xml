@@ -46,17 +46,18 @@
             android:text="Output character"
             android:textColor="@color/gray_2"
             android:layout_marginHorizontal="18dp"/>
+
         <EditText
             android:id="@+id/output_char"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_main_options"
-            android:padding="8dp"
-            android:textColor="@color/black"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="12dp"
+            android:background="@drawable/bg_main_options"
+            android:enabled="false"
             android:lines="1"
-            android:enabled="false"/>
+            android:padding="8dp"
+            android:textColor="@color/black" />
     </LinearLayout>
 </LinearLayout>

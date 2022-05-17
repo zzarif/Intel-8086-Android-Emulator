@@ -33,8 +33,8 @@ public class IOFragment extends Fragment{
         ioBinding = IoDialogBinding.inflate(inflater, container, false);
         View view = ioBinding.getRoot();
 
-
-
+        // Log.d("ddr",EmulateActivity.myOutputChar);
+        ioBinding.outputChar.setText(EmulateActivity.myOutputChar);
         return view;
     }
 
@@ -45,11 +45,5 @@ public class IOFragment extends Fragment{
             return 0x30;
         else
             return (short) inputStr.charAt(0);
-    }
-
-    public static void putUserOutput(short ascii) {
-        Log.d("WHHYYYYYYY", "putUserOutput: "+ascii );
-        EmulateActivity.myOutputChar = String.valueOf(ascii);
-//        ioBinding.outputChar.setText(Short.toString(ascii));
     }
 }

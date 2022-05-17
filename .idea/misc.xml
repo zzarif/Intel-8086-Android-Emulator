@@ -3,27 +3,34 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/IUT-CSE/SEM6/MAD_Lab/Project/8086-Emulator/app/src/main/res/drawable/bg_exec_button.xml" value="0.19583333333333333" />
-        <entry key="..\:/IUT-CSE/SEM6/MAD_Lab/Project/8086-Emulator/app/src/main/res/drawable/bg_exec_button2.xml" value="0.19583333333333333" />
-        <entry key="..\:/IUT-CSE/SEM6/MAD_Lab/Project/8086-Emulator/app/src/main/res/drawable/bg_exec_mini_extra_corner.xml" value="0.19583333333333333" />
-        <entry key="..\:/IUT-CSE/SEM6/MAD_Lab/Project/8086-Emulator/app/src/main/res/drawable/bg_line_selected.xml" value="0.19583333333333333" />
-        <entry key="..\:/IUT-CSE/SEM6/MAD_Lab/Project/8086-Emulator/app/src/main/res/layout/activity_editor.xml" value="0.1" />
-        <entry key="..\:/IUT-CSE/SEM6/MAD_Lab/Project/8086-Emulator/app/src/main/res/layout/activity_emulate.xml" value="0.22" />
+        <entry key="..\:/Android/AndroidStudioProjects/8086-Emulator/app/src/main/res/layout/activity_editor.xml" value="0.24864130434782608" />
+        <entry key="..\:/Android/AndroidStudioProjects/8086-Emulator/app/src/main/res/layout/activity_emulate.xml" value="0.20571429080998535" />
+        <entry key="..\:/Android/AndroidStudioProjects/8086-Emulator/app/src/main/res/layout/activity_help.xml" value="0.24864130434782608" />
+        <entry key="..\:/Android/AndroidStudioProjects/8086-Emulator/app/src/main/res/layout/activity_help_details.xml" value="0.24864130434782608" />
+        <entry key="..\:/Android/AndroidStudioProjects/8086-Emulator/app/src/main/res/layout/activity_main.xml" value="0.24864130434782608" />
+        <entry key="..\:/Android/AndroidStudioProjects/8086-Emulator/app/src/main/res/layout/activity_settings.xml" value="0.24864130434782608" />
+        <entry key="..\:/Android/AndroidStudioProjects/8086-Emulator/app/src/main/res/layout/activity_splash.xml" value="0.24864130434782608" />
+        <entry key="..\:/Android/AndroidStudioProjects/8086-Emulator/app/src/main/res/layout/activity_template.xml" value="0.24864130434782608" />
+        <entry key="..\:/Android/AndroidStudioProjects/8086-Emulator/app/src/main/res/layout/dialog_save_file.xml" value="0.24864130434782608" />
+        <entry key="..\:/Android/AndroidStudioProjects/8086-Emulator/app/src/main/res/layout/io_dialog.xml" value="0.31927083333333334" />
+        <entry key="..\:/Android/AndroidStudioProjects/8086-Emulator/app/src/main/res/layout/item_flag.xml" value="0.24864130434782608" />
+        <entry key="..\:/Android/AndroidStudioProjects/8086-Emulator/app/src/main/res/layout/item_help.xml" value="0.24864130434782608" />
+        <entry key="..\:/Android/AndroidStudioProjects/8086-Emulator/app/src/main/res/layout/item_keyword_suggestion.xml" value="0.24864130434782608" />
+        <entry key="..\:/Android/AndroidStudioProjects/8086-Emulator/app/src/main/res/layout/item_line_list_selected.xml" value="0.3066123188405797" />
+        <entry key="..\:/Android/AndroidStudioProjects/8086-Emulator/app/src/main/res/layout/item_recent_activity.xml" value="0.24864130434782608" />
+        <entry key="..\:/Android/AndroidStudioProjects/8086-Emulator/app/src/main/res/layout/item_template.xml" value="0.24864130434782608" />
+        <entry key="..\:/Android/AndroidStudioProjects/8086-Emulator/app/src/main/res/layout/layout_flags.xml" value="0.3116883194090687" />
+        <entry key="..\:/Android/AndroidStudioProjects/8086-Emulator/app/src/main/res/layout/layout_pointers.xml" value="0.24864130434782608" />
+        <entry key="..\:/Android/AndroidStudioProjects/8086-Emulator/app/src/main/res/layout/layout_registers.xml" value="0.3116883194090687" />
+        <entry key="..\:/Android/AndroidStudioProjects/8086-Emulator/app/src/main/res/layout/layout_segments.xml" value="0.3116883194090687" />
+        <entry key="..\:/Android/AndroidStudioProjects/8086-Emulator/app/src/main/res/layout/nav_header_main.xml" value="0.24864130434782608" />
+        <entry key="..\:/IUT-CSE/SEM6/MAD_Lab/Project/8086-Emulator/app/src/main/res/layout/activity_editor.xml" value="0.1796875" />
+        <entry key="..\:/IUT-CSE/SEM6/MAD_Lab/Project/8086-Emulator/app/src/main/res/layout/activity_emulate.xml" value="0.3333333333333333" />
         <entry key="..\:/IUT-CSE/SEM6/MAD_Lab/Project/8086-Emulator/app/src/main/res/layout/activity_help.xml" value="0.4466666666666667" />
         <entry key="..\:/IUT-CSE/SEM6/MAD_Lab/Project/8086-Emulator/app/src/main/res/layout/activity_help_details.xml" value="0.22" />
         <entry key="..\:/IUT-CSE/SEM6/MAD_Lab/Project/8086-Emulator/app/src/main/res/layout/activity_template.xml" value="0.1796875" />
-        <entry key="..\:/IUT-CSE/SEM6/MAD_Lab/Project/8086-Emulator/app/src/main/res/layout/dialog_save_file.xml" value="0.1796875" />
-        <entry key="..\:/IUT-CSE/SEM6/MAD_Lab/Project/8086-Emulator/app/src/main/res/layout/input_dialog.xml" value="0.22" />
-        <entry key="..\:/IUT-CSE/SEM6/MAD_Lab/Project/8086-Emulator/app/src/main/res/layout/io_dialog.xml" value="0.22" />
-        <entry key="..\:/IUT-CSE/SEM6/MAD_Lab/Project/8086-Emulator/app/src/main/res/layout/item_line_list.xml" value="0.4466666666666667" />
-        <entry key="..\:/IUT-CSE/SEM6/MAD_Lab/Project/8086-Emulator/app/src/main/res/layout/item_line_list_selected.xml" value="0.4466666666666667" />
         <entry key="..\:/IUT-CSE/SEM6/MAD_Lab/Project/8086-Emulator/app/src/main/res/layout/item_template.xml" value="0.1796875" />
-        <entry key="..\:/IUT-CSE/SEM6/MAD_Lab/Project/8086-Emulator/app/src/main/res/layout/layout_flags.xml" value="0.1796875" />
-        <entry key="..\:/IUT-CSE/SEM6/MAD_Lab/Project/8086-Emulator/app/src/main/res/layout/layout_pointers.xml" value="0.1796875" />
-        <entry key="..\:/IUT-CSE/SEM6/MAD_Lab/Project/8086-Emulator/app/src/main/res/layout/layout_registers.xml" value="0.3333333333333333" />
-        <entry key="..\:/IUT-CSE/SEM6/MAD_Lab/Project/8086-Emulator/app/src/main/res/layout/layout_segments.xml" value="0.1796875" />
-        <entry key="..\:/IUT-CSE/SEM6/MAD_Lab/Project/8086-Emulator/app/src/main/res/layout/nav_header_main.xml" value="0.1796875" />
-        <entry key="..\:/IUT-CSE/SEM6/MAD_Lab/Project/8086-Emulator/app/src/main/res/layout/output_dialog.xml" value="0.1796875" />
+        <entry key="..\:/IUT-CSE/SEM6/MAD_Lab/Project/8086-Emulator/app/src/main/res/layout/layout_registers.xml" value="0.4466666666666667" />
         <entry key="app/src/main/res/drawable/bg_app_dark_gradient.xml" value="0.34322916666666664" />
         <entry key="app/src/main/res/drawable/bg_app_gradient.xml" value="0.34322916666666664" />
         <entry key="app/src/main/res/drawable/bg_app_item.xml" value="0.34322916666666664" />
