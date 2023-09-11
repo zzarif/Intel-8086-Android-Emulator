@@ -1,8 +1,8 @@
 # Intel 8086 Emulator
-Intel 8086 microprocessor Assembly Language Emulator.
-* 16-bit implementation
-* Android Application in Java
-* Two main components - Assembler + UI
+Native Android IDE developed for students to practice, visualize and emulate 16-bit Assembly Language directly from their mobile. App features:
+* It has a mobile code editor with IntelliSense, syntax highlighting and error detection.
+* It can emulate execution of arithmetic operations, jumps, loops.
+* The Assembler was built from scratch using Java.
 ## Installation
 #### Method 1: Install Signed APK
 Provide required permissions and proceed to install the APK file.
